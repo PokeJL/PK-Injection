@@ -29,57 +29,50 @@ namespace PK3_RAM_Injection.Controller
         /// <returns></returns>
         public bool IsPokemon(byte[] buffer, int currentDexNum, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
         {
+            int m1 = hex.LittleEndian(buffer, offset_Data.Move1, offset_Data.SizeMove1, gv.Invert);
             //Move 1 has an actual move
-            if (!(hex.LittleEndian(buffer, offset_Data.Move1, offset_Data.SizeMove1, gv.Invert) != 0)) 
+            if (!(m1 != 0)) 
                 return false;
             //Not a glitch Pokemon
             if (!(hex.LittleEndian(buffer, offset_Data.Dex, offset_Data.SizeDex, gv.Invert) != 0)) 
                 return false;
+            if (!vdc.EV(buffer, gv.EffortTotal, gv.Invert, val.Gen, val.SubGen, gv.Option))
+                return false;
+            if (!vdc.ChecksumEnd(buffer, gv.Option, gv.StorageDataSize, gv.Invert))
+                return false;
+            int m2 = hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert);
             //Move 1 != Move 2
-            if (!(hex.LittleEndian(buffer, offset_Data.Move1, offset_Data.SizeMove1, gv.Invert) !=
-                hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert))) 
+            if (!(m1 != m2)) 
                 return false;
+            int m3 = hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert);
             //Move 1 != Move 3
-            if (!(hex.LittleEndian(buffer, offset_Data.Move1, offset_Data.SizeMove1, gv.Invert) !=
-                hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert))) 
+            if (!(m1 != m3)) 
                 return false;
+            int m4 = hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert);
             //Move 1 != Move 4
-            if (!(hex.LittleEndian(buffer, offset_Data.Move1, offset_Data.SizeMove1, gv.Invert) !=
-                hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert))) 
+            if (!(m1 != m4)) 
                 return false;
             //2 != 3 OR 2 AND 3 == 0
-            if (!((hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert) !=
-                hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert)) ||
-                (hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert) == 0 &&
-                hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert) == 0)))
+            if (!((m2 != m3) || (m2 == 0 && m3 == 0)))
                 return false;
             //2 == 0 AND 3 == 0
-            if (hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert) == 0 &&
-                hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert) != 0)
+            if (m2 == 0 && m3 != 0)
                 return false;
             //2 != 4 OR 2 AND 4 == 0
-            if (!((hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert) !=
-                hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert)) ||
-                (hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert) == 0 &&
-                hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert) == 0))) 
+            if (!((m2 != m4) || (m2 == 0 && m4 == 0))) 
                 return false;
             //2 == 0 AND 4 == 0
-            if (hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert) == 0 &&
-                hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert) != 0)
+            if (m2 == 0 && m4 != 0)
                 return false;
             //3 != 4 OR 3 AND 4 == 0
-            if (!((hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert) !=
-                hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert)) ||
-                (hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert) == 0 &&
-                hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert) == 0))) 
+            if (!((m3 != m4) || (m3 == 0 && m4 == 0))) 
                 return false;
             //3 == 0 AND 4 == 0
-            if (hex.LittleEndian(buffer, offset_Data.Move3, offset_Data.SizeMove3, gv.Invert) == 0 &&
-                hex.LittleEndian(buffer, offset_Data.Move4, offset_Data.SizeMove4, gv.Invert) != 0)
+            if (m3 == 0 && m4 != 0)
                 return false;
             // EV total does not exceed limit
-            if (!vdc.EV(buffer, gv.EffortTotal, gv.Invert, val.Gen, val.SubGen, gv.Option)) 
-                return false;
+            //if (!vdc.EV(buffer, gv.EffortTotal, gv.Invert, val.Gen, val.SubGen, gv.Option))
+            //    return false;
             //Makes sure Pokerus is valid
             if (!vdc.Pkrus(buffer, gv.Option)) 
                 return false;
@@ -88,8 +81,8 @@ namespace PK3_RAM_Injection.Controller
                 return false;
             //Makes sure the checksum is valid or if the game does not have checksum additional
             //checks are completed
-            if (!vdc.ChecksumEnd(buffer, gv.Option, gv.StorageDataSize, gv.Invert))
-                return false;
+            //if (!vdc.ChecksumEnd(buffer, gv.Option, gv.StorageDataSize, gv.Invert))
+            //    return false;
 
             return true;
         }
@@ -190,14 +183,6 @@ namespace PK3_RAM_Injection.Controller
             //Check if Move 4 of found Pokemon matches one already found
             if (!(hex.LittleEndian2D(pokemon, f, offset_Data.Move4, offset_Data.SizeMove4, inversion) == 
                 hex.LittleEndian(convert, offset_Data.Move4, offset_Data.SizeMove4, inversion)))
-                return false;
-            //Check if Nature of found Pokemon matches one already found
-            if (!(hex.LittleEndian2D(pokemon, f, offset_Data.Nature, offset_Data.SizeNature, inversion) == 
-                hex.LittleEndian(convert, offset_Data.Nature, offset_Data.SizeNature, inversion)))
-                return false;
-            //Check if Encryption of found Pokemon matches one already found
-            if (!(hex.LittleEndian2D(pokemon, f, offset_Data.Encryption, offset_Data.SizeEncryption, inversion) == 
-                hex.LittleEndian(convert, offset_Data.Encryption, offset_Data.SizeEncryption, inversion)))
                 return false;
             //Check if EXP of found Pokemon matches one already found
             if (!(hex.LittleEndian2D(pokemon, f, offset_Data.EXP, offset_Data.SizeEXP, inversion) == 
