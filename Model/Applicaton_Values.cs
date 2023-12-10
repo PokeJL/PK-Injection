@@ -18,15 +18,15 @@
         public int ComboSelect { get; set; } = 0; //Selected index of the game
         public int SubGen { get; set; } = 0; //Helps determine target game if data is stored diffrently between games in a gen
 
-        //Resets some of the application values
-        public void PartReset()
-        {
-            FileData = new byte[1];
-            Found = 0;
-            SelectIndex = 0;
-            DexNum = 0;
-            Gen = 0;
-            SubGen = 0;
-        }
+        ////Resets some of the application values
+        //public void PartReset()
+        //{
+        //    FileData = new byte[1];
+        //    Found = 0;
+        //    SelectIndex = 0;
+        //    DexNum = 0;
+        //    Gen = 0;
+        //    SubGen = 0;
+        //}
     }
 }

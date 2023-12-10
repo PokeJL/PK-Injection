@@ -1,5 +1,8 @@
 using PK3_RAM_Injection.Controller;
+using PK3_RAM_Injection.Data;
 using PK3_RAM_Injection.Model;
+using PK3_RAM_Injection.View;
+using System.ComponentModel;
 using System.Security;
 
 namespace PK3_RAM_Injection
@@ -14,6 +17,7 @@ namespace PK3_RAM_Injection
         readonly Applicaton_Values val;
         readonly Offest_data offest;
         readonly Game_Values gv;
+        Set_Values sv;
         readonly List<string> list;
         readonly List<List<byte>> pokemon;
 
@@ -34,6 +38,7 @@ namespace PK3_RAM_Injection
             val = new();
             offest = new();
             gv = new();
+            sv = new();
             pokemon = new List<List<byte>>();
             list = new List<string>();
 
@@ -118,7 +123,7 @@ namespace PK3_RAM_Injection
             pokemon.Clear();
             if (!backgroundWorker1.IsBusy) //If search hasn't began
             {
-                val.PartReset();
+                sv.ApplicationPartReset(val);
                 backgroundWorker1.WorkerSupportsCancellation = true;
                 val.EndTask = false;
                 backgroundWorker1.RunWorkerAsync();
@@ -149,10 +154,19 @@ namespace PK3_RAM_Injection
             {
                 //Set values for main line game
                 SetClasses(3, 0);
-                //Set values for spin off game
+
+                int intID = Convert.ToInt32(TidTXT.Text);
+                byte temp = 0x00;
+                var tid = new byte[2];
+                tid[0] = (byte)(intID >> 8);
+                tid[1] = (byte)intID;
+
+                temp = tid[0];
+                tid[0] = tid[1];
+                tid[1] = temp;
 
                 fm.LoadData(string.Format("{0}", openFileDialog1.FileName), val);
-                rip.SearchPokemon(pokemon, val, offest, gv);
+                rip.SearchPokemon(pokemon, val, offest, gv, tid);
 
             }
             else
@@ -169,8 +183,8 @@ namespace PK3_RAM_Injection
         {
             val.Gen = gen;
             val.SubGen = subGen;
-            gv.SetValues(gen, subGen);
-            offest.SetValues(gen, subGen);
+            sv.GameSetValues(gv, gen, subGen);
+            sv.OffsetSetValues(offest, gen, subGen);
         }
 
         private void BindComboBoxData()
@@ -186,7 +200,7 @@ namespace PK3_RAM_Injection
                     for (int i = 0; i < val.Found; i++)
                     {
                         val.DexNum = dex.Gen3GetDexNum(hex.LittleEndian2D(pokemon, i, offest.Dex, offest.SizeDex, gv.Invert));
-                        
+
                         ItemObject[i] = data.GetPokemonName(val.DexNum);
                     }
                     PkmnSelectCB.Items.AddRange(ItemObject);
@@ -229,6 +243,12 @@ namespace PK3_RAM_Injection
             /*
              Add textbox message code here.
              */
+        }
+
+        private void EditBTN_Click(object sender, EventArgs e)
+        {
+            var editor = new PK3_RAM_Hex_Editor();
+            editor.Show();
         }
     }
 }

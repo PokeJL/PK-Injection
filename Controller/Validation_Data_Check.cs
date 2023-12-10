@@ -1,4 +1,5 @@
 ﻿using PK3_RAM_Injection.Model;
+using System.Drawing;
 
 namespace PK3_RAM_Injection.Controller
 {
@@ -7,12 +8,14 @@ namespace PK3_RAM_Injection.Controller
         readonly Data_Conversion hex;
         readonly Offest_data offset_Data;
         readonly Bit_Check bit;
+        Set_Values sv;
 
         public Validation_Data_Check()
         {
             hex = new();
             offset_Data = new();
             bit = new();
+            sv = new();
         }
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace PK3_RAM_Injection.Controller
         {
             Data_Conversion con = new Data_Conversion();
             ushort check = PokeCrypto.GetCHK(data, start, size); //Makes the checksum
-
+            //currently edited for no check sum
             if (con.LittleEndian(data, chkOffest, 2, inversion) == check)
                 return true;
 
@@ -140,7 +143,7 @@ namespace PK3_RAM_Injection.Controller
         /// <returns></returns>
         public bool EV(byte[] buffer, int totalEV, bool invert, int gen, int subGen, int option)
         {
-            offset_Data.SetValues(gen, subGen);
+            sv.OffsetSetValues(offset_Data, gen, subGen);
 
             if (hex.LittleEndian(buffer, offset_Data.HPEV, offset_Data.SizeHPEV, invert) +
                 hex.LittleEndian(buffer, offset_Data.AttEV, offset_Data.SizeAttEV, invert) +
@@ -151,6 +154,24 @@ namespace PK3_RAM_Injection.Controller
                 return true;
 
             return false;
+        }
+
+        public bool NameCheck(byte[]buffer, int start, int length)
+        {
+            int count = 0;
+
+            for (int i = start; i < start + length; i++)
+            {
+                if (hex.ConOneHex(buffer[i]) == 255)
+                    break;
+                else
+                    count += hex.ConOneHex(buffer[i]);
+            }
+
+            if (count == 0)
+                return false;
+
+            return true;
         }
     }
 }

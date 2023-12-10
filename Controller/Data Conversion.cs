@@ -134,45 +134,6 @@
             return buffer[0] << 32 | buffer[1] << 16 | buffer[2] << 8 | buffer[3];
         }
 
-        /// <summary>
-        /// Converts byte data to a string
-        /// </summary>
-        /// <param name="data">The provided data</param>
-        /// <param name="offset">Where to start in the data</param>
-        /// <param name="length">Length of data needing to be converted</param>
-        /// <returns></returns>
-        public string HexToBinaryString (byte[] data, int offset, int length)
-        {
-            string hexString;
-            byte[] dataBuffer = new byte[length];
-
-            Extract(data, dataBuffer, offset, length);
-            if (length > 1)
-                Invert(dataBuffer);
-
-            hexString = Convert.ToString(dataBuffer[0], 2).PadLeft(8, '0');
-
-            for (int i  = 1; i < length; i++)
-                hexString += Convert.ToString(dataBuffer[i], 2).PadLeft(8, '0');
-
-            return hexString;
-        }
-
-        /// <summary>
-        /// Converts a sting of binary data to int
-        /// </summary>
-        /// <param name="word">The string needing to convert to int</param>
-        /// <param name="start">Where to start in string</param>
-        /// <param name="end">Where to stop in the string</param>
-        /// <returns></returns>
-        public int BinaryStringToInt(string word, int start, int end)
-        {
-            string temp;
-            temp = word.Substring(start, end);
-            temp = Reverse(temp);
-            return Convert.ToInt32(temp, 2);
-        }
-
         //Reverse a string. Code from https://stackoverflow.com/questions/228038/best-way-to-reverse-a-string
         public string Reverse(string s)
         {

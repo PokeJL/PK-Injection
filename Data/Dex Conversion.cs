@@ -1,11 +1,11 @@
-﻿namespace PK3_RAM_Injection.Model
+﻿namespace PK3_RAM_Injection.Data
 {
     class Dex_Conversion
     {
         /// <summary>
         /// Dex order for gen 3
         /// </summary>
-        private int[] gen3NatNums = 
+        private int[] gen3NatNums =
         {
             000, 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019,
             020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039,
@@ -41,7 +41,7 @@
             int value = dex;
             if (value > 251)
             {
-                for(int i = 252; i < 387; i++)
+                for (int i = 252; i < 387; i++)
                 {
                     if (gen3NatNums[i] == value)
                     {

@@ -46,8 +46,9 @@ namespace PK3_RAM_Injection.Controller
         {
             Offest_data offset_Data = new();
             Pokemon_Value_Check check = new();
+            Set_Values sv = new();
 
-            offset_Data.SetValues(gen, subGen);
+            sv.OffsetSetValues(offset_Data, gen, subGen);
 
             if (found != 0)
             {

@@ -1,4 +1,4 @@
-﻿namespace PK3_RAM_Injection.Model
+﻿namespace PK3_RAM_Injection.Data
 {
     class Pokemon_Data
     {

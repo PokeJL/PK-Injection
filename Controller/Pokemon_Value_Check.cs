@@ -11,10 +11,12 @@ namespace PK3_RAM_Injection.Controller
     {
         readonly Data_Conversion hex;
         readonly Validation_Data_Check vdc;
+        readonly Bit_Check bit;
         public Pokemon_Value_Check()
         {
             hex = new();
             vdc = new();
+            bit = new();
         }
 
         /// <summary>
@@ -33,12 +35,15 @@ namespace PK3_RAM_Injection.Controller
             //Move 1 has an actual move
             if (!(m1 != 0)) 
                 return false;
-            //Not a glitch Pokemon
-            if (!(hex.LittleEndian(buffer, offset_Data.Dex, offset_Data.SizeDex, gv.Invert) != 0)) 
-                return false;
             if (!vdc.EV(buffer, gv.EffortTotal, gv.Invert, val.Gen, val.SubGen, gv.Option))
                 return false;
-            if (!vdc.ChecksumEnd(buffer, gv.Option, gv.StorageDataSize, gv.Invert))
+            //if (!vdc.ChecksumEnd(buffer, gv.Option, gv.StorageDataSize, gv.Invert))
+            //    return false;
+            if (!vdc.NameCheck(buffer, offset_Data.OTName, offset_Data.OTNameSize))
+                return false;
+            if (!vdc.NameCheck(buffer, offset_Data.Nickname, offset_Data.NicknameSize))
+                return false;
+            if (!bit.Orgins(buffer))
                 return false;
             int m2 = hex.LittleEndian(buffer, offset_Data.Move2, offset_Data.SizeMove2, gv.Invert);
             //Move 1 != Move 2
@@ -70,19 +75,14 @@ namespace PK3_RAM_Injection.Controller
             //3 == 0 AND 4 == 0
             if (m3 == 0 && m4 != 0)
                 return false;
-            // EV total does not exceed limit
-            //if (!vdc.EV(buffer, gv.EffortTotal, gv.Invert, val.Gen, val.SubGen, gv.Option))
-            //    return false;
-            //Makes sure Pokerus is valid
             if (!vdc.Pkrus(buffer, gv.Option)) 
                 return false;
             //Check valid IVs
             if (!vdc.IVs(buffer, gv.Option)) 
                 return false;
-            //Makes sure the checksum is valid or if the game does not have checksum additional
-            //checks are completed
-            //if (!vdc.ChecksumEnd(buffer, gv.Option, gv.StorageDataSize, gv.Invert))
-            //    return false;
+            //langauge
+            if (!(buffer[18] < 8 && buffer[18] != 0))
+                return false;
 
             return true;
         }
@@ -115,10 +115,6 @@ namespace PK3_RAM_Injection.Controller
             //Check if SID of found Pokemon matches one already found
             if (!(hex.LittleEndian2D(pokemon, f, offset_Data.SID, offset_Data.SizeSID, inversion) == 
                 hex.LittleEndian(convert, offset_Data.SID, offset_Data.SizeSID, inversion)))
-                return false;
-            //Check if Ability of found Pokemon matches one already found
-            if (!(hex.LittleEndian2D(pokemon, f, offset_Data.Ability, offset_Data.SizeAbility, inversion) == 
-                hex.LittleEndian(convert, offset_Data.Ability, offset_Data.SizeAbility, inversion))) 
                 return false;
             //Check if HP EV of found Pokemon matches one already found
             if (!(hex.LittleEndian2D(pokemon, f, offset_Data.HPEV, offset_Data.SizeHPEV, inversion) == 
@@ -187,6 +183,12 @@ namespace PK3_RAM_Injection.Controller
             //Check if EXP of found Pokemon matches one already found
             if (!(hex.LittleEndian2D(pokemon, f, offset_Data.EXP, offset_Data.SizeEXP, inversion) == 
                 hex.LittleEndian(convert, offset_Data.EXP, offset_Data.SizeEXP, inversion)))
+                return false;
+            if (!(hex.LittleEndian2D(pokemon, f, 70, 2, true) == hex.LittleEndian(convert, 70, 2, true)))
+                return false;
+            if (!(hex.LittleEndian2D(pokemon, f, offset_Data.Pkrus, 1, false) == hex.LittleEndian(convert, offset_Data.Pkrus, 1, false)))
+                return false;
+            if (!(hex.LittleEndian2D(pokemon, f, offset_Data.IV, offset_Data.SizeIV, inversion) == hex.LittleEndian(convert, offset_Data.IV, offset_Data.SizeIV, inversion)))
                 return false;
 
             return true;

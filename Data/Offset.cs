@@ -1,4 +1,4 @@
-﻿namespace PK3_RAM_Injection.Model
+﻿namespace PK3_RAM_Injection.Data
 {
     class Offset
     {
@@ -80,7 +80,7 @@
                                 ref int sizeHPEV, ref int sizeAttEV, ref int sizeDefEV, ref int sizeSpeedEV, ref int sizeSpAttEV,
                                 ref int sizeSpDefEV, ref int sizeCool, ref int sizeBeauty, ref int sizeCute, ref int sizeSmart,
                                 ref int sizeTough, ref int sizeSheen, ref int sizeMove1, ref int sizeMove2, ref int sizeMove3, ref int sizeMove4,
-                                ref int sizeIV, ref int sizeNature, ref int encryption, ref int sizeEncryption, ref int pkrus, ref int checksum, ref int checksumCalcDataStart, ref int version, 
+                                ref int sizeIV, ref int sizeNature, ref int encryption, ref int sizeEncryption, ref int pkrus, ref int checksum, ref int checksumCalcDataStart, ref int version,
                                 ref int nickname, ref int sizeNickname, ref int otName, ref int sizeOTName, ref int language, int gen, int subGen)
         {
             //RSEFRLG Base Game

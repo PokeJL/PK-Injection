@@ -1,4 +1,6 @@
-﻿using PK3_RAM_Injection.Model;
+﻿using PK3_RAM_Injection.Data;
+using PK3_RAM_Injection.Model;
+using System;
 
 namespace PK3_RAM_Injection.Controller
 {
@@ -34,7 +36,7 @@ namespace PK3_RAM_Injection.Controller
         /// <param name="val">Basic valuse needed for the application</param>
         /// <param name="offset_Data">The offsets of the Pokemon values</param>
         /// <param name="gv">Contains the target games parameters</param>
-        public void SearchPokemon(List<List<byte>> pokemon, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
+        public void SearchPokemon(List<List<byte>> pokemon, Applicaton_Values val, Offest_data offset_Data, Game_Values gv, byte[] id)
         {
             byte[] buffer = new byte[gv.PartyDataSize];
             int updateTime;
@@ -56,7 +58,10 @@ namespace PK3_RAM_Injection.Controller
                     //Ensures the that the size for the Pokemon stored in the party plus the current
                     //index of the loop isn't past the input length.
                     //Initial check of data to make sure the current data doesn't have a checksum of 0
-                    if (i + gv.PartyDataSize <= inputFile.Length && check.ChecksumStart(inputFile, gv.Option, i, val.Gen, val.SubGen, gv.Invert))
+                    if (i + gv.PartyDataSize <= inputFile.Length && 
+                        //check.ChecksumStart(inputFile, gv.Option, i, val.Gen, val.SubGen, gv.Invert) &&
+                        inputFile[i + offset_Data.ID] == id[0] &&
+                        inputFile[i + 1 + offset_Data.ID] == id[1])
                     {
                         //loads data into buffer
                         for (int n = 0; n < gv.PartyDataSize; n++)
@@ -64,7 +69,8 @@ namespace PK3_RAM_Injection.Controller
                             buffer[n] = inputFile[i + n];
                         }
 
-                        Encrypted(pokemon, buffer, val, offset_Data, gv);
+                        //Encrypted(pokemon, buffer, val, offset_Data, gv);
+                        NonEncrypted(pokemon, buffer, val, offset_Data, gv);
                     }
                     //Updates the progress bar
                     ProgressUpdate(i, updateTime, inputFile);

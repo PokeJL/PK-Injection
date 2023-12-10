@@ -6,6 +6,7 @@ namespace PK3_RAM_Injection.Controller
     {
         readonly Data_Conversion hex;
         readonly Offest_data offset_Data;
+        Set_Values sv;
 
         public Validation() 
         {
@@ -27,7 +28,8 @@ namespace PK3_RAM_Injection.Controller
         /// <returns></returns>
         public bool ChecksumStart(byte[] inputFile, int option, int i, int gen, int subGen, bool inversion)
         {
-            offset_Data.SetValues(gen, subGen);
+            Offest_data offset = new();
+            sv.OffsetSetValues(offset, gen, subGen);
 
             if (hex.LittleEndian(inputFile, i + offset_Data.Checksum, 2, inversion) != 0)
                 return true;
