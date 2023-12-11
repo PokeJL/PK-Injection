@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -58,9 +59,30 @@ namespace PK3_RAM_Injection.View
             pidLBL.Text = PidString();
         }
 
-        private void idNUD1_ValueChanged(object sender, EventArgs e)
+        private void TwoByteUpdate(object sender, EventArgs e)
         {
-            idLBL.Text = TwoBitHex(idNUD1.Value, idNUD2.Value);
+            NumericUpDown nud = ((NumericUpDown)sender);
+            var cbName = nud.Parent.Name;
+            string result = string.Empty;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control.Name == cbName)
+                {
+                    var children = control.Controls.OfType<Control>();
+
+                    foreach (var child in children.OfType<NumericUpDown>())
+                    {
+                        result += Convert.ToInt32(Math.Round(child.Value, 0)).ToString("X").PadLeft(2, '0');
+                    }
+                    result = (Convert.ToInt32((result), 16)).ToString().PadLeft(5, '0');
+                    foreach (var child in children.OfType<Label>())
+                    {
+                        child.Text = result;
+                    }
+                    break;
+                }
+            }
         }
 
         private void idNUD2_ValueChanged(object sender, EventArgs e)

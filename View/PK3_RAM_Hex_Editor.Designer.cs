@@ -147,7 +147,7 @@
             idNUD2.Name = "idNUD2";
             idNUD2.Size = new Size(37, 23);
             idNUD2.TabIndex = 5;
-            idNUD2.ValueChanged += idNUD2_ValueChanged;
+            idNUD2.ValueChanged += TwoByteUpdate;
             // 
             // idNUD1
             // 
@@ -157,7 +157,7 @@
             idNUD1.Name = "idNUD1";
             idNUD1.Size = new Size(37, 23);
             idNUD1.TabIndex = 4;
-            idNUD1.ValueChanged += idNUD1_ValueChanged;
+            idNUD1.ValueChanged += TwoByteUpdate;
             // 
             // sidGB
             // 
@@ -188,7 +188,7 @@
             sidNUD2.Name = "sidNUD2";
             sidNUD2.Size = new Size(37, 23);
             sidNUD2.TabIndex = 5;
-            sidNUD2.ValueChanged += sidNUD2_ValueChanged;
+            sidNUD2.ValueChanged += TwoByteUpdate;
             // 
             // sidNUD1
             // 
@@ -198,7 +198,7 @@
             sidNUD1.Name = "sidNUD1";
             sidNUD1.Size = new Size(37, 23);
             sidNUD1.TabIndex = 4;
-            sidNUD1.ValueChanged += sidNUD1_ValueChanged;
+            sidNUD1.ValueChanged += TwoByteUpdate;
             // 
             // PK3_RAM_Hex_Editor
             // 
@@ -234,7 +234,6 @@
         private NumericUpDown pidNUD4;
         private NumericUpDown pidNUD3;
         private NumericUpDown pidNUD2;
-        private GroupBox idGB;
         private Label idLBL;
         private NumericUpDown idNUD2;
         private NumericUpDown idNUD1;
@@ -242,5 +241,6 @@
         private Label sidLBL;
         private NumericUpDown sidNUD2;
         private NumericUpDown sidNUD1;
+        public GroupBox idGB;
     }
 }
