@@ -1,6 +1,6 @@
-﻿namespace PK3_RAM_Injection.Data
+﻿namespace RAM_Injection_Data.Data
 {
-    class Dex_Conversion
+    public class Dex_Conversion
     {
         /// <summary>
         /// Dex order for gen 3

@@ -1,8 +1,8 @@
-﻿using PK3_RAM_Injection.Model;
+﻿using RAM_Injection_Data.Model;
 
-namespace PK3_RAM_Injection.Controller
+namespace RAM_Injection_Data.Controller
 {
-    class File_Manager
+    public class File_Manager
     {
         public delegate void MaxProgressMethodInvoker(int amount);
         public event MaxProgressMethodInvoker MP;

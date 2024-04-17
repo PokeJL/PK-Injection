@@ -1,8 +1,6 @@
-using PK3_RAM_Injection.Controller;
-using PK3_RAM_Injection.Data;
-using PK3_RAM_Injection.Model;
-using PK3_RAM_Injection.View;
-using System.ComponentModel;
+using RAM_Injection_Data.Controller;
+using RAM_Injection_Data.Model;
+using RAM_Injection_Data.Data;
 using System.Security;
 
 namespace PK3_RAM_Injection
@@ -15,11 +13,13 @@ namespace PK3_RAM_Injection
         readonly File_Manager fm;
         readonly Data_Ripper rip;
         readonly Applicaton_Values val;
-        readonly Offest_data offest;
+        readonly Offest_data offset;
         readonly Game_Values gv;
+        readonly Array_Manager am;
         Set_Values sv;
+        List<Pokemon_Gen3> pokemon2;
         readonly List<string> list;
-        readonly List<List<byte>> pokemon;
+        //readonly List<List<byte>> pokemon;
 
         private delegate void DataSetMethodInvoker();
         public delegate void MaxProgressMethodInvoker(int amount);
@@ -36,10 +36,12 @@ namespace PK3_RAM_Injection
             fm = new();
             rip = new();
             val = new();
-            offest = new();
+            offset = new();
             gv = new();
             sv = new();
-            pokemon = new List<List<byte>>();
+            am = new();
+            //pokemon = new List<List<byte>>();
+            pokemon2 = new List<Pokemon_Gen3> ();
             list = new List<string>();
 
             fm.MP += new File_Manager.MaxProgressMethodInvoker(SetAmount);
@@ -109,11 +111,11 @@ namespace PK3_RAM_Injection
             {
                 byte[] saveData = new byte[gv.StorageDataSize];
                 //Stores the selected Pokemon into a separate array
-                for (int i = 0; i < gv.StorageDataSize; i++)
-                {
-                    saveData[i] = pokemon[slot][i];
-                }
-
+                //for (int i = 0; i < gv.StorageDataSize; i++)
+                //{
+                //    saveData[i] = pokemon[slot][i];
+                //}
+                am.PokemonToArray(saveData, pokemon, offset);
                 fm.WriteFile(string.Format("{0}", saveFileDialog1.FileName), saveData);
             }
         }
@@ -166,7 +168,7 @@ namespace PK3_RAM_Injection
                 tid[1] = temp;
 
                 fm.LoadData(string.Format("{0}", openFileDialog1.FileName), val);
-                rip.SearchPokemon(pokemon, val, offest, gv, tid);
+                rip.SearchPokemon(pokemon, val, offset, gv, tid);
 
             }
             else
@@ -184,7 +186,7 @@ namespace PK3_RAM_Injection
             val.Gen = gen;
             val.SubGen = subGen;
             sv.GameSetValues(gv, gen, subGen);
-            sv.OffsetSetValues(offest, gen, subGen);
+            sv.OffsetSetValues(offset, gen, subGen);
         }
 
         private void BindComboBoxData()
@@ -199,7 +201,7 @@ namespace PK3_RAM_Injection
                     PkmnSelectCB.Items.Clear();
                     for (int i = 0; i < val.Found; i++)
                     {
-                        val.DexNum = dex.Gen3GetDexNum(hex.LittleEndian2D(pokemon, i, offest.Dex, offest.SizeDex, gv.Invert));
+                        val.DexNum = dex.Gen3GetDexNum(hex.LittleEndian2D(pokemon, i, offset.Species, offset.SpeciesSize, gv.Invert));
 
                         ItemObject[i] = data.GetPokemonName(val.DexNum);
                     }

@@ -1,6 +1,6 @@
 ﻿using static System.Buffers.Binary.BinaryPrimitives;
 
-namespace PK3_RAM_Injection.Controller
+namespace RAM_Injection_Data.Controller
 {
     class Bit_Check
     {

@@ -1,6 +1,6 @@
-﻿using PK3_RAM_Injection.Model;
+﻿using RAM_Injection_Data.Model;
 
-namespace PK3_RAM_Injection.Controller
+namespace RAM_Injection_Data.Controller
 {
     /// <summary>
     /// This class breaks down the original hard to read if
@@ -98,15 +98,15 @@ namespace PK3_RAM_Injection.Controller
         /// move out of the loop</param>
         /// <param name="offset_Data">Contains the offest data for the Pokemon</param>
         /// <returns>false if Pokemon is already found OR true if Pokemon is new</returns>
-        public bool Duplicate(List<List<byte>> pokemon, byte[] convert, bool inversion, int f /*f is the index*/, Offest_data offset_Data)
+        public bool Duplicate(List<Pokemon_Gen3> pokemon, byte[] convert, bool inversion, int f /*f is the index*/, Offest_data offset_Data)
         {
             //Check if PID of found Pokemon matches one already found
             if (!(hex.LittleEndian2D(pokemon, f, offset_Data.PID, offset_Data.SizePID, inversion) ==
                 hex.LittleEndian(convert, offset_Data.PID, offset_Data.SizePID, inversion)))
                 return false;
             //Check if Dex # of found Pokemon matches one already found
-            if (!(hex.LittleEndian2D(pokemon, f, offset_Data.Dex, offset_Data.SizeDex, inversion) == 
-                hex.LittleEndian(convert, offset_Data.Dex, offset_Data.SizeDex, inversion)))
+            if (!(hex.LittleEndian2D(pokemon, f, offset_Data.Species, offset_Data.SpeciesSize, inversion) == 
+                hex.LittleEndian(convert, offset_Data.Species, offset_Data.SpeciesSize, inversion)))
                 return false;
             //Check if ID of found Pokemon matches one already found
             if (!(hex.LittleEndian2D(pokemon, f, offset_Data.ID, offset_Data.SizeID, inversion) == 

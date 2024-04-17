@@ -1,10 +1,10 @@
-﻿using PK3_RAM_Injection.Data;
-using PK3_RAM_Injection.Model;
-using System;
+﻿using PKHeX.Core;
+using RAM_Injection_Data.Data;
+using RAM_Injection_Data.Model;
 
-namespace PK3_RAM_Injection.Controller
+namespace RAM_Injection_Data.Controller
 {
-    class Data_Ripper
+    public class Data_Ripper
     {
         readonly Data_Conversion hex;
         readonly Array_Manager arr;
@@ -36,7 +36,7 @@ namespace PK3_RAM_Injection.Controller
         /// <param name="val">Basic valuse needed for the application</param>
         /// <param name="offset_Data">The offsets of the Pokemon values</param>
         /// <param name="gv">Contains the target games parameters</param>
-        public void SearchPokemon(List<List<byte>> pokemon, Applicaton_Values val, Offest_data offset_Data, Game_Values gv, byte[] id)
+        public void SearchPokemon(List<Pokemon_Gen3> pokemon, Applicaton_Values val, Offest_data offset_Data, Game_Values gv, byte[] id)
         {
             byte[] buffer = new byte[gv.PartyDataSize];
             int updateTime;
@@ -86,12 +86,14 @@ namespace PK3_RAM_Injection.Controller
         /// <param name="val"></param>
         /// <param name="offset_Data"></param>
         /// <param name="gv"></param>
-        private void Encrypted(List<List<byte>> pokemon, byte[] buffer, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
+        private void Encrypted(List<Pokemon_Gen3> pokemon, byte[] buffer, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
         {
             byte[] convert = new byte[1];
 
             //Breaks the encryption
-            convert = start.PK3(buffer);
+            //convert = start.PK3(buffer); //Go back to this if new code does not work
+
+            convert = PokeCrypto.DecryptArray3(buffer); //might work if does get rid of Poke Crypto start
 
             //Battle tower shiny fix
             //if (val.Gen == 3)
@@ -108,11 +110,11 @@ namespace PK3_RAM_Injection.Controller
         /// <param name="val"></param>
         /// <param name="offset_Data"></param>
         /// <param name="gv"></param>
-        private void NonEncrypted(List<List<byte>> pokemon, byte[] buffer, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
+        private void NonEncrypted(List<Pokemon_Gen3> pokemon, byte[] buffer, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
         {
             int currentDexNum;
             //Gets the Pokemon correct dex number to determine if the data is a Pokemon
-            currentDexNum = dexCon.Gen3GetDexNum(hex.LittleEndian(buffer, offset_Data.Dex, offset_Data.SizeDex, gv.Invert));        
+            currentDexNum = dexCon.Gen3GetDexNum(hex.LittleEndian(buffer, offset_Data.Species, offset_Data.SpeciesSize, gv.Invert));        
 
             //Checks if the data is a Pokemon
             if (checkP.IsPokemon(buffer, currentDexNum, val, offset_Data, gv))

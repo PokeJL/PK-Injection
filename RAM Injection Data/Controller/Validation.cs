@@ -1,6 +1,6 @@
-﻿using PK3_RAM_Injection.Model;
+﻿using RAM_Injection_Data.Model;
 
-namespace PK3_RAM_Injection.Controller
+namespace RAM_Injection_Data.Controller
 {
     class Validation
     {

@@ -1,6 +1,4 @@
-﻿using PK3_RAM_Injection.Data;
-
-namespace PK3_RAM_Injection.Model
+﻿namespace RAM_Injection_Data.Model
 {
     /// <summary>
     /// You're a Pokemon fan and a programmer. I'm
@@ -11,14 +9,14 @@ namespace PK3_RAM_Injection.Model
     /// </summary>
     public class Offest_data
     {
-        //Offset offset = new();
-
         public int PID { get; set; } = 0;
         public int SizePID { get; set; } = 0;
-        public int Dex { get; set; } = 0;
-        public int SizeDex { get; set; } = 0;
+        public int Species { get; set; } = 0;
+        public int SpeciesSize { get; set; } = 0;
         public int Item { get; set; } = 0;
         public int SizeItem { get; set; } = 0;
+        public int PPUps { get; set; } = 0;
+        public int PPUpsSize { get; set; } = 0;
         public int ID { get; set; } = 0;
         public int SizeID { get; set; } = 0;
         public int SID { get; set; } = 0;
@@ -27,8 +25,6 @@ namespace PK3_RAM_Injection.Model
         public int SizeEXP { get; set; } = 0;
         public int Friendship { get; set; } = 0;
         public int SizeFriendship { get; set; } = 0;
-        public int Ability { get; set; } = 0;
-        public int SizeAbility { get; set; } = 0;
         public int HPEV { get; set; } = 0;
         public int SizeHPEV { get; set; } = 0;
         public int AttEV { get; set; } = 0;
@@ -61,21 +57,41 @@ namespace PK3_RAM_Injection.Model
         public int SizeMove3 { get; set; } = 0;
         public int Move4 { get; set; } = 0;
         public int SizeMove4 { get; set; } = 0;
-        public int IV { get; set; } = 0;
+        public int IV { get; set; } = 0; //Contains egg and ability
         public int SizeIV { get; set; } = 0;
-        public int Nature { get; set; } = 0;
-        public int SizeNature { get; set; } = 0;
-        public int Encryption { get; set; } = 0;
-        public int SizeEncryption { get; set; } = 0;
         public int Pkrus { get; set; } = 0;
+        public int PkrusSize { get; set; } = 0;
         public int Checksum { get; set; } = 0;
+        public int ChecksumSize { get; set; } = 0;
         public int ChecksumCalcDataStart { get; set; } = 0;
-        public int Version { get; set; } = 0;
+        public int Orgins { get; set; } = 0; //Cntains the version
+        public int OrginsSize { get; set; } = 0;
         public int Nickname { get; set; } = 0;
         public int NicknameSize { get; set; } = 0;
         public int OTName { get; set; } = 0;
         public int OTNameSize { get; set; } = 0;
         public int Language { get; set; } = 0;
+        public int LanguageSize {  get; set; } = 0;
+        public int MiscFlags {  get; set; } = 0;
+        public int MiscFlagsSize { get; set; } = 0;
+        public int Markings { get; set; } = 0;
+        public int MarkingsSize { get; set; } = 0;
+        public int Unknown { get; set; } = 0; //Data structure
+        public int UnknownSize { get; set; } = 0;
+        public int Unused { get; set; } = 0; //Data Substructure
+        public int UnusedSize { get; set; } = 0;
+        public int PP1 { get; set; } = 0;
+        public int PP1Size { get; set; } = 0;
+        public int PP2 { get; set; } = 0;
+        public int PP2Size { get; set; } = 0;
+        public int PP3 { get; set; } = 0;
+        public int PP3Size { get; set; } = 0;
+        public int PP4 { get; set; } = 0;
+        public int PP4Size { get; set; } = 0;
+        public int Ribbons { get; set; } = 0;
+        public int RibbonsSize { get; set; } = 0;
+        public int MetLocation {  get; set; } = 0;
+        public int MetLocationSize { get; set;} = 0;
 
         //public void SetValues(int gen, int subGen)
         //{

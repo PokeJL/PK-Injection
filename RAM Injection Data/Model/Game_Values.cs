@@ -1,6 +1,4 @@
-﻿using PK3_RAM_Injection.Data;
-
-namespace PK3_RAM_Injection.Model
+﻿namespace RAM_Injection_Data.Model
 {
     /// <summary>
     /// Stores the specific values of the targeted game

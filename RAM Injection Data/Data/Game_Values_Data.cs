@@ -1,6 +1,4 @@
-﻿using PK3_RAM_Injection.Controller;
-
-namespace PK3_RAM_Injection.Data
+﻿namespace RAM_Injection_Data.Data
 {
     class Game_Values_Data
     {

@@ -1,6 +1,6 @@
-﻿namespace PK3_RAM_Injection.Controller
+﻿namespace RAM_Injection_Data.Controller
 {
-    class Data_Conversion
+    public class Data_Conversion
     {
         public Data_Conversion() { }
 
@@ -134,12 +134,12 @@
             return buffer[0] << 32 | buffer[1] << 16 | buffer[2] << 8 | buffer[3];
         }
 
-        //Reverse a string. Code from https://stackoverflow.com/questions/228038/best-way-to-reverse-a-string
-        public string Reverse(string s)
-        {
-            char[] charArray = s.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
-        }
+        ////Reverse a string. Code from https://stackoverflow.com/questions/228038/best-way-to-reverse-a-string
+        //public string Reverse(string s)
+        //{
+        //    char[] charArray = s.ToCharArray();
+        //    Array.Reverse(charArray);
+        //    return new string(charArray);
+        //}
     }
 }

@@ -1,7 +1,6 @@
-﻿using PK3_RAM_Injection.Model;
-using System.Drawing;
+﻿using RAM_Injection_Data.Model;
 
-namespace PK3_RAM_Injection.Controller
+namespace RAM_Injection_Data.Controller
 {
     class Validation_Data_Check
     {

@@ -1,4 +1,4 @@
-﻿namespace PK3_RAM_Injection.Data
+﻿namespace RAM_Injection_Data.Data
 {
     class Offset
     {
@@ -72,16 +72,20 @@
         /// <param name="language"></param>
         /// <param name="gen"></param>
         /// <param name="subGen"></param>
-        public void Offsets3Later(ref int pid, ref int dex, ref int item, ref int id, ref int sid, ref int exp, ref int friendship,
-                                ref int ability, ref int hpEV, ref int attEV, ref int defEV, ref int speedEV, ref int spAttEV, ref int spDefEV,
+        public void Offsets3Later(ref int pid, ref int dex, ref int item, ref int ppups, ref int id, ref int sid, ref int exp, ref int friendship,
+                                ref int hpEV, ref int attEV, ref int defEV, ref int speedEV, ref int spAttEV, ref int spDefEV,
                                 ref int cool, ref int beauty, ref int cute, ref int smart, ref int tough, ref int sheen, ref int move1, ref int move2,
-                                ref int move3, ref int move4, ref int iv, ref int nature, ref int sizePID, ref int sizeDex, ref int sizeItem,
+                                ref int move3, ref int move4, ref int iv, ref int sizePID, ref int sizeDex, ref int sizeItem, ref int ppupsSize,
                                 ref int sizeID, ref int sizeSID, ref int sizeEXP, ref int sizeFriendship, ref int sizeAbility,
                                 ref int sizeHPEV, ref int sizeAttEV, ref int sizeDefEV, ref int sizeSpeedEV, ref int sizeSpAttEV,
                                 ref int sizeSpDefEV, ref int sizeCool, ref int sizeBeauty, ref int sizeCute, ref int sizeSmart,
                                 ref int sizeTough, ref int sizeSheen, ref int sizeMove1, ref int sizeMove2, ref int sizeMove3, ref int sizeMove4,
-                                ref int sizeIV, ref int sizeNature, ref int encryption, ref int sizeEncryption, ref int pkrus, ref int checksum, ref int checksumCalcDataStart, ref int version,
-                                ref int nickname, ref int sizeNickname, ref int otName, ref int sizeOTName, ref int language, int gen, int subGen)
+                                ref int sizeIV, ref int pkrus, ref int pkrusSize, ref int checksum, ref int checksumSize, ref int checksumCalcDataStart,
+                                ref int orgins, ref int orginsSize, ref int nickname, ref int nicknameSize, ref int otName, ref int otNameSize, ref int language,
+                                ref int languageSize, ref int miscFlags, ref int miscFlagSize, ref int markings, ref int markingsSize, ref int unknown,
+                                ref int unknownSize, ref int unused, ref int unusedSize, ref int pp1, ref int pp1Size, ref int pp2, ref int pp2Size, ref int pp3,
+                                ref int pp3Size, ref int pp4, ref int pp4Size, ref int ribbons, ref int ribbonsSize, 
+                                ref int metLocation, ref int metLocationSize, int gen, int subGen)
         {
             //RSEFRLG Base Game
             if (gen == 3 && subGen == 0)
@@ -92,6 +96,8 @@
                 sizeDex = 2;
                 item = 34;
                 sizeItem = 2;
+                ppups = 40;
+                ppupsSize = 1;
                 id = 4;
                 sizeID = 2;
                 sid = 6;
@@ -100,7 +106,6 @@
                 sizeEXP = 4;
                 friendship = 41;
                 sizeFriendship = 1;
-                ability = 0; //not clear in the structure
                 sizeAbility = 1;
                 hpEV = 56;
                 sizeHPEV = 1;
@@ -136,19 +141,39 @@
                 sizeMove4 = 2;
                 iv = 72;
                 sizeIV = 4;
-                nature = 0; //not clear in structure
-                sizeNature = 1;
-                encryption = 0; //Value not used in generation but set here so I can reuse code
-                sizeEncryption = 1;
                 pkrus = 68;
+                pkrusSize = 1;
                 checksum = 28;
+                checksumSize = 2;
                 checksumCalcDataStart = 32;
-                version = 0x46; //Origin index
+                orgins = 0x46;
+                orginsSize = 2;
                 nickname = 0x08;
-                sizeNickname = 22;
+                nicknameSize = 22;
                 otName = 0x14;
-                sizeOTName = 16;
+                otNameSize = 16;
                 language = 0x12;
+                languageSize = 1;
+                miscFlags = 0X13;
+                miscFlagSize = 1;
+                markings = 0x1B;
+                markingsSize = 1;
+                unknown = 0x1E;
+                unknownSize = 2;
+                unused = 42;
+                unusedSize = 2;
+                pp1 = 52;
+                pp1Size = 1;
+                pp2 = 53;
+                pp2Size = 1;
+                pp3 = 54;
+                pp3Size = 1;
+                pp4 = 55;
+                pp4Size = 1;
+                ribbons = 76;
+                ribbonsSize = 4;
+                metLocation = 69;
+                metLocationSize = 1;
             }
         }
     }

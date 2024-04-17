@@ -1,4 +1,4 @@
-﻿namespace PK3_RAM_Injection.Model
+﻿namespace RAM_Injection_Data.Model
 {
     /// <summary>
     /// Values needed for the application to function.

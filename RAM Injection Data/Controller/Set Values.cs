@@ -1,21 +1,9 @@
-﻿using PK3_RAM_Injection.Data;
-using PK3_RAM_Injection.Model;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.Xml;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
-using System.Windows.Forms;
-using System.Xml.Linq;
+﻿using RAM_Injection_Data.Model;
+using RAM_Injection_Data.Data;
 
-namespace PK3_RAM_Injection.Controller
+namespace RAM_Injection_Data.Controller
 {
-    internal class Set_Values
+    public class Set_Values
     {
 
         public Set_Values() { }
@@ -33,38 +21,42 @@ namespace PK3_RAM_Injection.Controller
 
         public void OffsetSetValues(Offest_data od, int gen, int subGen)
         {
-            int pid = 0, dex = 0, item = 0, id = 0, sid = 0, exp = 0, friendship = 0,
-                ability = 0, hpEV = 0, attEV = 0, defEV = 0, speedEV = 0, spAttEV = 0, spDefEV = 0,
+            int pid = 0, dex = 0, item = 0, ppups = 0, id = 0, sid = 0, exp = 0, friendship = 0,
+                hpEV = 0, attEV = 0, defEV = 0, speedEV = 0, spAttEV = 0, spDefEV = 0,
                 cool = 0, beauty = 0, cute = 0, smart = 0, tough = 0, sheen = 0, move1 = 0, move2 = 0,
-                move3 = 0, move4 = 0, iv = 0, nature = 0, sizePID = 0, sizeDex = 0, sizeItem = 0,
+                move3 = 0, move4 = 0, iv = 0, sizePID = 0, sizeDex = 0, sizeItem = 0, ppupsSize = 0,
                 sizeID = 0, sizeSID = 0, sizeEXP = 0, sizeFriendship = 0, sizeAbility = 0,
                 sizeHPEV = 0, sizeAttEV = 0, sizeDefEV = 0, sizeSpeedEV = 0, sizeSpAttEV = 0,
                 sizeSpDefEV = 0, sizeCool = 0, sizeBeauty = 0, sizeCute = 0, sizeSmart = 0,
                 sizeTough = 0, sizeSheen = 0, sizeMove1 = 0, sizeMove2 = 0, sizeMove3 = 0, sizeMove4 = 0,
-            sizeIV = 0, sizeNature = 0, encryption = 0, sizeEncryption = 0,
-                pkrus = 0, checksum = 0, checksumCalcDataStart = 0, version = 0,
-                nickname = 0, nicknameSize = 0, otName = 0, otNameSize = 0, language = 0;
+                sizeIV = 0, pkrus = 0, pkrusSize = 0, checksum = 0, checksumSize = 0, checksumCalcDataStart = 0, 
+                orgins = 0, orginsSize = 0, nickname = 0, nicknameSize = 0, otName = 0, otNameSize = 0, language = 0, 
+                languageSize = 0, miscFlags = 0, miscFlagSize = 0, markings = 0, markingsSize = 0, unknown = 0, 
+                unknownSize = 0, unused = 0, unusedSize = 0, pp1 = 0, pp1Size = 0, pp2 = 0, pp2Size = 0, pp3 = 0, 
+                pp3Size = 0, pp4 = 0, pp4Size = 0, ribbons = 0, ribbonsSize = 0, metLocation = 0, metLocationSize = 0;
 
-            offset.Offsets3Later(ref pid, ref dex, ref item, ref id, ref sid, ref exp, ref friendship,
-                                ref ability, ref hpEV, ref attEV, ref defEV, ref speedEV, ref spAttEV, ref spDefEV,
+            offset.Offsets3Later(ref pid, ref dex, ref item, ref ppups, ref id, ref sid, ref exp, ref friendship,
+                                ref hpEV, ref attEV, ref defEV, ref speedEV, ref spAttEV, ref spDefEV,
                                 ref cool, ref beauty, ref cute, ref smart, ref tough, ref sheen, ref move1, ref move2,
-                                ref move3, ref move4, ref iv, ref nature, ref sizePID, ref sizeDex, ref sizeItem,
+                                ref move3, ref move4, ref iv, ref sizePID, ref sizeDex, ref sizeItem, ref ppupsSize,
                                 ref sizeID, ref sizeSID, ref sizeEXP, ref sizeFriendship, ref sizeAbility,
                                 ref sizeHPEV, ref sizeAttEV, ref sizeDefEV, ref sizeSpeedEV, ref sizeSpAttEV,
                                 ref sizeSpDefEV, ref sizeCool, ref sizeBeauty, ref sizeCute, ref sizeSmart,
                                 ref sizeTough, ref sizeSheen, ref sizeMove1, ref sizeMove2, ref sizeMove3, ref sizeMove4,
-                                ref sizeIV, ref sizeNature, ref encryption, ref sizeEncryption,
-                                ref pkrus, ref checksum, ref checksumCalcDataStart, ref version,
-                                ref nickname, ref nicknameSize, ref otName, ref otNameSize, ref language, gen, subGen);
+                                ref sizeIV, ref pkrus, ref pkrusSize, ref checksum, ref checksumSize, ref checksumCalcDataStart, 
+                                ref orgins, ref orginsSize, ref nickname, ref nicknameSize, ref otName, ref otNameSize, ref language, 
+                                ref languageSize, ref miscFlags, ref miscFlagSize, ref markings, ref markingsSize, ref unknown, 
+                                ref unknownSize, ref unused, ref unusedSize, ref pp1, ref pp1Size, ref pp2, ref pp2Size, ref pp3, 
+                                ref pp3Size, ref pp4, ref pp4Size, ref ribbons, ref ribbonsSize, ref metLocation, ref metLocationSize, gen, subGen);
 
             od.PID = pid;
-            od.Dex = dex;
+            od.Species = dex;
             od.Item = item;
+            od.PPUps = ppups;
             od.ID = id;
             od.SID = sid;
             od.EXP = exp;
             od.Friendship = friendship;
-            od.Ability = ability;
             od.HPEV = hpEV;
             od.AttEV = attEV;
             od.DefEV = defEV;
@@ -82,15 +74,14 @@ namespace PK3_RAM_Injection.Controller
             od.Move3 = move3;
             od.Move4 = move4;
             od.IV = iv;
-            od.Nature = nature;
             od.SizePID = sizePID;
-            od.SizeDex = sizeDex;
+            od.SpeciesSize = sizeDex;
             od.SizeItem = sizeItem;
+            od.PPUpsSize = ppupsSize;
             od.SizeID = sizeID;
             od.SizeSID = sizeSID;
             od.SizeEXP = sizeEXP;
             od.SizeFriendship = sizeFriendship;
-            od.SizeAbility = sizeAbility;
             od.SizeHPEV = sizeHPEV;
             od.SizeAttEV = sizeAttEV;
             od.SizeDefEV = sizeDefEV;
@@ -108,19 +99,40 @@ namespace PK3_RAM_Injection.Controller
             od.SizeMove3 = sizeMove3;
             od.SizeMove4 = sizeMove4;
             od.SizeIV = sizeIV;
-            od.SizeNature = sizeNature;
-            od.Encryption = encryption;
-            od.SizeEncryption = sizeEncryption;
             od.Pkrus = pkrus;
+            od.PkrusSize = pkrusSize;
             od.Checksum = checksum;
+            od.ChecksumSize = checksumSize;
             od.ChecksumCalcDataStart = checksumCalcDataStart;
-            od.Version = version;
+            od.Orgins = orgins;
+            od.OrginsSize = orginsSize;
             od.Nickname = nickname;
             od.NicknameSize = nicknameSize;
             od.OTName = otName;
             od.OTNameSize = otNameSize;
             od.Language = language;
-        }
+            od.LanguageSize = languageSize;
+            od.MiscFlags = miscFlags;
+            od.MarkingsSize = miscFlagSize;
+            od.Markings = markings;
+            od.MarkingsSize = markingsSize;
+            od.Unknown = unknown;
+            od.UnknownSize = unknownSize;
+            od.Unused = unused;
+            od.UnusedSize = unusedSize;
+            od.PP1 = pp1;
+            od.PP1Size = pp1Size;
+            od.PP2 = pp2;
+            od.PP2Size = pp2Size;
+            od.PP3 = pp3;
+            od.PP3Size = pp3Size;
+            od.PP4 = pp4;
+            od.PP4Size = pp4Size;
+            od.Ribbons = ribbons;
+            od.RibbonsSize = ribbonsSize;
+            od.MetLocation = metLocation;
+            od.MetLocationSize = metLocationSize;
+    }
 
         /// <summary>
         /// Fills targeted game data
