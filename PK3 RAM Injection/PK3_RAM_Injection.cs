@@ -17,7 +17,8 @@ namespace PK3_RAM_Injection
         readonly Game_Values gv;
         readonly Array_Manager am;
         Set_Values sv;
-        List<Pokemon_Gen3> pokemon2;
+        List<Pokemon_Gen3> pokemon;
+        Pokemon_Gen3 injecting;
         readonly List<string> list;
         //readonly List<List<byte>> pokemon;
 
@@ -41,7 +42,8 @@ namespace PK3_RAM_Injection
             sv = new();
             am = new();
             //pokemon = new List<List<byte>>();
-            pokemon2 = new List<Pokemon_Gen3> ();
+            pokemon = new List<Pokemon_Gen3>();
+            injecting = new();
             list = new List<string>();
 
             fm.MP += new File_Manager.MaxProgressMethodInvoker(SetAmount);
@@ -95,28 +97,33 @@ namespace PK3_RAM_Injection
 
         private void ExtractBTN_Click(object sender, EventArgs e)
         {
-            SaveDialog(val.SelectIndex);
+            SaveDialog(val.SelectIndex, "PK3|*.pk3", "Save Pokemon");
         }
 
-        private void SaveDialog(int slot)
+        private void SaveDialog(int slot, string extention, string title)
         {
             SaveFileDialog saveFileDialog1 = new();
 
-            saveFileDialog1.Filter = "PK3|*.pk3";
+            saveFileDialog1.Filter = extention;
 
-            saveFileDialog1.Title = "Save Pokemon";
+            saveFileDialog1.Title = title;
             saveFileDialog1.ShowDialog();
 
-            if (saveFileDialog1.FileName != string.Empty)
+            if (saveFileDialog1.FileName != string.Empty && title == "Save Pokemon")
             {
                 byte[] saveData = new byte[gv.StorageDataSize];
-                //Stores the selected Pokemon into a separate array
-                //for (int i = 0; i < gv.StorageDataSize; i++)
-                //{
-                //    saveData[i] = pokemon[slot][i];
-                //}
-                am.PokemonToArray(saveData, pokemon, offset);
+                am.PokemonToArray(saveData, pokemon[slot], offset);
+                hex.ChecksumCalculation(saveData, offset);
                 fm.WriteFile(string.Format("{0}", saveFileDialog1.FileName), saveData);
+            }
+            else if (saveFileDialog1.FileName != string.Empty && title == "Save RAM")
+            {
+                for(int  i = 0; i < val.Found; i++)
+                {
+                    if (pokemon[i].Edited)
+                        am.PokemonToArrayInject(val.FileData, pokemon[i], offset);
+                }
+                fm.WriteFile(string.Format("{0}", saveFileDialog1.FileName), val.FileData);
             }
         }
 
@@ -201,7 +208,7 @@ namespace PK3_RAM_Injection
                     PkmnSelectCB.Items.Clear();
                     for (int i = 0; i < val.Found; i++)
                     {
-                        val.DexNum = dex.Gen3GetDexNum(hex.LittleEndian2D(pokemon, i, offset.Species, offset.SpeciesSize, gv.Invert));
+                        val.DexNum = dex.Gen3GetDexNum(hex.LittleEndianObject(pokemon[i].PokemonID, gv.Invert));
 
                         ItemObject[i] = data.GetPokemonName(val.DexNum);
                     }
@@ -251,6 +258,25 @@ namespace PK3_RAM_Injection
         {
             var editor = new PK3_RAM_Hex_Editor();
             editor.Show();
+        }
+
+        private void ImportBTN_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.FileName = null;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                FileOpen();
+            fm.LoadData(string.Format("{0}", openFileDialog1.FileName), val);
+            am.CopyPokemonObject(injecting, am.ArrayToPokemon(val.FileData, offset), offset);
+        }
+
+        private void InjectBTN_Click(object sender, EventArgs e)
+        {
+            am.CommitEditToObject(injecting, pokemon[val.SelectIndex]);
+        }
+
+        private void SaveBTN_Click(object sender, EventArgs e)
+        {
+            SaveDialog(val.SelectIndex, "BIN|*.bin", "RAM Pokemon");
         }
     }
 }

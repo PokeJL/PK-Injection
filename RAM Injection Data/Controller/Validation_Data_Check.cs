@@ -28,18 +28,18 @@ namespace RAM_Injection_Data.Controller
         /// <param name="size">The size of the data</param>
         /// <param name="inversion">little edian?</param>
         /// <returns></returns>
-        public bool ChecksumEnd(byte[] inputFile, int option, int size, bool inversion)
-        {
-            if (option == 0) //Calcs checksum to see if it matches the value stored in data
-            {
-                if (Checksum(inputFile, offset_Data.Checksum, offset_Data.ChecksumCalcDataStart, size, inversion))
-                    return true;
-            }
-            else
-                return true; //Return true if option is not 0 because there is no checksum
+        //public bool ChecksumEnd(byte[] inputFile, int option, int size, bool inversion)
+        //{
+        //    if (option == 0) //Calcs checksum to see if it matches the value stored in data
+        //    {
+        //        if (Checksum(inputFile, offset_Data.Checksum, offset_Data.ChecksumCalcDataStart, size, inversion))
+        //            return true;
+        //    }
+        //    else
+        //        return true; //Return true if option is not 0 because there is no checksum
 
-            return false;
-        }
+        //    return false;
+        //}
 
         /// <summary>
         /// A frankenstine function of stuff from PKHeX
@@ -51,16 +51,16 @@ namespace RAM_Injection_Data.Controller
         /// <param name="size"></param>
         /// <param name="inversion"></param>
         /// <returns></returns>
-        public bool Checksum(byte[] data, int chkOffest, int start, int size, bool inversion)
-        {
-            Data_Conversion con = new Data_Conversion();
-            ushort check = PokeCrypto.GetCHK(data, start, size); //Makes the checksum
-            //currently edited for no check sum
-            if (con.LittleEndian(data, chkOffest, 2, inversion) == check)
-                return true;
+        //public bool Checksum(byte[] data, int chkOffest, int start, int size, bool inversion)
+        //{
+        //    Data_Conversion con = new Data_Conversion();
+        //    ushort check = PokeCrypto.GetCHK(data, start, size); //Makes the checksum
+        //    //currently edited for no check sum
+        //    if (con.LittleEndian(data, chkOffest, 2, inversion) == check)
+        //        return true;
 
-            return false;
-        }
+        //    return false;
+        //}
 
         /// <summary>
         /// Ensures the IVs are valid

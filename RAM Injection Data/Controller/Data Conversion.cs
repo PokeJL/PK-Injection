@@ -1,4 +1,7 @@
-﻿namespace RAM_Injection_Data.Controller
+﻿using PKHeX.Core;
+using RAM_Injection_Data.Model;
+
+namespace RAM_Injection_Data.Controller
 {
     public class Data_Conversion
     {
@@ -25,51 +28,37 @@
         public int LittleEndian(byte[] hex, int start, int length, bool invertData)
         {
             byte[] buffer = new byte[length];
-            int value = 0;
 
             Extract(hex, buffer, start, length);
 
-            if (invertData == true)
-                Invert(buffer);
-
-            if(length == 1)
-                value = ConOneHex(buffer[0]);
-            if (length == 2)
-                value = Int16(buffer);
-            if (length == 3)
-                value = Int24(buffer);
-            if (length == 4)
-                value = Int32(buffer);
-
-            return value;
+            return LE(buffer, length, invertData);
         }
 
-        /// <summary>
-        /// Converts a hex string stored in
-        /// Little Endian to and int
-        /// </summary>
-        /// <param name="hex">Hex array</param>
-        /// <param name="start">Starting index in array</param>
-        /// <param name="end">Last index in array</param>
-        /// <returns>Returns the converted hex value as an int from 2D array</returns>
-        public int LittleEndian2D(List<List<byte>> hex, int row, int start, int length, bool invertData)
+        public int LittleEndianObject(List<byte> hex, bool invertData)
         {
-            byte[] buffer = new byte[length];
+            byte[] buffer = new byte[hex.Count];
+
+            for(int i = 0; i < buffer.Length; i++)
+                buffer[i] = hex[i];
+
+            return LE(buffer, buffer.Length, invertData);
+        }
+
+        private int LE(byte[] hex, int length, bool invertData)
+        {
             int value = 0;
 
-            Extract2D(hex, buffer, row, start, length);
-
             if (invertData == true)
-                Invert(buffer);
+                Invert(hex);
 
             if (length == 1)
-                value = ConOneHex(buffer[0]);
+                value = ConOneHex(hex[0]);
             if (length == 2)
-                value = Int16(buffer);
+                value = Int16(hex);
             if (length == 3)
-                value = Int24(buffer);
+                value = Int24(hex);
             if (length == 4)
-                value = Int32(buffer);
+                value = Int32(hex);
 
             return value;
         }
@@ -85,19 +74,6 @@
         {
             for(int i = 0; i < length; i++)
                 buffer[i] = hex[i + start];
-        }
-
-        /// <summary>
-        /// Extracts a hex string from a array of hex values
-        /// </summary>
-        /// <param name="hex">Hex array</param>
-        /// <param name="start">Starting index in array</param>
-        /// <param name="end">Last index in array</param>
-        /// <returns>Returns array of extracted values from 2D array</returns>
-        private void Extract2D(List<List<byte>> hex, byte[] buffer, int row, int start, int length)
-        {
-            for (int i = 0; i < length; i++)
-                buffer[i] = hex[row][i + start];
         }
 
         /// <summary>
@@ -134,12 +110,15 @@
             return buffer[0] << 32 | buffer[1] << 16 | buffer[2] << 8 | buffer[3];
         }
 
-        ////Reverse a string. Code from https://stackoverflow.com/questions/228038/best-way-to-reverse-a-string
-        //public string Reverse(string s)
-        //{
-        //    char[] charArray = s.ToCharArray();
-        //    Array.Reverse(charArray);
-        //    return new string(charArray);
-        //}
+        public void ChecksumCalculation(byte[] arr, Offest_data od)
+        {
+            ushort chk = 0;
+            for (int i = 32; i < 80; i += 2)
+                chk += BitConverter.ToUInt16(arr, i);
+            var bytes = BitConverter.GetBytes(chk);
+            
+            arr[od.Checksum + 1] = bytes[1];
+            arr[od.Checksum] = bytes[0];
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using PKHeX.Core;
 using RAM_Injection_Data.Data;
 using RAM_Injection_Data.Model;
+using System;
 
 namespace RAM_Injection_Data.Controller
 {
@@ -9,8 +10,6 @@ namespace RAM_Injection_Data.Controller
         readonly Data_Conversion hex;
         readonly Array_Manager arr;
         readonly Dex_Conversion dexCon;
-        readonly PokeCrypto_Start start;
-        readonly Validation check;
         readonly Pokemon_Value_Check checkP;
 
         public delegate void CurrentProgressMethodInvoker(int amount);
@@ -24,8 +23,8 @@ namespace RAM_Injection_Data.Controller
             hex = new();
             arr = new();
             dexCon = new();
-            start = new();
-            check = new();
+            //start = new();
+            //check = new();
             checkP = new();
         }
 
@@ -41,6 +40,7 @@ namespace RAM_Injection_Data.Controller
             byte[] buffer = new byte[gv.PartyDataSize];
             int updateTime;
             byte[] inputFile = val.FileData;
+            int currentDexNum;
             //Ensures that the RAM file is larger then a Pokemon in your party
             if (inputFile.Length >= gv.PartyDataSize)
             {
@@ -68,63 +68,33 @@ namespace RAM_Injection_Data.Controller
                         {
                             buffer[n] = inputFile[i + n];
                         }
+                        //byte[] convert = new byte[1];
+                        //if (gv.IsEncrypted)
+                        //{
+                        //    //byte[] convert = new byte[1];
+                        //    convert = PokeCrypto.DecryptArray3(buffer); //might work if does get rid of Poke Crypto start
+                        //}
 
-                        //Encrypted(pokemon, buffer, val, offset_Data, gv);
-                        NonEncrypted(pokemon, buffer, val, offset_Data, gv);
+                        currentDexNum = dexCon.Gen3GetDexNum(hex.LittleEndian(buffer, offset_Data.Species, offset_Data.SpeciesSize, gv.Invert));
+
+                        //Checks if the data is a Pokemon
+                        if (checkP.IsPokemon(buffer, currentDexNum, val, offset_Data, gv))
+                        {
+                            int duplicate = 0;
+                            //Checks if the found Pokemon was already found else where in the RAM
+                            if (arr.UpdateCheck(pokemon, val.Found, buffer, val.Gen, val.SubGen, gv.Invert, ref duplicate))
+                            {
+                                //If the Pokemon is new add to the Pokemon list
+                                pokemon.Add(arr.ArrayToPokemon(buffer, offset_Data));
+                                //arr.Array1Dto2D(pokemon, val.Found, gv.StorageDataSize, buffer);
+                                val.Found += 1;
+                            }
+                            else
+                                pokemon[duplicate].AdressInRAM.Add(i);
+                        }
                     }
                     //Updates the progress bar
                     ProgressUpdate(i, updateTime, inputFile);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Breaks the encryption if the data is encrypted
-        /// </summary>
-        /// <param name="pokemon"></param>
-        /// <param name="buffer"></param>
-        /// <param name="val"></param>
-        /// <param name="offset_Data"></param>
-        /// <param name="gv"></param>
-        private void Encrypted(List<Pokemon_Gen3> pokemon, byte[] buffer, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
-        {
-            byte[] convert = new byte[1];
-
-            //Breaks the encryption
-            //convert = start.PK3(buffer); //Go back to this if new code does not work
-
-            convert = PokeCrypto.DecryptArray3(buffer); //might work if does get rid of Poke Crypto start
-
-            //Battle tower shiny fix
-            //if (val.Gen == 3)
-            //    exceptions.FRLGTrainerTower(ref convert);
-
-            NonEncrypted(pokemon, convert, val, offset_Data, gv);
-        }
-
-        /// <summary>
-        /// For non encrypted data and where it's determined if the data is a Pokemon
-        /// </summary>
-        /// <param name="pokemon"></param>
-        /// <param name="buffer"></param>
-        /// <param name="val"></param>
-        /// <param name="offset_Data"></param>
-        /// <param name="gv"></param>
-        private void NonEncrypted(List<Pokemon_Gen3> pokemon, byte[] buffer, Applicaton_Values val, Offest_data offset_Data, Game_Values gv)
-        {
-            int currentDexNum;
-            //Gets the Pokemon correct dex number to determine if the data is a Pokemon
-            currentDexNum = dexCon.Gen3GetDexNum(hex.LittleEndian(buffer, offset_Data.Species, offset_Data.SpeciesSize, gv.Invert));        
-
-            //Checks if the data is a Pokemon
-            if (checkP.IsPokemon(buffer, currentDexNum, val, offset_Data, gv))
-            {
-                //Checks if the found Pokemon was already found else where in the RAM
-                if (arr.UpdateCheck(pokemon, val.Found, buffer, val.Gen, val.SubGen, gv.Invert))
-                {
-                    //If the Pokemon is new add to the Pokemon list
-                    arr.Array1Dto2D(pokemon, val.Found, gv.StorageDataSize, buffer);
-                    val.Found += 1;
                 }
             }
         }

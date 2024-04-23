@@ -107,6 +107,7 @@
             ImportBTN.TabIndex = 6;
             ImportBTN.Text = "Import PK";
             ImportBTN.UseVisualStyleBackColor = true;
+            ImportBTN.Click += ImportBTN_Click;
             // 
             // EditBTN
             // 
@@ -126,6 +127,7 @@
             InjectBTN.TabIndex = 8;
             InjectBTN.Text = "Inject PK";
             InjectBTN.UseVisualStyleBackColor = true;
+            InjectBTN.Click += InjectBTN_Click;
             // 
             // SaveBTN
             // 
@@ -135,6 +137,7 @@
             SaveBTN.TabIndex = 9;
             SaveBTN.Text = "Save RAM";
             SaveBTN.UseVisualStyleBackColor = true;
+            SaveBTN.Click += SaveBTN_Click;
             // 
             // FoundTXB
             // 

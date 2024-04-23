@@ -1,6 +1,4 @@
-﻿using RAM_Injection_Data;
-using RAM_Injection_Data.Controller;
-using RAM_Injection_Data.View;
+﻿using RAM_Injection_Data.Data;
 using static System.Buffers.Binary.BinaryPrimitives;
 
 namespace PK3_RAM_Injection
