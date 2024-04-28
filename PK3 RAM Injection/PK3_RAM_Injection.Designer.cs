@@ -41,7 +41,6 @@
             FoundTXB = new TextBox();
             textBox1 = new TextBox();
             openFileDialog1 = new OpenFileDialog();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             saveFileDialog1 = new SaveFileDialog();
             TidTXT = new TextBox();
             SuspendLayout();
@@ -161,11 +160,6 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
-            // backgroundWorker1
-            // 
-            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
-            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
-            // 
             // TidTXT
             // 
             TidTXT.Location = new Point(93, 12);
@@ -193,8 +187,6 @@
             Controls.Add(OpenFileBTN);
             Name = "PK3_RAM_Injection";
             Text = "PK3 RAM Injection";
-            DragDrop += PK3_RAM_Injection_DragDrop;
-            DragOver += PK3_RAM_Injection_DragOver;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -214,7 +206,6 @@
         private TextBox FoundTXB;
         private TextBox textBox1;
         private OpenFileDialog openFileDialog1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private SaveFileDialog saveFileDialog1;
         private TextBox TidTXT;
     }

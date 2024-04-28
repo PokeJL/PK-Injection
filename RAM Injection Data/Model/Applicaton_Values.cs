@@ -10,6 +10,7 @@
         public bool FileAdded { get; set; } = false; //Indicates if a file is added or not
         public string Path { get; set; } = null; //The file path
         public byte[] FileData { get; set; } = new byte[1]; //The byte data from the file
+        public byte[] ImportData { get; set; } = new byte[1];
         public int Found { get; set; } = 0; //how many Pokemon found
         public int SelectIndex { get; set; } = 0; //The index of the selected item in the Pokemon found combo box
         public int DexNum { get; set; } = 0; //Stores one Pokemon dex number
@@ -17,6 +18,8 @@
         public bool EndTask { get; set; } = false; //Stops the working thread
         public int ComboSelect { get; set; } = 0; //Selected index of the game
         public int SubGen { get; set; } = 0; //Helps determine target game if data is stored diffrently between games in a gen
+        public bool InjectFileAdded { get; set; } = false;
+        public string InjectFilePath { get; set; } = null;
 
         ////Resets some of the application values
         //public void PartReset()

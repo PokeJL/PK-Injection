@@ -12,19 +12,11 @@ namespace RAM_Injection_Data.Controller
         readonly Dex_Conversion dexCon;
         readonly Pokemon_Value_Check checkP;
 
-        public delegate void CurrentProgressMethodInvoker(int amount);
-        public delegate bool EndThread();
-
-        public event CurrentProgressMethodInvoker CP;
-        public event EndThread End;
-
         public Data_Ripper() 
         {
             hex = new();
             arr = new();
             dexCon = new();
-            //start = new();
-            //check = new();
             checkP = new();
         }
 
@@ -35,38 +27,30 @@ namespace RAM_Injection_Data.Controller
         /// <param name="val">Basic valuse needed for the application</param>
         /// <param name="offset_Data">The offsets of the Pokemon values</param>
         /// <param name="gv">Contains the target games parameters</param>
-        public void SearchPokemon(List<Pokemon_Gen3> pokemon, Applicaton_Values val, Offest_data offset_Data, Game_Values gv, byte[] id)
+        public void SearchPokemon(List<Pokemon_Gen3> pokemon, Applicaton_Values val, Offest_data offset_Data, Game_Values gv, byte[] id, int i)
         {
             byte[] buffer = new byte[gv.PartyDataSize];
-            int updateTime;
-            byte[] inputFile = val.FileData;
+            //byte[] inputFile = val.FileData;
             int currentDexNum;
+
             //Ensures that the RAM file is larger then a Pokemon in your party
-            if (inputFile.Length >= gv.PartyDataSize)
-            {
-                updateTime = UpdateBar(inputFile.Length); //Gets update intervals
+            //for (int i = 0; i < inputFile.Length && inputFile.Length >= gv.PartyDataSize; i++)
+            //{
 
                 //Loops to the end of the RAM file
-                for (int i = 0; i < inputFile.Length; i++)
-                {
-                    //Ends the rip process
-                    if (End() == true)
-                    {
-                        val.Found = 0;
-                        break;
-                    }
+                //if (inputFile.Length >= gv.PartyDataSize)
+                //{
                     //Ensures the that the size for the Pokemon stored in the party plus the current
                     //index of the loop isn't past the input length.
                     //Initial check of data to make sure the current data doesn't have a checksum of 0
-                    if (i + gv.PartyDataSize <= inputFile.Length && 
-                        //check.ChecksumStart(inputFile, gv.Option, i, val.Gen, val.SubGen, gv.Invert) &&
-                        inputFile[i + offset_Data.ID] == id[0] &&
-                        inputFile[i + 1 + offset_Data.ID] == id[1])
+                    if (i + gv.PartyDataSize <= val.FileData.Length &&
+                        val.FileData[i + offset_Data.ID] == id[0] &&
+                        val.FileData[i + 1 + offset_Data.ID] == id[1])
                     {
-                        //loads data into buffer
+                            //loads data into buffer
                         for (int n = 0; n < gv.PartyDataSize; n++)
                         {
-                            buffer[n] = inputFile[i + n];
+                                buffer[n] = val.FileData[i + n];
                         }
                         //byte[] convert = new byte[1];
                         //if (gv.IsEncrypted)
@@ -86,42 +70,16 @@ namespace RAM_Injection_Data.Controller
                             {
                                 //If the Pokemon is new add to the Pokemon list
                                 pokemon.Add(arr.ArrayToPokemon(buffer, offset_Data));
-                                //arr.Array1Dto2D(pokemon, val.Found, gv.StorageDataSize, buffer);
+                                pokemon[val.Found].AdressInRAM.Add(i);
                                 val.Found += 1;
                             }
                             else
                                 pokemon[duplicate].AdressInRAM.Add(i);
                         }
                     }
-                    //Updates the progress bar
-                    ProgressUpdate(i, updateTime, inputFile);
-                }
-            }
-        }
+                //}
+            //} 
 
-        /// <summary>
-        /// Updates progress bar
-        /// </summary>
-        /// <param name="progress">How much the loop has gone</param>
-        /// <param name="time">the update time intervals</param>
-        /// <param name="data">the data file</param>
-        private void ProgressUpdate(int progress, int time, byte[] data)
-        {
-            if (progress % time == 0) //Update bar if module is 0
-                CP(progress);
-            else if (progress + 1 == data.Length) //Update bar if the next loop is the last
-                CP(progress);
-        }
-
-        //163 allows for update intervals that don't slow down the process by delaying the update by a bit
-        static private int UpdateBar(int size)
-        {
-            int timing;
-            if (size <= 163)
-                timing = size;
-            else
-                timing = (int)(size / 163);
-            return timing;
         }
     }
 }

@@ -29,7 +29,15 @@ namespace RAM_Injection_Data.Controller
             inputFile = OpenFile(path);
             obj.FileData = inputFile;
 
-            MP(inputFile.Length);
+            //MP(inputFile.Length);
+        }
+
+        public void LoadDataImport(string path, Applicaton_Values obj)
+        {
+            byte[] inputFile;
+
+            inputFile = OpenFile(path);
+            obj.ImportData = inputFile;
         }
     }
 }
