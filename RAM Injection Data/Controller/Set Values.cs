@@ -9,15 +9,15 @@ namespace RAM_Injection_Data.Controller
         public Set_Values() { }
         Offset offset = new();
         //Resets some of the application values
-        public void ApplicationPartReset(Applicaton_Values val)
-        {
-            val.FileData = new byte[1];
-            val.Found = 0;
-            val.SelectIndex = 0;
-            val.DexNum = 0;
-            val.Gen = 0;
-            val.SubGen = 0;
-        }
+        //public void ApplicationPartReset(Applicaton_Values val)
+        //{
+        //    val.FileData = new byte[1];
+        //    val.Found = 0;
+        //    val.SelectIndex = 0;
+        //    val.DexNum = 0;
+        //    val.Gen = 0;
+        //    val.SubGen = 0;
+        //}
 
         public void OffsetSetValues(Offest_data od, int gen, int subGen)
         {
@@ -151,7 +151,7 @@ namespace RAM_Injection_Data.Controller
             gv.StorageDataSize = sds;
             gv.PartyDataSize = pds;
             gv.EffortTotal = et;
-            gv.IsEncrypted = ie;
+            //gv.IsEncrypted = ie;
             gv.Invert = i;
             gv.Option = o;
             gv.NumOfPokeInGen = np;

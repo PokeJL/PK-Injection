@@ -30,56 +30,63 @@ namespace RAM_Injection_Data.Controller
         public void SearchPokemon(List<Pokemon_Gen3> pokemon, Applicaton_Values val, Offest_data offset_Data, Game_Values gv, byte[] id, int i)
         {
             byte[] buffer = new byte[gv.PartyDataSize];
-            //byte[] inputFile = val.FileData;
             int currentDexNum;
 
-            //Ensures that the RAM file is larger then a Pokemon in your party
-            //for (int i = 0; i < inputFile.Length && inputFile.Length >= gv.PartyDataSize; i++)
-            //{
-
-                //Loops to the end of the RAM file
-                //if (inputFile.Length >= gv.PartyDataSize)
-                //{
-                    //Ensures the that the size for the Pokemon stored in the party plus the current
-                    //index of the loop isn't past the input length.
-                    //Initial check of data to make sure the current data doesn't have a checksum of 0
-                    if (i + gv.PartyDataSize <= val.FileData.Length &&
-                        val.FileData[i + offset_Data.ID] == id[0] &&
-                        val.FileData[i + 1 + offset_Data.ID] == id[1])
-                    {
+            if (i + gv.PartyDataSize <= val.FileData.Length &&
+                val.FileData[i + offset_Data.ID] == id[0] &&
+                 val.FileData[i + 1 + offset_Data.ID] == id[1])
+            {
                             //loads data into buffer
-                        for (int n = 0; n < gv.PartyDataSize; n++)
-                        {
-                                buffer[n] = val.FileData[i + n];
-                        }
-                        //byte[] convert = new byte[1];
-                        //if (gv.IsEncrypted)
-                        //{
-                        //    //byte[] convert = new byte[1];
-                        //    convert = PokeCrypto.DecryptArray3(buffer); //might work if does get rid of Poke Crypto start
-                        //}
+                for (int n = 0; n < gv.PartyDataSize; n++)
+                        buffer[n] = val.FileData[i + n];
 
-                        currentDexNum = dexCon.Gen3GetDexNum(hex.LittleEndian(buffer, offset_Data.Species, offset_Data.SpeciesSize, gv.Invert));
+                if (gv.IsEncrypted)
+                    buffer = PokeCrypto.DecryptArray3(buffer);
+
+                currentDexNum = dexCon.Gen3GetDexNum(hex.LittleEndian(buffer, offset_Data.Species, offset_Data.SpeciesSize, gv.Invert));
 
                         //Checks if the data is a Pokemon
-                        if (checkP.IsPokemon(buffer, currentDexNum, val, offset_Data, gv))
-                        {
-                            int duplicate = 0;
+                if (checkP.IsPokemon(buffer, currentDexNum, val, offset_Data, gv))
+                {
+                    int duplicate = 0;
                             //Checks if the found Pokemon was already found else where in the RAM
-                            if (arr.UpdateCheck(pokemon, val.Found, buffer, val.Gen, val.SubGen, gv.Invert, ref duplicate))
-                            {
-                                //If the Pokemon is new add to the Pokemon list
-                                pokemon.Add(arr.ArrayToPokemon(buffer, offset_Data));
-                                pokemon[val.Found].AdressInRAM.Add(i);
-                                val.Found += 1;
-                            }
-                            else
-                                pokemon[duplicate].AdressInRAM.Add(i);
+                        if (arr.UpdateCheck(pokemon, buffer, val.Gen, val.SubGen, gv.Invert, ref duplicate))
+                        {
+                            //If the Pokemon is new add to the Pokemon list
+                            pokemon.Add(arr.ArrayToPokemon(buffer, offset_Data));
+                            pokemon[pokemon.Count - 1].AdressInRAM.Add(i);
                         }
-                    }
-                //}
-            //} 
+                        else
+                            pokemon[duplicate].AdressInRAM.Add(i);
+                }
+            }
 
+        }
+
+        public Display_Data AddData(Pokemon_Gen3 list)
+        {
+            string temp = string.Empty;
+            Display_Data data = new();
+            Name_Characters name = new();
+            Pokemon_Data pData = new();
+
+            data.SpeciesId = hex.LittleEndianObject(list.PokemonID, true);
+
+            for (int i = 0; i < list.Nickname.Count; i++)
+            {
+                if (list.Nickname[i] != 255)
+                    temp += name.GetLetter(list.Nickname[i]);
+                else break;
+            }
+            data.Name = temp;
+            data.ID = hex.LittleEndianObject(list.TrainerID, true);
+            data.Move1 = pData.GetMove(hex.LittleEndianObject(list.Move1, true));
+            data.Move2 = pData.GetMove(hex.LittleEndianObject(list.Move2, true));
+            data.Move3 = pData.GetMove(hex.LittleEndianObject(list.Move3, true));
+            data.Move4 = pData.GetMove(hex.LittleEndianObject(list.Move4, true));
+
+
+            return data;
         }
     }
 }

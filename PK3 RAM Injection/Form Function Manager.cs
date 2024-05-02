@@ -2,8 +2,7 @@
 using ComboBox = System.Windows.Forms.ComboBox;
 using TextBox = System.Windows.Forms.TextBox;
 using ProgressBar = System.Windows.Forms.ProgressBar;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using RAM_Injection_Data.Model;
 
 namespace PK3_RAM_Injection
 {
@@ -11,12 +10,12 @@ namespace PK3_RAM_Injection
     {
         public Form_Function_Manager() {}
 
-        public async void FindData(Run_Time_Manager rt, ComboBox comboBox, TextBox textBox, OpenFileDialog openFileDialog, ProgressBar progressBar)
+        public async void FindData(Run_Time_Manager rt, ComboBox comboBox, TextBox textBox, OpenFileDialog openFileDialog, ProgressBar progressBar, DataGridView dataGridView)
         {
             int updateTime = 0;
+            //rt.ApplicatonValues().Found = 0;
             rt.PokemonGen3s().Clear();
             comboBox.Items.Clear();
-            //RipProgressBar.Value = 0;
 
             if (rt.ApplicatonValues().FileAdded == true) //Searches for a Pokemon
             {
@@ -48,10 +47,6 @@ namespace PK3_RAM_Injection
                     for (int i = 0; i < rt.ApplicatonValues().FileData.Length && rt.ApplicatonValues().FileData.Length >= rt.GameValues().PartyDataSize; i++)
                     {
                         ProgressUpdate(i, updateTime, rt.ApplicatonValues().FileData, progress);
-                        //if (i % updateTime == 0) //Update bar if module is 0
-                        //    progress.Report(i);
-                        //else if (i + 1 == rt.ApplicatonValues().FileData.Length) //Update bar if the next loop is the last
-                        //    progress.Report(i);
                         rt.FindData().SearchPokemon(rt.PokemonGen3s(), rt.ApplicatonValues(), rt.OffestData(), rt.GameValues(), tid, i);
                     }
                 });
@@ -61,9 +56,10 @@ namespace PK3_RAM_Injection
                 System.Windows.Forms.MessageBox.Show("No file added.");
             }
 
-            System.Windows.Forms.MessageBox.Show(rt.ApplicatonValues().Found.ToString() + " Pokemon found.");
+            System.Windows.Forms.MessageBox.Show(rt.PokemonGen3s().Count.ToString() + " Pokemon found.");
 
             BindComboBoxData(rt, comboBox); //Adds found Pokemon to combo box
+            DisplayPokemon(dataGridView, rt.FindData(), rt.PokemonGen3s());
         }
 
         public void InjectData(Run_Time_Manager rt)
@@ -81,6 +77,13 @@ namespace PK3_RAM_Injection
             /*
              Add textbox message code here.
              */
+        }
+
+        public void Encrypted(Run_Time_Manager rt, CheckBox checkBox)
+        {
+            if(checkBox.Checked)
+                rt.GameValues().IsEncrypted = true;
+            else rt.GameValues().IsEncrypted = false;
         }
 
         private void ProgressUpdate(int amount, int time, byte[] data, IProgress<int> progress)
@@ -102,13 +105,26 @@ namespace PK3_RAM_Injection
             return timing;
         }
 
+        private void DisplayPokemon(DataGridView dataGridView, Data_Ripper search, List<Pokemon_Gen3> list)
+        {
+            List<Display_Data> display = new List<Display_Data>();
+            dataGridView.Columns.Clear();
+
+            for(int i = 0; i < list.Count; i++) 
+            { 
+                display.Add(search.AddData(list[i]));
+            }
+
+            dataGridView.DataSource = display;
+        }
+
         private void BindComboBoxData(Run_Time_Manager rt, ComboBox comboBox)
         {
-            object[] ItemObject = new object[rt.ApplicatonValues().Found];
-            if (rt.ApplicatonValues().Found != 0)
+            object[] ItemObject = new object[rt.PokemonGen3s().Count];
+            if (rt.PokemonGen3s().Count != 0)
             {
                 comboBox.Items.Clear();
-                for (int i = 0; i < rt.ApplicatonValues().Found; i++)
+                for (int i = 0; i < rt.PokemonGen3s().Count; i++)
                 {
                     rt.ApplicatonValues().DexNum = rt.DexConversion().Gen3GetDexNum(rt.DataConversion().LittleEndianObject(rt.PokemonGen3s()[i].PokemonID, rt.GameValues().Invert));
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RAM_Injection_Data.Model
+﻿namespace RAM_Injection_Data.Model
 {
     public class Pokemon_Gen3 : Pokemon_Base
     {
@@ -40,5 +34,95 @@ namespace RAM_Injection_Data.Model
         public List<byte>? PP2 { get; set; } = [];
         public List<byte>? PP3 { get; set; } = [];
         public List<byte>? PP4 { get; set; } = [];
+
+        public void ClearData()
+        {
+            PokemonID.Clear();
+            TrainerID.Clear();
+            OTName.Clear();
+            Nickname.Clear();
+            Move1.Clear();
+            Move2.Clear();
+            Move3.Clear();
+            Move4.Clear();
+            EXP.Clear();
+            AdressInRAM.Clear();
+            Edited = false;
+            SecretID.Clear();
+            IV.Clear();
+            HPEV.Clear();
+            AttackEV.Clear();
+            DefenceEV.Clear();
+            SpAttackEV.Clear();
+            SpDefenceEV.Clear();
+            SpeedEV.Clear();
+            Cool.Clear();
+            Beauty.Clear();
+            Cute.Clear();
+            Smart.Clear();
+            Tough.Clear();
+            Orgins.Clear();
+            Feel.Clear();
+            PID.Clear();
+            Ribbion.Clear();
+            Item.Clear();
+            PKRus.Clear();
+            Language.Clear();
+            Misc.Clear();
+            Friendship.Clear();
+            Marks.Clear();
+            Checksum.Clear();
+            Unknown.Clear();
+            PPUps.Clear();
+            Unused.Clear();
+            MetLocation.Clear();
+            PP1.Clear();
+            PP2.Clear();
+            PP3.Clear();
+            PP4.Clear();
+
+            PokemonID = new();
+            TrainerID = new();
+            OTName = new();
+            Nickname = new();
+            Move1 = new();
+            Move2 = new();
+            Move3 = new();
+            Move4 = new();
+            EXP = new();
+            AdressInRAM = new();
+            SecretID = new();
+            IV = new();
+            HPEV = new();
+            AttackEV = new();
+            DefenceEV = new();
+            SpAttackEV = new();
+            SpDefenceEV = new();
+            SpeedEV = new();
+            Cool = new();
+            Beauty = new();
+            Cute = new();
+            Smart = new();
+            Tough = new();
+            Orgins = new();
+            Feel = new();
+            PID = [];
+            Ribbion = new();
+            Item = new();
+            PKRus = new();
+            Language = new();
+            Misc = new();
+            Friendship = new();
+            Marks = new();
+            Checksum = new();
+            Unknown = new();
+            PPUps = new();
+            Unused = new();
+            MetLocation = new();
+            PP1 = new();
+            PP2 = new();
+            PP3 = new();
+            PP4 = new();
+        }
     }
 }

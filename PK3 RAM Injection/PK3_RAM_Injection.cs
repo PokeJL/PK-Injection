@@ -29,7 +29,7 @@ namespace PK3_RAM_Injection
 
         private void FindPkmnBTN_Click(object sender, EventArgs e)
         {
-            functionManager.FindData(runTimeManager, PkmnSelectCB, TidTXT, openFileDialog1, RipProgressBar);
+            functionManager.FindData(runTimeManager, PkmnSelectCB, TidTXT, openFileDialog1, RipProgressBar, DisplayDGV);
         }
 
         private void PkmnSelectCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,6 +56,11 @@ namespace PK3_RAM_Injection
         private void SaveBTN_Click(object sender, EventArgs e)
         {
             fileManager.SaveData(runTimeManager);
+        }
+
+        private void EncryptedCB_CheckedChanged(object sender, EventArgs e)
+        {
+            functionManager.Encrypted(runTimeManager, EncryptedCB);
         }
     }
 }

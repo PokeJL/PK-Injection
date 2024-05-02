@@ -161,7 +161,7 @@ namespace RAM_Injection_Data.Controller
 
             for (int i = start; i < start + length; i++)
             {
-                if (hex.ConOneHex(buffer[i]) == 255)
+                if (hex.ConOneHex(buffer[i]) > 246)
                     break;
                 else
                     count += hex.ConOneHex(buffer[i]);

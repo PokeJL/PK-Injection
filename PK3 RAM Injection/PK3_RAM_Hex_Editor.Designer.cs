@@ -105,15 +105,15 @@
             move4NUD2 = new NumericUpDown();
             move4NUD1 = new NumericUpDown();
             groupBox1 = new GroupBox();
-            ppUpCB1 = new ComboBox();
-            ppUpNUD = new NumericUpDown();
-            ppUpCB2 = new ComboBox();
-            ppUpLBL1 = new Label();
-            ppUpLBL2 = new Label();
-            ppUpCB3 = new ComboBox();
-            ppUpCB4 = new ComboBox();
-            ppUpLBL3 = new Label();
             ppUpLBL4 = new Label();
+            ppUpLBL3 = new Label();
+            ppUpCB4 = new ComboBox();
+            ppUpCB3 = new ComboBox();
+            ppUpLBL2 = new Label();
+            ppUpLBL1 = new Label();
+            ppUpCB2 = new ComboBox();
+            ppUpNUD = new NumericUpDown();
+            ppUpCB1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pidNUD1).BeginInit();
             pidGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pidNUD4).BeginInit();
@@ -458,7 +458,7 @@
             ivGB.Controls.Add(hpLBL);
             ivGB.Location = new Point(12, 213);
             ivGB.Name = "ivGB";
-            ivGB.Size = new Size(434, 96);
+            ivGB.Size = new Size(269, 142);
             ivGB.TabIndex = 8;
             ivGB.TabStop = false;
             ivGB.Text = "IV";
@@ -466,7 +466,7 @@
             // ivNUD4
             // 
             ivNUD4.Hexadecimal = true;
-            ivNUD4.Location = new Point(135, 65);
+            ivNUD4.Location = new Point(135, 109);
             ivNUD4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD4.Name = "ivNUD4";
             ivNUD4.Size = new Size(37, 23);
@@ -476,7 +476,7 @@
             // ivNUD3
             // 
             ivNUD3.Hexadecimal = true;
-            ivNUD3.Location = new Point(92, 65);
+            ivNUD3.Location = new Point(92, 109);
             ivNUD3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD3.Name = "ivNUD3";
             ivNUD3.Size = new Size(37, 23);
@@ -486,7 +486,7 @@
             // ivNUD2
             // 
             ivNUD2.Hexadecimal = true;
-            ivNUD2.Location = new Point(49, 65);
+            ivNUD2.Location = new Point(49, 109);
             ivNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD2.Name = "ivNUD2";
             ivNUD2.Size = new Size(37, 23);
@@ -496,7 +496,7 @@
             // ivNUD1
             // 
             ivNUD1.Hexadecimal = true;
-            ivNUD1.Location = new Point(6, 65);
+            ivNUD1.Location = new Point(6, 109);
             ivNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD1.Name = "ivNUD1";
             ivNUD1.Size = new Size(37, 23);
@@ -549,7 +549,7 @@
             // 
             abilityCB.FormattingEnabled = true;
             abilityCB.Items.AddRange(new object[] { "Ability 0", "Ability 1" });
-            abilityCB.Location = new Point(346, 21);
+            abilityCB.Location = new Point(88, 65);
             abilityCB.Name = "abilityCB";
             abilityCB.Size = new Size(78, 23);
             abilityCB.TabIndex = 18;
@@ -558,7 +558,7 @@
             // 
             eggCB.FormattingEnabled = true;
             eggCB.Items.AddRange(new object[] { "Hatched", "Egg" });
-            eggCB.Location = new Point(264, 21);
+            eggCB.Location = new Point(6, 65);
             eggCB.Name = "eggCB";
             eggCB.Size = new Size(76, 23);
             eggCB.TabIndex = 17;
@@ -567,7 +567,7 @@
             // abilityLBL
             // 
             abilityLBL.AutoSize = true;
-            abilityLBL.Location = new Point(346, 48);
+            abilityLBL.Location = new Point(88, 92);
             abilityLBL.Name = "abilityLBL";
             abilityLBL.Size = new Size(41, 15);
             abilityLBL.TabIndex = 16;
@@ -576,7 +576,7 @@
             // eggLBL
             // 
             eggLBL.AutoSize = true;
-            eggLBL.Location = new Point(264, 47);
+            eggLBL.Location = new Point(6, 91);
             eggLBL.Name = "eggLBL";
             eggLBL.Size = new Size(27, 15);
             eggLBL.TabIndex = 15;
@@ -953,14 +953,68 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "PP Ups";
             // 
-            // ppUpCB1
+            // ppUpLBL4
             // 
-            ppUpCB1.FormattingEnabled = true;
-            ppUpCB1.Items.AddRange(new object[] { "0", "1", "2", "3" });
-            ppUpCB1.Location = new Point(6, 51);
-            ppUpCB1.Name = "ppUpCB1";
-            ppUpCB1.Size = new Size(37, 23);
-            ppUpCB1.TabIndex = 0;
+            ppUpLBL4.AutoSize = true;
+            ppUpLBL4.Location = new Point(135, 77);
+            ppUpLBL4.Name = "ppUpLBL4";
+            ppUpLBL4.Size = new Size(46, 15);
+            ppUpLBL4.TabIndex = 12;
+            ppUpLBL4.Text = "Move 4";
+            // 
+            // ppUpLBL3
+            // 
+            ppUpLBL3.AutoSize = true;
+            ppUpLBL3.Location = new Point(92, 77);
+            ppUpLBL3.Name = "ppUpLBL3";
+            ppUpLBL3.Size = new Size(46, 15);
+            ppUpLBL3.TabIndex = 11;
+            ppUpLBL3.Text = "Move 3";
+            // 
+            // ppUpCB4
+            // 
+            ppUpCB4.FormattingEnabled = true;
+            ppUpCB4.Items.AddRange(new object[] { "0", "1", "2", "3" });
+            ppUpCB4.Location = new Point(135, 51);
+            ppUpCB4.Name = "ppUpCB4";
+            ppUpCB4.Size = new Size(37, 23);
+            ppUpCB4.TabIndex = 10;
+            // 
+            // ppUpCB3
+            // 
+            ppUpCB3.FormattingEnabled = true;
+            ppUpCB3.Items.AddRange(new object[] { "0", "1", "2", "3" });
+            ppUpCB3.Location = new Point(92, 51);
+            ppUpCB3.Name = "ppUpCB3";
+            ppUpCB3.Size = new Size(37, 23);
+            ppUpCB3.TabIndex = 9;
+            // 
+            // ppUpLBL2
+            // 
+            ppUpLBL2.AutoSize = true;
+            ppUpLBL2.Location = new Point(49, 77);
+            ppUpLBL2.Name = "ppUpLBL2";
+            ppUpLBL2.Size = new Size(46, 15);
+            ppUpLBL2.TabIndex = 8;
+            ppUpLBL2.Text = "Move 2";
+            // 
+            // ppUpLBL1
+            // 
+            ppUpLBL1.AutoSize = true;
+            ppUpLBL1.Location = new Point(6, 77);
+            ppUpLBL1.Name = "ppUpLBL1";
+            ppUpLBL1.Size = new Size(46, 15);
+            ppUpLBL1.TabIndex = 7;
+            ppUpLBL1.Text = "Move 1";
+            // 
+            // ppUpCB2
+            // 
+            ppUpCB2.FormattingEnabled = true;
+            ppUpCB2.Items.AddRange(new object[] { "0", "1", "2", "3" });
+            ppUpCB2.Location = new Point(49, 51);
+            ppUpCB2.Name = "ppUpCB2";
+            ppUpCB2.Size = new Size(37, 23);
+            ppUpCB2.TabIndex = 6;
             // 
             // ppUpNUD
             // 
@@ -972,68 +1026,14 @@
             ppUpNUD.TabIndex = 5;
             ppUpNUD.ValueChanged += ByteUpdate;
             // 
-            // ppUpCB2
+            // ppUpCB1
             // 
-            ppUpCB2.FormattingEnabled = true;
-            ppUpCB2.Items.AddRange(new object[] { "0", "1", "2", "3" });
-            ppUpCB2.Location = new Point(49, 51);
-            ppUpCB2.Name = "ppUpCB2";
-            ppUpCB2.Size = new Size(37, 23);
-            ppUpCB2.TabIndex = 6;
-            // 
-            // ppUpLBL1
-            // 
-            ppUpLBL1.AutoSize = true;
-            ppUpLBL1.Location = new Point(6, 77);
-            ppUpLBL1.Name = "ppUpLBL1";
-            ppUpLBL1.Size = new Size(46, 15);
-            ppUpLBL1.TabIndex = 7;
-            ppUpLBL1.Text = "Move 1";
-            // 
-            // ppUpLBL2
-            // 
-            ppUpLBL2.AutoSize = true;
-            ppUpLBL2.Location = new Point(49, 77);
-            ppUpLBL2.Name = "ppUpLBL2";
-            ppUpLBL2.Size = new Size(46, 15);
-            ppUpLBL2.TabIndex = 8;
-            ppUpLBL2.Text = "Move 2";
-            // 
-            // ppUpCB3
-            // 
-            ppUpCB3.FormattingEnabled = true;
-            ppUpCB3.Items.AddRange(new object[] { "0", "1", "2", "3" });
-            ppUpCB3.Location = new Point(92, 51);
-            ppUpCB3.Name = "ppUpCB3";
-            ppUpCB3.Size = new Size(37, 23);
-            ppUpCB3.TabIndex = 9;
-            // 
-            // ppUpCB4
-            // 
-            ppUpCB4.FormattingEnabled = true;
-            ppUpCB4.Items.AddRange(new object[] { "0", "1", "2", "3" });
-            ppUpCB4.Location = new Point(135, 51);
-            ppUpCB4.Name = "ppUpCB4";
-            ppUpCB4.Size = new Size(37, 23);
-            ppUpCB4.TabIndex = 10;
-            // 
-            // ppUpLBL3
-            // 
-            ppUpLBL3.AutoSize = true;
-            ppUpLBL3.Location = new Point(92, 77);
-            ppUpLBL3.Name = "ppUpLBL3";
-            ppUpLBL3.Size = new Size(46, 15);
-            ppUpLBL3.TabIndex = 11;
-            ppUpLBL3.Text = "Move 3";
-            // 
-            // ppUpLBL4
-            // 
-            ppUpLBL4.AutoSize = true;
-            ppUpLBL4.Location = new Point(135, 77);
-            ppUpLBL4.Name = "ppUpLBL4";
-            ppUpLBL4.Size = new Size(46, 15);
-            ppUpLBL4.TabIndex = 12;
-            ppUpLBL4.Text = "Move 4";
+            ppUpCB1.FormattingEnabled = true;
+            ppUpCB1.Items.AddRange(new object[] { "0", "1", "2", "3" });
+            ppUpCB1.Location = new Point(6, 51);
+            ppUpCB1.Name = "ppUpCB1";
+            ppUpCB1.Size = new Size(37, 23);
+            ppUpCB1.TabIndex = 0;
             // 
             // PK3_RAM_Hex_Editor
             // 

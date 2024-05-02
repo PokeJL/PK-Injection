@@ -15,7 +15,7 @@ namespace RAM_Injection_Data.Controller
         /// <param name="gen">Selected games gen</param>
         /// <param name="subGen">The targeted game in the gen</param>
         /// <param name="inversion">Is the data in little edian</param>
-        public bool UpdateCheck(List<Pokemon_Gen3> pokemon, int found, byte[] convert, int gen, int subGen, bool inversion, ref int duplicate)
+        public bool UpdateCheck(List<Pokemon_Gen3> pokemon, byte[] convert, int gen, int subGen, bool inversion, ref int duplicate)
         {
             Offest_data offset_Data = new();
             Pokemon_Value_Check check = new();
@@ -23,9 +23,9 @@ namespace RAM_Injection_Data.Controller
 
             sv.OffsetSetValues(offset_Data, gen, subGen);
 
-            if (found != 0)
+            if (pokemon.Count != 0)
             {
-                for (int f = 0; f < found; f++)
+                for (int f = 0; f < pokemon.Count; f++)
                 {
                     if (check.Duplicate(pokemon, convert, inversion, f, offset_Data))
                     {

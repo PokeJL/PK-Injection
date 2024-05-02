@@ -149,9 +149,9 @@
                 orgins = 0x46;
                 orginsSize = 2;
                 nickname = 0x08;
-                nicknameSize = 22;
+                nicknameSize = 10;
                 otName = 0x14;
-                otNameSize = 16;
+                otNameSize = 7;
                 language = 0x12;
                 languageSize = 1;
                 miscFlags = 0X13;

@@ -90,7 +90,7 @@ namespace PK3_RAM_Injection
             else if (saveFileDialog1.FileName != string.Empty && title == "Save RAM")
             {
 
-                for (int i = 0; i < rt.ApplicatonValues().Found; i++)
+                for (int i = 0; i < rt.PokemonGen3s().Count; i++)
                 {
                     if (rt.PokemonGen3s()[i].Edited)
                         rt.ArrayManager().PokemonToArrayInject(rt.ApplicatonValues(), rt.PokemonGen3s()[i], rt.OffestData());
