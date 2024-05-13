@@ -46,6 +46,10 @@
             DisplayDGV = new DataGridView();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            MetGB = new GroupBox();
+            MetNUD = new NumericUpDown();
+            Version = new GroupBox();
+            VersionNUD = new NumericUpDown();
             LanguageGB = new GroupBox();
             LanguageNUD = new NumericUpDown();
             LanguageCB = new ComboBox();
@@ -105,6 +109,8 @@
             move3NUD2 = new NumericUpDown();
             move3NUD1 = new NumericUpDown();
             tabPage3 = new TabPage();
+            FriendshipGB = new GroupBox();
+            FriendshipNUP = new NumericUpDown();
             SpeedEvGB = new GroupBox();
             SpeedEvNUD = new NumericUpDown();
             SpdEvGB = new GroupBox();
@@ -175,30 +181,6 @@
             idNUD2 = new NumericUpDown();
             idNUD1 = new NumericUpDown();
             tabPage5 = new TabPage();
-            CoolGB = new GroupBox();
-            CoolNUD = new NumericUpDown();
-            CuteGB = new GroupBox();
-            CuteNUD = new NumericUpDown();
-            BeautyGB = new GroupBox();
-            BeautyNUD = new NumericUpDown();
-            ToughGB = new GroupBox();
-            ToughNUD = new NumericUpDown();
-            SmartGB = new GroupBox();
-            SmartNUD = new NumericUpDown();
-            SheenGB = new GroupBox();
-            SheenNUD = new NumericUpDown();
-            RibbonGB = new GroupBox();
-            RibbonTXT = new TextBox();
-            RibbonNUD4 = new NumericUpDown();
-            RibbonNUD3 = new NumericUpDown();
-            RibbonNUD2 = new NumericUpDown();
-            RibbonNUD1 = new NumericUpDown();
-            MetGB = new GroupBox();
-            MetNUD = new NumericUpDown();
-            Version = new GroupBox();
-            VersionNUD = new NumericUpDown();
-            FriendshipGB = new GroupBox();
-            FriendshipNUP = new NumericUpDown();
             UnusedGB = new GroupBox();
             UnusedNUD2 = new NumericUpDown();
             UnusedNUD1 = new NumericUpDown();
@@ -209,9 +191,31 @@
             MiscNUD = new NumericUpDown();
             MarkingsGB = new GroupBox();
             MarkingNUD = new NumericUpDown();
+            RibbonGB = new GroupBox();
+            RibbonTXT = new TextBox();
+            RibbonNUD4 = new NumericUpDown();
+            RibbonNUD3 = new NumericUpDown();
+            RibbonNUD2 = new NumericUpDown();
+            RibbonNUD1 = new NumericUpDown();
+            SheenGB = new GroupBox();
+            SheenNUD = new NumericUpDown();
+            SmartGB = new GroupBox();
+            SmartNUD = new NumericUpDown();
+            ToughGB = new GroupBox();
+            ToughNUD = new NumericUpDown();
+            BeautyGB = new GroupBox();
+            BeautyNUD = new NumericUpDown();
+            CuteGB = new GroupBox();
+            CuteNUD = new NumericUpDown();
+            CoolGB = new GroupBox();
+            CoolNUD = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)DisplayDGV).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            MetGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MetNUD).BeginInit();
+            Version.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)VersionNUD).BeginInit();
             LanguageGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LanguageNUD).BeginInit();
             PkrusGB.SuspendLayout();
@@ -251,6 +255,8 @@
             ((System.ComponentModel.ISupportInitialize)move3NUD2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)move3NUD1).BeginInit();
             tabPage3.SuspendLayout();
+            FriendshipGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)FriendshipNUP).BeginInit();
             SpeedEvGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SpeedEvNUD).BeginInit();
             SpdEvGB.SuspendLayout();
@@ -300,29 +306,6 @@
             ((System.ComponentModel.ISupportInitialize)idNUD2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)idNUD1).BeginInit();
             tabPage5.SuspendLayout();
-            CoolGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CoolNUD).BeginInit();
-            CuteGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)CuteNUD).BeginInit();
-            BeautyGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)BeautyNUD).BeginInit();
-            ToughGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ToughNUD).BeginInit();
-            SmartGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)SmartNUD).BeginInit();
-            SheenGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)SheenNUD).BeginInit();
-            RibbonGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD1).BeginInit();
-            MetGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)MetNUD).BeginInit();
-            Version.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)VersionNUD).BeginInit();
-            FriendshipGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)FriendshipNUP).BeginInit();
             UnusedGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UnusedNUD2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)UnusedNUD1).BeginInit();
@@ -333,6 +316,23 @@
             ((System.ComponentModel.ISupportInitialize)MiscNUD).BeginInit();
             MarkingsGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MarkingNUD).BeginInit();
+            RibbonGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD1).BeginInit();
+            SheenGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SheenNUD).BeginInit();
+            SmartGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)SmartNUD).BeginInit();
+            ToughGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ToughNUD).BeginInit();
+            BeautyGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)BeautyNUD).BeginInit();
+            CuteGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CuteNUD).BeginInit();
+            CoolGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CoolNUD).BeginInit();
             SuspendLayout();
             // 
             // OpenFileBTN
@@ -494,10 +494,48 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(304, 291);
+            tabPage1.Size = new Size(275, 291);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Main";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // MetGB
+            // 
+            MetGB.Controls.Add(MetNUD);
+            MetGB.Location = new Point(95, 240);
+            MetGB.Name = "MetGB";
+            MetGB.Size = new Size(76, 48);
+            MetGB.TabIndex = 17;
+            MetGB.TabStop = false;
+            MetGB.Text = "Met Info";
+            // 
+            // MetNUD
+            // 
+            MetNUD.Hexadecimal = true;
+            MetNUD.Location = new Point(6, 22);
+            MetNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            MetNUD.Name = "MetNUD";
+            MetNUD.Size = new Size(37, 23);
+            MetNUD.TabIndex = 5;
+            // 
+            // Version
+            // 
+            Version.Controls.Add(VersionNUD);
+            Version.Location = new Point(3, 240);
+            Version.Name = "Version";
+            Version.Size = new Size(76, 48);
+            Version.TabIndex = 16;
+            Version.TabStop = false;
+            Version.Text = "Version";
+            // 
+            // VersionNUD
+            // 
+            VersionNUD.Hexadecimal = true;
+            VersionNUD.Location = new Point(6, 22);
+            VersionNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            VersionNUD.Name = "VersionNUD";
+            VersionNUD.Size = new Size(37, 23);
+            VersionNUD.TabIndex = 5;
             // 
             // LanguageGB
             // 
@@ -518,14 +556,17 @@
             LanguageNUD.Name = "LanguageNUD";
             LanguageNUD.Size = new Size(37, 23);
             LanguageNUD.TabIndex = 6;
+            LanguageNUD.ValueChanged += NumUpDownToDropMenu;
             // 
             // LanguageCB
             // 
             LanguageCB.FormattingEnabled = true;
+            LanguageCB.Items.AddRange(new object[] { "JPN", "ENG", "FRE", "ITA", "GRE", "ESP", "???" });
             LanguageCB.Location = new Point(9, 48);
             LanguageCB.Name = "LanguageCB";
             LanguageCB.Size = new Size(62, 23);
             LanguageCB.TabIndex = 0;
+            LanguageCB.SelectedIndexChanged += DropMenuToComboBox;
             // 
             // PkrusGB
             // 
@@ -562,14 +603,16 @@
             // PkrusCB2
             // 
             PkrusCB2.FormattingEnabled = true;
-            PkrusCB2.Items.AddRange(new object[] { "0", "1", "2", "3" });
+            PkrusCB2.Items.AddRange(new object[] { "0" });
             PkrusCB2.Location = new Point(49, 51);
             PkrusCB2.Name = "PkrusCB2";
             PkrusCB2.Size = new Size(37, 23);
             PkrusCB2.TabIndex = 6;
+            PkrusCB2.SelectedIndexChanged += PKRuSDayDropDownMenu;
             // 
             // ppUpNUD
             // 
+            ppUpNUD.Enabled = false;
             ppUpNUD.Hexadecimal = true;
             ppUpNUD.Location = new Point(6, 22);
             ppUpNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
@@ -580,11 +623,12 @@
             // PkrusCB1
             // 
             PkrusCB1.FormattingEnabled = true;
-            PkrusCB1.Items.AddRange(new object[] { "0", "1", "2", "3" });
+            PkrusCB1.Items.AddRange(new object[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" });
             PkrusCB1.Location = new Point(6, 51);
             PkrusCB1.Name = "PkrusCB1";
             PkrusCB1.Size = new Size(37, 23);
             PkrusCB1.TabIndex = 0;
+            PkrusCB1.SelectedIndexChanged += PKRuSStrainDropDownMenu;
             // 
             // ItemGB
             // 
@@ -601,9 +645,11 @@
             // ItemTB
             // 
             ItemTB.Location = new Point(6, 48);
+            ItemTB.MaxLength = 4;
             ItemTB.Name = "ItemTB";
             ItemTB.Size = new Size(80, 23);
             ItemTB.TabIndex = 6;
+            ItemTB.Leave += TextBoxHexToNumUpDown;
             // 
             // ItemNUD2
             // 
@@ -613,6 +659,7 @@
             ItemNUD2.Name = "ItemNUD2";
             ItemNUD2.Size = new Size(37, 23);
             ItemNUD2.TabIndex = 5;
+            ItemNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
             // ItemNUD1
             // 
@@ -622,6 +669,7 @@
             ItemNUD1.Name = "ItemNUD1";
             ItemNUD1.Size = new Size(37, 23);
             ItemNUD1.TabIndex = 4;
+            ItemNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
             // speciesGB
             // 
@@ -643,6 +691,7 @@
             speciesCB.Name = "speciesCB";
             speciesCB.Size = new Size(80, 23);
             speciesCB.TabIndex = 6;
+            speciesCB.SelectedIndexChanged += DropMenuToComboBox;
             // 
             // speciesNUD2
             // 
@@ -652,6 +701,7 @@
             speciesNUD2.Name = "speciesNUD2";
             speciesNUD2.Size = new Size(37, 23);
             speciesNUD2.TabIndex = 5;
+            speciesNUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // speciesNUD1
             // 
@@ -661,6 +711,7 @@
             speciesNUD1.Name = "speciesNUD1";
             speciesNUD1.Size = new Size(37, 23);
             speciesNUD1.TabIndex = 4;
+            speciesNUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // pidGB
             // 
@@ -679,9 +730,11 @@
             // pidTB
             // 
             pidTB.Location = new Point(6, 48);
+            pidTB.MaxLength = 8;
             pidTB.Name = "pidTB";
             pidTB.Size = new Size(100, 23);
             pidTB.TabIndex = 7;
+            pidTB.Leave += TextBoxHexToNumUpDown;
             // 
             // pidNUD4
             // 
@@ -691,6 +744,7 @@
             pidNUD4.Name = "pidNUD4";
             pidNUD4.Size = new Size(37, 23);
             pidNUD4.TabIndex = 6;
+            pidNUD4.ValueChanged += NumUpDownToTextboxHex;
             // 
             // pidNUD3
             // 
@@ -700,6 +754,7 @@
             pidNUD3.Name = "pidNUD3";
             pidNUD3.Size = new Size(37, 23);
             pidNUD3.TabIndex = 5;
+            pidNUD3.ValueChanged += NumUpDownToTextboxHex;
             // 
             // pidNUD2
             // 
@@ -709,6 +764,7 @@
             pidNUD2.Name = "pidNUD2";
             pidNUD2.Size = new Size(37, 23);
             pidNUD2.TabIndex = 4;
+            pidNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
             // pidNUD1
             // 
@@ -718,6 +774,7 @@
             pidNUD1.Name = "pidNUD1";
             pidNUD1.Size = new Size(37, 23);
             pidNUD1.TabIndex = 3;
+            pidNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
             // tabPage2
             // 
@@ -858,6 +915,7 @@
             ppUpCB4.Name = "ppUpCB4";
             ppUpCB4.Size = new Size(37, 23);
             ppUpCB4.TabIndex = 10;
+            ppUpCB4.SelectedIndexChanged += PPUPToNumUpDown;
             // 
             // ppUpCB3
             // 
@@ -867,6 +925,7 @@
             ppUpCB3.Name = "ppUpCB3";
             ppUpCB3.Size = new Size(37, 23);
             ppUpCB3.TabIndex = 9;
+            ppUpCB3.SelectedIndexChanged += PPUPToNumUpDown;
             // 
             // ppUpLBL2
             // 
@@ -894,6 +953,7 @@
             ppUpCB2.Name = "ppUpCB2";
             ppUpCB2.Size = new Size(37, 23);
             ppUpCB2.TabIndex = 6;
+            ppUpCB2.SelectedIndexChanged += PPUPToNumUpDown;
             // 
             // numericUpDown1
             // 
@@ -912,6 +972,7 @@
             ppUpCB1.Name = "ppUpCB1";
             ppUpCB1.Size = new Size(37, 23);
             ppUpCB1.TabIndex = 0;
+            ppUpCB1.SelectedIndexChanged += PPUPToNumUpDown;
             // 
             // move1GB
             // 
@@ -933,6 +994,7 @@
             move1CB.Name = "move1CB";
             move1CB.Size = new Size(80, 23);
             move1CB.TabIndex = 6;
+            move1CB.SelectedIndexChanged += DropMenuToComboBox;
             // 
             // move1NUD2
             // 
@@ -942,6 +1004,7 @@
             move1NUD2.Name = "move1NUD2";
             move1NUD2.Size = new Size(37, 23);
             move1NUD2.TabIndex = 5;
+            move1NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move1NUD1
             // 
@@ -951,6 +1014,7 @@
             move1NUD1.Name = "move1NUD1";
             move1NUD1.Size = new Size(37, 23);
             move1NUD1.TabIndex = 4;
+            move1NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // move2GB
             // 
@@ -972,6 +1036,7 @@
             move2CB.Name = "move2CB";
             move2CB.Size = new Size(80, 23);
             move2CB.TabIndex = 6;
+            move2CB.SelectedIndexChanged += DropMenuToComboBox;
             // 
             // move2NUD2
             // 
@@ -981,6 +1046,7 @@
             move2NUD2.Name = "move2NUD2";
             move2NUD2.Size = new Size(37, 23);
             move2NUD2.TabIndex = 5;
+            move2NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move2NUD1
             // 
@@ -990,6 +1056,7 @@
             move2NUD1.Name = "move2NUD1";
             move2NUD1.Size = new Size(37, 23);
             move2NUD1.TabIndex = 4;
+            move2NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // move4GB
             // 
@@ -1011,6 +1078,7 @@
             move4CB.Name = "move4CB";
             move4CB.Size = new Size(80, 23);
             move4CB.TabIndex = 6;
+            move4CB.SelectedIndexChanged += DropMenuToComboBox;
             // 
             // move4NUD2
             // 
@@ -1020,6 +1088,7 @@
             move4NUD2.Name = "move4NUD2";
             move4NUD2.Size = new Size(37, 23);
             move4NUD2.TabIndex = 5;
+            move4NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move4NUD1
             // 
@@ -1029,6 +1098,7 @@
             move4NUD1.Name = "move4NUD1";
             move4NUD1.Size = new Size(37, 23);
             move4NUD1.TabIndex = 4;
+            move4NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // move3GB
             // 
@@ -1050,6 +1120,7 @@
             move3CB.Name = "move3CB";
             move3CB.Size = new Size(80, 23);
             move3CB.TabIndex = 6;
+            move3CB.SelectedIndexChanged += DropMenuToComboBox;
             // 
             // move3NUD2
             // 
@@ -1059,6 +1130,7 @@
             move3NUD2.Name = "move3NUD2";
             move3NUD2.Size = new Size(37, 23);
             move3NUD2.TabIndex = 5;
+            move3NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move3NUD1
             // 
@@ -1068,6 +1140,7 @@
             move3NUD1.Name = "move3NUD1";
             move3NUD1.Size = new Size(37, 23);
             move3NUD1.TabIndex = 4;
+            move3NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // tabPage3
             // 
@@ -1086,6 +1159,25 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Training";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // FriendshipGB
+            // 
+            FriendshipGB.Controls.Add(FriendshipNUP);
+            FriendshipGB.Location = new Point(195, 181);
+            FriendshipGB.Name = "FriendshipGB";
+            FriendshipGB.Size = new Size(77, 48);
+            FriendshipGB.TabIndex = 24;
+            FriendshipGB.TabStop = false;
+            FriendshipGB.Text = "Friendship";
+            // 
+            // FriendshipNUP
+            // 
+            FriendshipNUP.Hexadecimal = true;
+            FriendshipNUP.Location = new Point(6, 22);
+            FriendshipNUP.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            FriendshipNUP.Name = "FriendshipNUP";
+            FriendshipNUP.Size = new Size(37, 23);
+            FriendshipNUP.TabIndex = 5;
             // 
             // SpeedEvGB
             // 
@@ -1415,9 +1507,11 @@
             // textBox1
             // 
             textBox1.Location = new Point(178, 22);
+            textBox1.MaxLength = 7;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(80, 23);
             textBox1.TabIndex = 7;
+            textBox1.Leave += TextBoxDecimalToNumUpDown;
             // 
             // ExpGB4
             // 
@@ -1427,6 +1521,7 @@
             ExpGB4.Name = "ExpGB4";
             ExpGB4.Size = new Size(37, 23);
             ExpGB4.TabIndex = 6;
+            ExpGB4.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // ExpGB3
             // 
@@ -1436,6 +1531,7 @@
             ExpGB3.Name = "ExpGB3";
             ExpGB3.Size = new Size(37, 23);
             ExpGB3.TabIndex = 5;
+            ExpGB3.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // ExpGB2
             // 
@@ -1445,6 +1541,7 @@
             ExpGB2.Name = "ExpGB2";
             ExpGB2.Size = new Size(37, 23);
             ExpGB2.TabIndex = 4;
+            ExpGB2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // ExpGB1
             // 
@@ -1454,6 +1551,7 @@
             ExpGB1.Name = "ExpGB1";
             ExpGB1.Size = new Size(37, 23);
             ExpGB1.TabIndex = 3;
+            ExpGB1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // tabPage4
             // 
@@ -1463,7 +1561,7 @@
             tabPage4.Controls.Add(idGB);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(304, 291);
+            tabPage4.Size = new Size(275, 291);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Personal";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1687,9 +1785,11 @@
             // sidTB
             // 
             sidTB.Location = new Point(6, 48);
+            sidTB.MaxLength = 5;
             sidTB.Name = "sidTB";
             sidTB.Size = new Size(80, 23);
             sidTB.TabIndex = 6;
+            sidTB.Leave += TextBoxDecimalToNumUpDown;
             // 
             // sidNUD2
             // 
@@ -1699,6 +1799,7 @@
             sidNUD2.Name = "sidNUD2";
             sidNUD2.Size = new Size(37, 23);
             sidNUD2.TabIndex = 5;
+            sidNUD2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // sidNUD1
             // 
@@ -1708,6 +1809,7 @@
             sidNUD1.Name = "sidNUD1";
             sidNUD1.Size = new Size(37, 23);
             sidNUD1.TabIndex = 4;
+            sidNUD1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // idGB
             // 
@@ -1724,9 +1826,11 @@
             // idTB
             // 
             idTB.Location = new Point(6, 48);
+            idTB.MaxLength = 5;
             idTB.Name = "idTB";
             idTB.Size = new Size(80, 23);
             idTB.TabIndex = 6;
+            idTB.Leave += TextBoxDecimalToNumUpDown;
             // 
             // idNUD2
             // 
@@ -1736,6 +1840,7 @@
             idNUD2.Name = "idNUD2";
             idNUD2.Size = new Size(37, 23);
             idNUD2.TabIndex = 5;
+            idNUD2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // idNUD1
             // 
@@ -1745,6 +1850,7 @@
             idNUD1.Name = "idNUD1";
             idNUD1.Size = new Size(37, 23);
             idNUD1.TabIndex = 4;
+            idNUD1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // tabPage5
             // 
@@ -1761,238 +1867,10 @@
             tabPage5.Controls.Add(CoolGB);
             tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(304, 291);
+            tabPage5.Size = new Size(275, 291);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Contest";
             tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // CoolGB
-            // 
-            CoolGB.Controls.Add(CoolNUD);
-            CoolGB.Location = new Point(3, 0);
-            CoolGB.Name = "CoolGB";
-            CoolGB.Size = new Size(57, 48);
-            CoolGB.TabIndex = 14;
-            CoolGB.TabStop = false;
-            CoolGB.Text = "Cool";
-            // 
-            // CoolNUD
-            // 
-            CoolNUD.Hexadecimal = true;
-            CoolNUD.Location = new Point(6, 22);
-            CoolNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            CoolNUD.Name = "CoolNUD";
-            CoolNUD.Size = new Size(37, 23);
-            CoolNUD.TabIndex = 5;
-            // 
-            // CuteGB
-            // 
-            CuteGB.Controls.Add(CuteNUD);
-            CuteGB.Location = new Point(66, 0);
-            CuteGB.Name = "CuteGB";
-            CuteGB.Size = new Size(57, 48);
-            CuteGB.TabIndex = 15;
-            CuteGB.TabStop = false;
-            CuteGB.Text = "Cute";
-            // 
-            // CuteNUD
-            // 
-            CuteNUD.Hexadecimal = true;
-            CuteNUD.Location = new Point(6, 22);
-            CuteNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            CuteNUD.Name = "CuteNUD";
-            CuteNUD.Size = new Size(37, 23);
-            CuteNUD.TabIndex = 5;
-            // 
-            // BeautyGB
-            // 
-            BeautyGB.Controls.Add(BeautyNUD);
-            BeautyGB.Location = new Point(129, 0);
-            BeautyGB.Name = "BeautyGB";
-            BeautyGB.Size = new Size(57, 48);
-            BeautyGB.TabIndex = 16;
-            BeautyGB.TabStop = false;
-            BeautyGB.Text = "Beauty";
-            // 
-            // BeautyNUD
-            // 
-            BeautyNUD.Hexadecimal = true;
-            BeautyNUD.Location = new Point(6, 22);
-            BeautyNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            BeautyNUD.Name = "BeautyNUD";
-            BeautyNUD.Size = new Size(37, 23);
-            BeautyNUD.TabIndex = 5;
-            // 
-            // ToughGB
-            // 
-            ToughGB.Controls.Add(ToughNUD);
-            ToughGB.Location = new Point(3, 47);
-            ToughGB.Name = "ToughGB";
-            ToughGB.Size = new Size(57, 48);
-            ToughGB.TabIndex = 17;
-            ToughGB.TabStop = false;
-            ToughGB.Text = "Tough";
-            // 
-            // ToughNUD
-            // 
-            ToughNUD.Hexadecimal = true;
-            ToughNUD.Location = new Point(6, 22);
-            ToughNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            ToughNUD.Name = "ToughNUD";
-            ToughNUD.Size = new Size(37, 23);
-            ToughNUD.TabIndex = 5;
-            // 
-            // SmartGB
-            // 
-            SmartGB.Controls.Add(SmartNUD);
-            SmartGB.Location = new Point(66, 47);
-            SmartGB.Name = "SmartGB";
-            SmartGB.Size = new Size(57, 48);
-            SmartGB.TabIndex = 18;
-            SmartGB.TabStop = false;
-            SmartGB.Text = "Smart";
-            // 
-            // SmartNUD
-            // 
-            SmartNUD.Hexadecimal = true;
-            SmartNUD.Location = new Point(6, 22);
-            SmartNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            SmartNUD.Name = "SmartNUD";
-            SmartNUD.Size = new Size(37, 23);
-            SmartNUD.TabIndex = 5;
-            // 
-            // SheenGB
-            // 
-            SheenGB.Controls.Add(SheenNUD);
-            SheenGB.Location = new Point(129, 47);
-            SheenGB.Name = "SheenGB";
-            SheenGB.Size = new Size(57, 48);
-            SheenGB.TabIndex = 19;
-            SheenGB.TabStop = false;
-            SheenGB.Text = "Sheen";
-            // 
-            // SheenNUD
-            // 
-            SheenNUD.Hexadecimal = true;
-            SheenNUD.Location = new Point(6, 22);
-            SheenNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            SheenNUD.Name = "SheenNUD";
-            SheenNUD.Size = new Size(37, 23);
-            SheenNUD.TabIndex = 5;
-            // 
-            // RibbonGB
-            // 
-            RibbonGB.Controls.Add(RibbonTXT);
-            RibbonGB.Controls.Add(RibbonNUD4);
-            RibbonGB.Controls.Add(RibbonNUD3);
-            RibbonGB.Controls.Add(RibbonNUD2);
-            RibbonGB.Controls.Add(RibbonNUD1);
-            RibbonGB.Location = new Point(3, 94);
-            RibbonGB.Name = "RibbonGB";
-            RibbonGB.Size = new Size(181, 74);
-            RibbonGB.TabIndex = 20;
-            RibbonGB.TabStop = false;
-            RibbonGB.Text = "Ribbons";
-            // 
-            // RibbonTXT
-            // 
-            RibbonTXT.Location = new Point(6, 48);
-            RibbonTXT.Name = "RibbonTXT";
-            RibbonTXT.Size = new Size(100, 23);
-            RibbonTXT.TabIndex = 7;
-            // 
-            // RibbonNUD4
-            // 
-            RibbonNUD4.Hexadecimal = true;
-            RibbonNUD4.Location = new Point(135, 22);
-            RibbonNUD4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            RibbonNUD4.Name = "RibbonNUD4";
-            RibbonNUD4.Size = new Size(37, 23);
-            RibbonNUD4.TabIndex = 6;
-            // 
-            // RibbonNUD3
-            // 
-            RibbonNUD3.Hexadecimal = true;
-            RibbonNUD3.Location = new Point(92, 22);
-            RibbonNUD3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            RibbonNUD3.Name = "RibbonNUD3";
-            RibbonNUD3.Size = new Size(37, 23);
-            RibbonNUD3.TabIndex = 5;
-            // 
-            // RibbonNUD2
-            // 
-            RibbonNUD2.Hexadecimal = true;
-            RibbonNUD2.Location = new Point(49, 22);
-            RibbonNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            RibbonNUD2.Name = "RibbonNUD2";
-            RibbonNUD2.Size = new Size(37, 23);
-            RibbonNUD2.TabIndex = 4;
-            // 
-            // RibbonNUD1
-            // 
-            RibbonNUD1.Hexadecimal = true;
-            RibbonNUD1.Location = new Point(6, 22);
-            RibbonNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            RibbonNUD1.Name = "RibbonNUD1";
-            RibbonNUD1.Size = new Size(37, 23);
-            RibbonNUD1.TabIndex = 3;
-            // 
-            // MetGB
-            // 
-            MetGB.Controls.Add(MetNUD);
-            MetGB.Location = new Point(95, 240);
-            MetGB.Name = "MetGB";
-            MetGB.Size = new Size(76, 48);
-            MetGB.TabIndex = 17;
-            MetGB.TabStop = false;
-            MetGB.Text = "Met Info";
-            // 
-            // MetNUD
-            // 
-            MetNUD.Hexadecimal = true;
-            MetNUD.Location = new Point(6, 22);
-            MetNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            MetNUD.Name = "MetNUD";
-            MetNUD.Size = new Size(37, 23);
-            MetNUD.TabIndex = 5;
-            // 
-            // Version
-            // 
-            Version.Controls.Add(VersionNUD);
-            Version.Location = new Point(3, 240);
-            Version.Name = "Version";
-            Version.Size = new Size(76, 48);
-            Version.TabIndex = 16;
-            Version.TabStop = false;
-            Version.Text = "Version";
-            // 
-            // VersionNUD
-            // 
-            VersionNUD.Hexadecimal = true;
-            VersionNUD.Location = new Point(6, 22);
-            VersionNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            VersionNUD.Name = "VersionNUD";
-            VersionNUD.Size = new Size(37, 23);
-            VersionNUD.TabIndex = 5;
-            // 
-            // FriendshipGB
-            // 
-            FriendshipGB.Controls.Add(FriendshipNUP);
-            FriendshipGB.Location = new Point(195, 181);
-            FriendshipGB.Name = "FriendshipGB";
-            FriendshipGB.Size = new Size(77, 48);
-            FriendshipGB.TabIndex = 24;
-            FriendshipGB.TabStop = false;
-            FriendshipGB.Text = "Friendship";
-            // 
-            // FriendshipNUP
-            // 
-            FriendshipNUP.Hexadecimal = true;
-            FriendshipNUP.Location = new Point(6, 22);
-            FriendshipNUP.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            FriendshipNUP.Name = "FriendshipNUP";
-            FriendshipNUP.Size = new Size(37, 23);
-            FriendshipNUP.TabIndex = 5;
             // 
             // UnusedGB
             // 
@@ -2090,6 +1968,182 @@
             MarkingNUD.Size = new Size(37, 23);
             MarkingNUD.TabIndex = 5;
             // 
+            // RibbonGB
+            // 
+            RibbonGB.Controls.Add(RibbonTXT);
+            RibbonGB.Controls.Add(RibbonNUD4);
+            RibbonGB.Controls.Add(RibbonNUD3);
+            RibbonGB.Controls.Add(RibbonNUD2);
+            RibbonGB.Controls.Add(RibbonNUD1);
+            RibbonGB.Location = new Point(3, 94);
+            RibbonGB.Name = "RibbonGB";
+            RibbonGB.Size = new Size(181, 74);
+            RibbonGB.TabIndex = 20;
+            RibbonGB.TabStop = false;
+            RibbonGB.Text = "Ribbons";
+            // 
+            // RibbonTXT
+            // 
+            RibbonTXT.Location = new Point(6, 48);
+            RibbonTXT.Name = "RibbonTXT";
+            RibbonTXT.Size = new Size(100, 23);
+            RibbonTXT.TabIndex = 7;
+            RibbonTXT.Leave += TextBoxDecimalToNumUpDown;
+            // 
+            // RibbonNUD4
+            // 
+            RibbonNUD4.Hexadecimal = true;
+            RibbonNUD4.Location = new Point(135, 22);
+            RibbonNUD4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            RibbonNUD4.Name = "RibbonNUD4";
+            RibbonNUD4.Size = new Size(37, 23);
+            RibbonNUD4.TabIndex = 6;
+            RibbonNUD4.ValueChanged += NumUpDownToTextboxHex;
+            // 
+            // RibbonNUD3
+            // 
+            RibbonNUD3.Hexadecimal = true;
+            RibbonNUD3.Location = new Point(92, 22);
+            RibbonNUD3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            RibbonNUD3.Name = "RibbonNUD3";
+            RibbonNUD3.Size = new Size(37, 23);
+            RibbonNUD3.TabIndex = 5;
+            RibbonNUD3.ValueChanged += NumUpDownToTextboxHex;
+            // 
+            // RibbonNUD2
+            // 
+            RibbonNUD2.Hexadecimal = true;
+            RibbonNUD2.Location = new Point(49, 22);
+            RibbonNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            RibbonNUD2.Name = "RibbonNUD2";
+            RibbonNUD2.Size = new Size(37, 23);
+            RibbonNUD2.TabIndex = 4;
+            RibbonNUD2.ValueChanged += NumUpDownToTextboxHex;
+            // 
+            // RibbonNUD1
+            // 
+            RibbonNUD1.Hexadecimal = true;
+            RibbonNUD1.Location = new Point(6, 22);
+            RibbonNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            RibbonNUD1.Name = "RibbonNUD1";
+            RibbonNUD1.Size = new Size(37, 23);
+            RibbonNUD1.TabIndex = 3;
+            RibbonNUD1.ValueChanged += NumUpDownToTextboxHex;
+            // 
+            // SheenGB
+            // 
+            SheenGB.Controls.Add(SheenNUD);
+            SheenGB.Location = new Point(129, 47);
+            SheenGB.Name = "SheenGB";
+            SheenGB.Size = new Size(57, 48);
+            SheenGB.TabIndex = 19;
+            SheenGB.TabStop = false;
+            SheenGB.Text = "Sheen";
+            // 
+            // SheenNUD
+            // 
+            SheenNUD.Hexadecimal = true;
+            SheenNUD.Location = new Point(6, 22);
+            SheenNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            SheenNUD.Name = "SheenNUD";
+            SheenNUD.Size = new Size(37, 23);
+            SheenNUD.TabIndex = 5;
+            // 
+            // SmartGB
+            // 
+            SmartGB.Controls.Add(SmartNUD);
+            SmartGB.Location = new Point(66, 47);
+            SmartGB.Name = "SmartGB";
+            SmartGB.Size = new Size(57, 48);
+            SmartGB.TabIndex = 18;
+            SmartGB.TabStop = false;
+            SmartGB.Text = "Smart";
+            // 
+            // SmartNUD
+            // 
+            SmartNUD.Hexadecimal = true;
+            SmartNUD.Location = new Point(6, 22);
+            SmartNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            SmartNUD.Name = "SmartNUD";
+            SmartNUD.Size = new Size(37, 23);
+            SmartNUD.TabIndex = 5;
+            // 
+            // ToughGB
+            // 
+            ToughGB.Controls.Add(ToughNUD);
+            ToughGB.Location = new Point(3, 47);
+            ToughGB.Name = "ToughGB";
+            ToughGB.Size = new Size(57, 48);
+            ToughGB.TabIndex = 17;
+            ToughGB.TabStop = false;
+            ToughGB.Text = "Tough";
+            // 
+            // ToughNUD
+            // 
+            ToughNUD.Hexadecimal = true;
+            ToughNUD.Location = new Point(6, 22);
+            ToughNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            ToughNUD.Name = "ToughNUD";
+            ToughNUD.Size = new Size(37, 23);
+            ToughNUD.TabIndex = 5;
+            // 
+            // BeautyGB
+            // 
+            BeautyGB.Controls.Add(BeautyNUD);
+            BeautyGB.Location = new Point(129, 0);
+            BeautyGB.Name = "BeautyGB";
+            BeautyGB.Size = new Size(57, 48);
+            BeautyGB.TabIndex = 16;
+            BeautyGB.TabStop = false;
+            BeautyGB.Text = "Beauty";
+            // 
+            // BeautyNUD
+            // 
+            BeautyNUD.Hexadecimal = true;
+            BeautyNUD.Location = new Point(6, 22);
+            BeautyNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            BeautyNUD.Name = "BeautyNUD";
+            BeautyNUD.Size = new Size(37, 23);
+            BeautyNUD.TabIndex = 5;
+            // 
+            // CuteGB
+            // 
+            CuteGB.Controls.Add(CuteNUD);
+            CuteGB.Location = new Point(66, 0);
+            CuteGB.Name = "CuteGB";
+            CuteGB.Size = new Size(57, 48);
+            CuteGB.TabIndex = 15;
+            CuteGB.TabStop = false;
+            CuteGB.Text = "Cute";
+            // 
+            // CuteNUD
+            // 
+            CuteNUD.Hexadecimal = true;
+            CuteNUD.Location = new Point(6, 22);
+            CuteNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            CuteNUD.Name = "CuteNUD";
+            CuteNUD.Size = new Size(37, 23);
+            CuteNUD.TabIndex = 5;
+            // 
+            // CoolGB
+            // 
+            CoolGB.Controls.Add(CoolNUD);
+            CoolGB.Location = new Point(3, 0);
+            CoolGB.Name = "CoolGB";
+            CoolGB.Size = new Size(57, 48);
+            CoolGB.TabIndex = 14;
+            CoolGB.TabStop = false;
+            CoolGB.Text = "Cool";
+            // 
+            // CoolNUD
+            // 
+            CoolNUD.Hexadecimal = true;
+            CoolNUD.Location = new Point(6, 22);
+            CoolNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            CoolNUD.Name = "CoolNUD";
+            CoolNUD.Size = new Size(37, 23);
+            CoolNUD.TabIndex = 5;
+            // 
             // PK3_RAM_Injection
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -2115,6 +2169,10 @@
             ((System.ComponentModel.ISupportInitialize)DisplayDGV).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            MetGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)MetNUD).EndInit();
+            Version.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)VersionNUD).EndInit();
             LanguageGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)LanguageNUD).EndInit();
             PkrusGB.ResumeLayout(false);
@@ -2158,6 +2216,8 @@
             ((System.ComponentModel.ISupportInitialize)move3NUD2).EndInit();
             ((System.ComponentModel.ISupportInitialize)move3NUD1).EndInit();
             tabPage3.ResumeLayout(false);
+            FriendshipGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)FriendshipNUP).EndInit();
             SpeedEvGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)SpeedEvNUD).EndInit();
             SpdEvGB.ResumeLayout(false);
@@ -2213,30 +2273,6 @@
             ((System.ComponentModel.ISupportInitialize)idNUD2).EndInit();
             ((System.ComponentModel.ISupportInitialize)idNUD1).EndInit();
             tabPage5.ResumeLayout(false);
-            CoolGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)CoolNUD).EndInit();
-            CuteGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)CuteNUD).EndInit();
-            BeautyGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)BeautyNUD).EndInit();
-            ToughGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ToughNUD).EndInit();
-            SmartGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)SmartNUD).EndInit();
-            SheenGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)SheenNUD).EndInit();
-            RibbonGB.ResumeLayout(false);
-            RibbonGB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)RibbonNUD1).EndInit();
-            MetGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)MetNUD).EndInit();
-            Version.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)VersionNUD).EndInit();
-            FriendshipGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)FriendshipNUP).EndInit();
             UnusedGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)UnusedNUD2).EndInit();
             ((System.ComponentModel.ISupportInitialize)UnusedNUD1).EndInit();
@@ -2247,6 +2283,24 @@
             ((System.ComponentModel.ISupportInitialize)MiscNUD).EndInit();
             MarkingsGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)MarkingNUD).EndInit();
+            RibbonGB.ResumeLayout(false);
+            RibbonGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)RibbonNUD1).EndInit();
+            SheenGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)SheenNUD).EndInit();
+            SmartGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)SmartNUD).EndInit();
+            ToughGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ToughNUD).EndInit();
+            BeautyGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)BeautyNUD).EndInit();
+            CuteGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)CuteNUD).EndInit();
+            CoolGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)CoolNUD).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

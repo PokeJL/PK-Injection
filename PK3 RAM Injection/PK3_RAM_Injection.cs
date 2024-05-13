@@ -1,4 +1,5 @@
 using RAM_Injection_Data.Controller;
+using System.Windows.Forms;
 
 namespace PK3_RAM_Injection
 {
@@ -7,6 +8,9 @@ namespace PK3_RAM_Injection
         public Form_File_Manager fileManager;
         public Form_Function_Manager functionManager;
         public Run_Time_Manager runTimeManager;
+        public Form_Hex_Manager hexManager;
+        public Form_Display_Manager displayManager;
+        public Form_Validation_Manager validationManager;
 
         public PK3_RAM_Injection()
         {
@@ -15,6 +19,8 @@ namespace PK3_RAM_Injection
             fileManager = new();
             functionManager = new();
             runTimeManager = new();
+            validationManager = new();
+            hexManager = new();
         }
 
         private void OpenFileBTN_Click(object sender, EventArgs e)
@@ -61,6 +67,56 @@ namespace PK3_RAM_Injection
         private void EncryptedCB_CheckedChanged(object sender, EventArgs e)
         {
             functionManager.Encrypted(runTimeManager, EncryptedCB);
+        }
+
+        private void NumUpDownToTextboxDecimal(object sender, EventArgs e)
+        {
+            hexManager.NumUpDownToTextboxDecimal(sender);
+        }
+
+        private void TextBoxDecimalToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.TextBoxDecimalToNumUpDown(sender);
+        }
+
+        private void TextboxLeave(object sender, EventArgs e)
+        {
+            validationManager.NumberFormatting(sender);
+        }
+
+        private void NumUpDownToTextboxHex(object sender, EventArgs e)
+        {
+            hexManager.NumUpDownToTextboxHex(sender);
+        }
+
+        private void TextBoxHexToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.TextBoxHexToNumUpDown(sender);
+        }
+
+        private void NumUpDownToDropMenu(object sender, EventArgs e)
+        {
+            hexManager.NumUpDownToDropMenu(sender);
+        }
+
+        private void DropMenuToComboBox(object sender, EventArgs e)
+        {
+            hexManager.DropMenuToNumUpDown(sender);
+        }
+
+        private void PKRuSStrainDropDownMenu(object sender, EventArgs e)
+        {
+            hexManager.PKRuSStrainDropDownMenu(sender);
+        }
+
+        private void PKRuSDayDropDownMenu(object sender, EventArgs e)
+        {
+            hexManager.PKRuSDayDropDownMenu(sender);
+        }
+
+        private void PPUPToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.PPUPToNumUpDown(sender);
         }
     }
 }
