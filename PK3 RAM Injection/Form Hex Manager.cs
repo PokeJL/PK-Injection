@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using static System.Buffers.Binary.BinaryPrimitives;
+using RAM_Injection_Data.Data;
 using System.Text;
-using System.Threading.Tasks;
-using static System.Buffers.Binary.BinaryPrimitives;
-using System.Security;
-using System.Windows.Forms;
-using System.Linq.Expressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using PKHeX.Core;
-using System.Reflection;
 
 namespace PK3_RAM_Injection
 {
@@ -24,11 +15,6 @@ namespace PK3_RAM_Injection
             {
                 decimal[] resultDec = NumUpDownToArray(sender);
                 string resultStr = string.Empty;
-
-                //foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<TextBox>())
-                //{
-                //    TextBoxDecimalToNumUpDown(child);
-                //}
 
                 for (int i = resultDec.Length - 1; i >= 0; i--) 
                     resultStr += Convert.ToInt32(Math.Round(resultDec[i], 0)).ToString("X").PadLeft(2, '0');
@@ -72,16 +58,6 @@ namespace PK3_RAM_Injection
             return resultDec;
         }
 
-        //private string DecimalArrayToString(decimal[] resultDec)
-        //{
-        //    string resultStr = string.Empty;
-
-        //    for (int i = resultDec.Count() - 1; i >= 0; i--)
-        //        resultStr += Convert.ToInt32(Math.Round(resultDec[i], 0)).ToString("X").PadLeft(2, '0');
-
-        //    return resultStr;
-        //}
-
         public void TextBoxDecimalToNumUpDown(object sender)
         {
             if (sender.GetType() == typeof(TextBox) /*&& val.IsNumber(sender)*/)
@@ -94,15 +70,6 @@ namespace PK3_RAM_Injection
                 uint num = uint.Parse(((TextBox)sender).Text, System.Globalization.NumberStyles.Integer);
 
                 byte[] resultByte = BitConverter.GetBytes(num);
-                //byte[] resultByte = BitConverter.GetBytes(Convert.ToInt32(((TextBox)sender).Text));
-                //try
-                //{
-                //    resultByte = BitConverter.GetBytes(Convert.ToInt32(((TextBox)sender).Text));
-                //}
-                //catch 
-                //{
-                //    resultByte = BitConverter.GetBytes(0);
-                //}
                 byte[] temp = new byte[((TextBox)sender).Parent.Controls.Count - 1];
                 for (int i = 0; i < ((TextBox)sender).Parent.Controls.Count - 1; i++)
                     temp[i] = resultByte[i];
@@ -113,8 +80,6 @@ namespace PK3_RAM_Injection
                     index++;
                 }
             }
-            //else if (((TextBox)sender).Focused && !val.IsNumber(sender))
-            //    val.NumberFormatting(sender);
         }
 
         public void TextBoxHexToNumUpDown(object sender)
@@ -135,8 +100,6 @@ namespace PK3_RAM_Injection
                     index++;
                 }
             }
-            //else if (((TextBox)sender).Focused && !val.IsNumberHex(sender))
-            //    val.NumberFormattingHex(sender);
         }
 
         public void NumUpDownToDropMenu(object sender)
@@ -221,19 +184,6 @@ namespace PK3_RAM_Injection
                 }
 
                 Infection(0, ((ComboBox)sender).SelectedIndex, sender);
-                //infection = 0.ToString("X") + ((ComboBox)sender).SelectedIndex.ToString("X");
-
-                //int index = 0;
-
-                //uint num = uint.Parse(infection, System.Globalization.NumberStyles.AllowHexSpecifier);
-
-                //byte[] temp = BitConverter.GetBytes(num);
-
-                //foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<NumericUpDown>())
-                //{
-                //    child.Value = temp[index];
-                //    index++;
-                //}
             }
         }
 
@@ -270,27 +220,199 @@ namespace PK3_RAM_Injection
 
         public void PPUPToNumUpDown(object sender)
         {
+            if (sender.GetType() == typeof(ComboBox))
+            {
+                string binary = string.Empty;
+                int result;
+                int index = 0;
+                foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<ComboBox>())
+                {
+                    binary += Convert.ToString(child.SelectedIndex, 2);
+                }
+
+                result = Convert.ToInt32(binary, 2);
+
+                byte[] resultByte = BitConverter.GetBytes(result);
+
+                foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<NumericUpDown>())
+                {
+                    child.Value = resultByte[index];
+                    index++;
+                }
+            }
+        }
+
+        public void NumUpDownToPPUP(object sender)
+        {
+            if (sender.GetType() == typeof(NumericUpDown) && ((NumericUpDown)sender).Focused == true)
+            {
+                decimal[] resultDec = NumUpDownToArray(sender);
+                int[] selections = new int[4];
+                string resultStr = string.Empty;
+                int index = 0;
+
+                for (int i = resultDec.Length - 1; i >= 0; i--)
+                    resultStr += Convert.ToInt32(Math.Round(resultDec[i], 0)).ToString("X").PadLeft(2, '0');
+
+                resultStr = (Convert.ToInt32(resultStr, 16)).ToString().PadLeft(5, '0');
+
+                resultStr = Convert.ToString(Convert.ToInt32(resultStr), 2).PadLeft(8, '0');
+
+                for (int i = 0; i < 4; i++)
+                    selections[i] = Convert.ToInt32(resultStr.Substring(i * 2, 2), 2);
+
+                foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<ComboBox>())
+                {
+                    child.SelectedIndex = selections[index];
+                    index++;
+                }
+            }
+        }
+
+        public void NumUpDownToStringTextbox(object sender)
+        {
+            Name_Characters nc = new();
+
+            int index = 0;
+            decimal[] resultNum = new decimal[((NumericUpDown)sender).Parent.Controls.Count - 1];
+            string [] resultString = new string[1];
+
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<NumericUpDown>())
+            {
+                resultNum[index] = child.Value;
+                index++;
+            }
+            index = 0;
+            for (int i = ((NumericUpDown)sender).Parent.Controls.Count - 2; i >= 0; i--)
+            {
+                if(Convert.ToInt32(Math.Round(resultNum[i], 0)) < 247)
+                    resultString[0] += nc.GetLetter(Convert.ToInt32(Math.Round(resultNum[i], 0)));
+                else 
+                {
+                    resultString[0] += nc.GetLetter(255);
+                    break;
+                }
+            }
+
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<TextBox>())
+            {
+                child.Text = resultString[index];
+                index++;
+            }
+        }
+
+        public void StringTextboxToNumUpDown(object sender) 
+        {
+            Name_Characters nc = new();
+
+            int index = 0;
+            decimal[] resultNum = new decimal[((TextBox)sender).Parent.Controls.Count - 1];
+            for(int i = 0; i < ((TextBox)sender).Parent.Controls.Count - 1; i++)
+            {
+                resultNum[i] = 255;
+            }
+
+            for (int i = 0; i < ((TextBox)sender).Text.Length; i++)
+            {
+                resultNum[i] = nc.GetIndex(((TextBox)sender).Text.Substring(i, 1));
+            }
+
+            if(((TextBox)sender).Text.Length < ((TextBox)sender).Parent.Controls.Count - 1)
+                resultNum[((TextBox)sender).Text.Length] = 255;
+
+            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<NumericUpDown>())
+            {
+                child.Value = resultNum[((TextBox)sender).Parent.Controls.Count - 2 - index];
+                index++;
+            }
+        }
+
+        public void NumUpDownToControls(object sender) 
+        {
+            byte[] dataByte = new byte[4];
+            string[] str = new string[6];
+            int[] cb = new int[2];
+            int index = 3;
+
+            foreach(var child in ((NumericUpDown)sender).Parent.Controls.OfType<NumericUpDown>())
+            {
+                dataByte[index] = Decimal.ToByte(child.Value);
+                index--;
+            }
+
+            int iv = ReadInt32LittleEndian(dataByte.AsSpan(0));
+            str[5] = (iv & 31).ToString(); //hp
+            str[4] = ((iv >> 5) & 31).ToString(); //att
+            str[3] = ((iv >> 10) & 31).ToString(); //def
+            str[2] = ((iv >> 15) & 31).ToString(); //speed
+            str[1] = ((iv >> 20) & 31).ToString(); //spa
+            str[0] = ((iv >> 25) & 31).ToString(); //spd
+            cb[0] = (iv >> 30) & 1;
+            cb[1] = (iv >> 31) & 1;
+
+            index = 0;
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<TextBox>())
+            {
+                child.Text = str[index];
+                index++;
+            }
+
+            index = 0;
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<ComboBox>())
+            {
+                child.SelectedIndex = cb[index];
+                index++;
+            }
+        }
+
+        public void TextBoxAndComboToNumUpDown(object sender)
+        {
+            val.NumberFormatting(sender);
+            val.NumberInRangeTextbox(sender);
+
+            int[] ivBinary = new int[6];
+            int[] cbBinary = new int[2];
+            char[] charArray;
             string binary = string.Empty;
             int result;
             int index = 0;
-            //binary += Convert.ToString(((ComboBox)sender).SelectedIndex, 2);
-            foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<ComboBox>())
+
+            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<TextBox>())
             {
-                binary += Convert.ToString(child.SelectedIndex, 2);
+                ivBinary[index] = Convert.ToInt32(child.Text);
+                index++;
             }
+
+            index = 0;
+
+            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<ComboBox>())
+            {
+                cbBinary[index] = child.SelectedIndex;
+                index++;
+            }
+
+            index = 3;
+
+            //for (int i = cbBinary.Length - 1; i >= 0; i--)
+            //    binary += Convert.ToString(cbBinary[i], 2);
+
+            for (int i = 0; i < cbBinary.Length; i++)
+                binary += Convert.ToString(cbBinary[i], 2);
+
+            //for (int i = ivBinary.Length - 1; i >= 0; i--)
+            //    binary += Convert.ToString(ivBinary[i], 2).PadLeft(5, '0');
+
+            for (int i = 0; i < ivBinary.Length; i++)
+                binary += Convert.ToString(ivBinary[i], 2).PadLeft(5, '0');
 
             result = Convert.ToInt32(binary, 2);
 
             byte[] resultByte = BitConverter.GetBytes(result);
-            //byte[] temp = new byte[((ComboBox)sender).Parent.Controls.Count - 1];
 
-            //for (int i = 0; i < ((ComboBox)sender).Parent.Controls.Count - 1; i++)
-            //    temp[i] = resultByte[i];
-
-            foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<NumericUpDown>())
+            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<NumericUpDown>())
             {
                 child.Value = resultByte[index];
-                index++;
+                index--;
             }
         }
     }

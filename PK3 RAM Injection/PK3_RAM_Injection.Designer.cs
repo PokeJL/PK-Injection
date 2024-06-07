@@ -566,7 +566,7 @@
             LanguageCB.Name = "LanguageCB";
             LanguageCB.Size = new Size(62, 23);
             LanguageCB.TabIndex = 0;
-            LanguageCB.SelectedIndexChanged += DropMenuToComboBox;
+            LanguageCB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // PkrusGB
             // 
@@ -608,7 +608,7 @@
             PkrusCB2.Name = "PkrusCB2";
             PkrusCB2.Size = new Size(37, 23);
             PkrusCB2.TabIndex = 6;
-            PkrusCB2.SelectedIndexChanged += PKRuSDayDropDownMenu;
+            PkrusCB2.SelectionChangeCommitted += PKRuSDayDropDownMenu;
             // 
             // ppUpNUD
             // 
@@ -628,7 +628,7 @@
             PkrusCB1.Name = "PkrusCB1";
             PkrusCB1.Size = new Size(37, 23);
             PkrusCB1.TabIndex = 0;
-            PkrusCB1.SelectedIndexChanged += PKRuSStrainDropDownMenu;
+            PkrusCB1.SelectionChangeCommitted += PKRuSStrainDropDownMenu;
             // 
             // ItemGB
             // 
@@ -691,7 +691,7 @@
             speciesCB.Name = "speciesCB";
             speciesCB.Size = new Size(80, 23);
             speciesCB.TabIndex = 6;
-            speciesCB.SelectedIndexChanged += DropMenuToComboBox;
+            speciesCB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // speciesNUD2
             // 
@@ -915,7 +915,7 @@
             ppUpCB4.Name = "ppUpCB4";
             ppUpCB4.Size = new Size(37, 23);
             ppUpCB4.TabIndex = 10;
-            ppUpCB4.SelectedIndexChanged += PPUPToNumUpDown;
+            ppUpCB4.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // ppUpCB3
             // 
@@ -925,7 +925,7 @@
             ppUpCB3.Name = "ppUpCB3";
             ppUpCB3.Size = new Size(37, 23);
             ppUpCB3.TabIndex = 9;
-            ppUpCB3.SelectedIndexChanged += PPUPToNumUpDown;
+            ppUpCB3.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // ppUpLBL2
             // 
@@ -953,7 +953,7 @@
             ppUpCB2.Name = "ppUpCB2";
             ppUpCB2.Size = new Size(37, 23);
             ppUpCB2.TabIndex = 6;
-            ppUpCB2.SelectedIndexChanged += PPUPToNumUpDown;
+            ppUpCB2.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // numericUpDown1
             // 
@@ -963,6 +963,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(37, 23);
             numericUpDown1.TabIndex = 5;
+            numericUpDown1.ValueChanged += NumUpDownToPPUP;
             // 
             // ppUpCB1
             // 
@@ -972,7 +973,7 @@
             ppUpCB1.Name = "ppUpCB1";
             ppUpCB1.Size = new Size(37, 23);
             ppUpCB1.TabIndex = 0;
-            ppUpCB1.SelectedIndexChanged += PPUPToNumUpDown;
+            ppUpCB1.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // move1GB
             // 
@@ -994,7 +995,7 @@
             move1CB.Name = "move1CB";
             move1CB.Size = new Size(80, 23);
             move1CB.TabIndex = 6;
-            move1CB.SelectedIndexChanged += DropMenuToComboBox;
+            move1CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move1NUD2
             // 
@@ -1036,7 +1037,7 @@
             move2CB.Name = "move2CB";
             move2CB.Size = new Size(80, 23);
             move2CB.TabIndex = 6;
-            move2CB.SelectedIndexChanged += DropMenuToComboBox;
+            move2CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move2NUD2
             // 
@@ -1078,7 +1079,7 @@
             move4CB.Name = "move4CB";
             move4CB.Size = new Size(80, 23);
             move4CB.TabIndex = 6;
-            move4CB.SelectedIndexChanged += DropMenuToComboBox;
+            move4CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move4NUD2
             // 
@@ -1120,7 +1121,7 @@
             move3CB.Name = "move3CB";
             move3CB.Size = new Size(80, 23);
             move3CB.TabIndex = 6;
-            move3CB.SelectedIndexChanged += DropMenuToComboBox;
+            move3CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move3NUD2
             // 
@@ -1330,6 +1331,7 @@
             ivNUD4.Name = "ivNUD4";
             ivNUD4.Size = new Size(37, 23);
             ivNUD4.TabIndex = 28;
+            ivNUD4.ValueChanged += NumUpDownToControls;
             // 
             // ivNUD3
             // 
@@ -1339,6 +1341,7 @@
             ivNUD3.Name = "ivNUD3";
             ivNUD3.Size = new Size(37, 23);
             ivNUD3.TabIndex = 27;
+            ivNUD3.ValueChanged += NumUpDownToControls;
             // 
             // ivNUD2
             // 
@@ -1348,6 +1351,7 @@
             ivNUD2.Name = "ivNUD2";
             ivNUD2.Size = new Size(37, 23);
             ivNUD2.TabIndex = 26;
+            ivNUD2.ValueChanged += NumUpDownToControls;
             // 
             // ivNUD1
             // 
@@ -1357,48 +1361,61 @@
             ivNUD1.Name = "ivNUD1";
             ivNUD1.Size = new Size(37, 23);
             ivNUD1.TabIndex = 25;
+            ivNUD1.ValueChanged += NumUpDownToControls;
             // 
             // speTXT
             // 
             speTXT.Location = new Point(221, 22);
+            speTXT.MaxLength = 2;
             speTXT.Name = "speTXT";
             speTXT.Size = new Size(37, 23);
             speTXT.TabIndex = 24;
+            speTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // spdTXT
             // 
             spdTXT.Location = new Point(178, 22);
+            spdTXT.MaxLength = 2;
             spdTXT.Name = "spdTXT";
             spdTXT.Size = new Size(37, 23);
             spdTXT.TabIndex = 23;
+            spdTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // spaTXT
             // 
             spaTXT.Location = new Point(135, 22);
+            spaTXT.MaxLength = 2;
             spaTXT.Name = "spaTXT";
             spaTXT.Size = new Size(37, 23);
             spaTXT.TabIndex = 22;
+            spaTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // defTXT
             // 
             defTXT.Location = new Point(92, 21);
+            defTXT.MaxLength = 2;
             defTXT.Name = "defTXT";
             defTXT.Size = new Size(37, 23);
             defTXT.TabIndex = 21;
+            defTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // attTXT
             // 
             attTXT.Location = new Point(49, 21);
+            attTXT.MaxLength = 2;
             attTXT.Name = "attTXT";
             attTXT.Size = new Size(37, 23);
             attTXT.TabIndex = 20;
+            attTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // hpTXT
             // 
             hpTXT.Location = new Point(6, 21);
+            hpTXT.MaxLength = 2;
             hpTXT.Name = "hpTXT";
             hpTXT.Size = new Size(37, 23);
             hpTXT.TabIndex = 19;
+            hpTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // abilityCB
             // 
@@ -1589,9 +1606,11 @@
             // nnTXT
             // 
             nnTXT.Location = new Point(6, 80);
+            nnTXT.MaxLength = 10;
             nnTXT.Name = "nnTXT";
             nnTXT.Size = new Size(100, 23);
             nnTXT.TabIndex = 14;
+            nnTXT.Leave += StringTextboxToNumUpDown;
             // 
             // nnNUB10
             // 
@@ -1601,6 +1620,7 @@
             nnNUB10.Name = "nnNUB10";
             nnNUB10.Size = new Size(37, 23);
             nnNUB10.TabIndex = 13;
+            nnNUB10.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB9
             // 
@@ -1610,6 +1630,7 @@
             nnNUB9.Name = "nnNUB9";
             nnNUB9.Size = new Size(37, 23);
             nnNUB9.TabIndex = 12;
+            nnNUB9.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB8
             // 
@@ -1619,6 +1640,7 @@
             nnNUB8.Name = "nnNUB8";
             nnNUB8.Size = new Size(37, 23);
             nnNUB8.TabIndex = 11;
+            nnNUB8.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB7
             // 
@@ -1628,6 +1650,7 @@
             nnNUB7.Name = "nnNUB7";
             nnNUB7.Size = new Size(37, 23);
             nnNUB7.TabIndex = 10;
+            nnNUB7.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB6
             // 
@@ -1637,6 +1660,7 @@
             nnNUB6.Name = "nnNUB6";
             nnNUB6.Size = new Size(37, 23);
             nnNUB6.TabIndex = 9;
+            nnNUB6.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB5
             // 
@@ -1646,6 +1670,7 @@
             nnNUB5.Name = "nnNUB5";
             nnNUB5.Size = new Size(37, 23);
             nnNUB5.TabIndex = 8;
+            nnNUB5.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB4
             // 
@@ -1655,6 +1680,7 @@
             nnNUB4.Name = "nnNUB4";
             nnNUB4.Size = new Size(37, 23);
             nnNUB4.TabIndex = 7;
+            nnNUB4.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB3
             // 
@@ -1664,6 +1690,7 @@
             nnNUB3.Name = "nnNUB3";
             nnNUB3.Size = new Size(37, 23);
             nnNUB3.TabIndex = 6;
+            nnNUB3.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB2
             // 
@@ -1673,6 +1700,7 @@
             nnNUB2.Name = "nnNUB2";
             nnNUB2.Size = new Size(37, 23);
             nnNUB2.TabIndex = 5;
+            nnNUB2.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB1
             // 
@@ -1682,6 +1710,7 @@
             nnNUB1.Name = "nnNUB1";
             nnNUB1.Size = new Size(37, 23);
             nnNUB1.TabIndex = 4;
+            nnNUB1.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otGB
             // 
@@ -1703,9 +1732,11 @@
             // otTXT
             // 
             otTXT.Location = new Point(6, 80);
+            otTXT.MaxLength = 7;
             otTXT.Name = "otTXT";
             otTXT.Size = new Size(100, 23);
             otTXT.TabIndex = 14;
+            otTXT.Leave += StringTextboxToNumUpDown;
             // 
             // otNUD7
             // 
@@ -1715,6 +1746,7 @@
             otNUD7.Name = "otNUD7";
             otNUD7.Size = new Size(37, 23);
             otNUD7.TabIndex = 11;
+            otNUD7.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD6
             // 
@@ -1724,6 +1756,7 @@
             otNUD6.Name = "otNUD6";
             otNUD6.Size = new Size(37, 23);
             otNUD6.TabIndex = 10;
+            otNUD6.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD5
             // 
@@ -1733,6 +1766,7 @@
             otNUD5.Name = "otNUD5";
             otNUD5.Size = new Size(37, 23);
             otNUD5.TabIndex = 9;
+            otNUD5.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD4
             // 
@@ -1742,6 +1776,7 @@
             otNUD4.Name = "otNUD4";
             otNUD4.Size = new Size(37, 23);
             otNUD4.TabIndex = 7;
+            otNUD4.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD3
             // 
@@ -1751,6 +1786,7 @@
             otNUD3.Name = "otNUD3";
             otNUD3.Size = new Size(37, 23);
             otNUD3.TabIndex = 6;
+            otNUD3.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD2
             // 
@@ -1760,6 +1796,7 @@
             otNUD2.Name = "otNUD2";
             otNUD2.Size = new Size(37, 23);
             otNUD2.TabIndex = 5;
+            otNUD2.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD1
             // 
@@ -1769,6 +1806,7 @@
             otNUD1.Name = "otNUD1";
             otNUD1.Size = new Size(37, 23);
             otNUD1.TabIndex = 4;
+            otNUD1.ValueChanged += NumUpDownToStringTextbox;
             // 
             // sidGB
             // 
@@ -2166,6 +2204,7 @@
             Controls.Add(OpenFileBTN);
             Name = "PK3_RAM_Injection";
             Text = "PK3 RAM Injection";
+            Load += LoadForm;
             ((System.ComponentModel.ISupportInitialize)DisplayDGV).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);

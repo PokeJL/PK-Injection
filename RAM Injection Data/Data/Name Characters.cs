@@ -268,5 +268,21 @@
             else
                 return "???";
         }
+
+        public int GetIndex(string c)
+        {
+            int index = 255;
+
+            for (int i = 0; i < characters.Length; i++)
+            {
+                if (characters[i] == c)
+                { 
+                    index = i; 
+                    break;
+                }
+            }
+
+            return index;
+        }
     }
 }

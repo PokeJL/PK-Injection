@@ -21,6 +21,20 @@ namespace PK3_RAM_Injection
             runTimeManager = new();
             validationManager = new();
             hexManager = new();
+
+            hpTXT.Text = "0";
+            attTXT.Text = "0";
+            defTXT.Text = "0";
+            spaTXT.Text = "0";
+            spdTXT.Text = "0";
+            speTXT.Text = "0";
+            eggCB.SelectedIndex = 0;
+            abilityCB.SelectedIndex = 0;
+        }
+
+        private void LoadForm(object sender, EventArgs e)
+        {
+            //hexManager.NumUpDownToPPUP(sender);
         }
 
         private void OpenFileBTN_Click(object sender, EventArgs e)
@@ -117,6 +131,31 @@ namespace PK3_RAM_Injection
         private void PPUPToNumUpDown(object sender, EventArgs e)
         {
             hexManager.PPUPToNumUpDown(sender);
+        }
+
+        private void NumUpDownToPPUP(object sender, EventArgs e)
+        {
+            hexManager.NumUpDownToPPUP(sender);
+        }
+
+        private void NumUpDownToStringTextbox(object sender, EventArgs e)
+        {
+            hexManager.NumUpDownToStringTextbox(sender);
+        }
+
+        private void StringTextboxToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.StringTextboxToNumUpDown(sender);
+        }
+
+        private void NumUpDownToControls(object sender, EventArgs e)
+        {
+            hexManager.NumUpDownToControls(sender);
+        }
+
+        private void TextBoxAndComboToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.TextBoxAndComboToNumUpDown(sender);
         }
     }
 }
