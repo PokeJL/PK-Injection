@@ -517,6 +517,7 @@
             MetNUD.Name = "MetNUD";
             MetNUD.Size = new Size(37, 23);
             MetNUD.TabIndex = 5;
+            MetNUD.Tag = "met";
             // 
             // Version
             // 
@@ -536,6 +537,7 @@
             VersionNUD.Name = "VersionNUD";
             VersionNUD.Size = new Size(37, 23);
             VersionNUD.TabIndex = 5;
+            VersionNUD.Tag = "version";
             // 
             // LanguageGB
             // 
@@ -556,6 +558,7 @@
             LanguageNUD.Name = "LanguageNUD";
             LanguageNUD.Size = new Size(37, 23);
             LanguageNUD.TabIndex = 6;
+            LanguageNUD.Tag = "language";
             LanguageNUD.ValueChanged += NumUpDownToDropMenu;
             // 
             // LanguageCB
@@ -619,6 +622,7 @@
             ppUpNUD.Name = "ppUpNUD";
             ppUpNUD.Size = new Size(37, 23);
             ppUpNUD.TabIndex = 5;
+            ppUpNUD.Tag = "pkrus";
             // 
             // PkrusCB1
             // 
@@ -659,6 +663,7 @@
             ItemNUD2.Name = "ItemNUD2";
             ItemNUD2.Size = new Size(37, 23);
             ItemNUD2.TabIndex = 5;
+            ItemNUD2.Tag = "item";
             ItemNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
             // ItemNUD1
@@ -669,6 +674,7 @@
             ItemNUD1.Name = "ItemNUD1";
             ItemNUD1.Size = new Size(37, 23);
             ItemNUD1.TabIndex = 4;
+            ItemNUD1.Tag = "item";
             ItemNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
             // speciesGB
@@ -701,6 +707,7 @@
             speciesNUD2.Name = "speciesNUD2";
             speciesNUD2.Size = new Size(37, 23);
             speciesNUD2.TabIndex = 5;
+            speciesNUD2.Tag = "species";
             speciesNUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // speciesNUD1
@@ -711,6 +718,7 @@
             speciesNUD1.Name = "speciesNUD1";
             speciesNUD1.Size = new Size(37, 23);
             speciesNUD1.TabIndex = 4;
+            speciesNUD1.Tag = "species";
             speciesNUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // pidGB
@@ -744,6 +752,7 @@
             pidNUD4.Name = "pidNUD4";
             pidNUD4.Size = new Size(37, 23);
             pidNUD4.TabIndex = 6;
+            pidNUD4.Tag = "pid";
             pidNUD4.ValueChanged += NumUpDownToTextboxHex;
             // 
             // pidNUD3
@@ -754,6 +763,7 @@
             pidNUD3.Name = "pidNUD3";
             pidNUD3.Size = new Size(37, 23);
             pidNUD3.TabIndex = 5;
+            pidNUD3.Tag = "pid";
             pidNUD3.ValueChanged += NumUpDownToTextboxHex;
             // 
             // pidNUD2
@@ -764,6 +774,7 @@
             pidNUD2.Name = "pidNUD2";
             pidNUD2.Size = new Size(37, 23);
             pidNUD2.TabIndex = 4;
+            pidNUD2.Tag = "pid";
             pidNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
             // pidNUD1
@@ -774,6 +785,7 @@
             pidNUD1.Name = "pidNUD1";
             pidNUD1.Size = new Size(37, 23);
             pidNUD1.TabIndex = 3;
+            pidNUD1.Tag = "pid";
             pidNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
             // tabPage2
@@ -813,6 +825,7 @@
             numericUpDown5.Name = "numericUpDown5";
             numericUpDown5.Size = new Size(37, 23);
             numericUpDown5.TabIndex = 5;
+            numericUpDown5.Tag = "mpp4";
             // 
             // Move3ppGB
             // 
@@ -832,6 +845,7 @@
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(37, 23);
             numericUpDown4.TabIndex = 5;
+            numericUpDown4.Tag = "mpp3";
             // 
             // Move2ppGB
             // 
@@ -851,6 +865,7 @@
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(37, 23);
             numericUpDown3.TabIndex = 5;
+            numericUpDown3.Tag = "mpp2";
             // 
             // Move1ppGB
             // 
@@ -870,6 +885,7 @@
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(37, 23);
             numericUpDown2.TabIndex = 5;
+            numericUpDown2.Tag = "mpp1";
             // 
             // groupBox1
             // 
@@ -963,6 +979,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(37, 23);
             numericUpDown1.TabIndex = 5;
+            numericUpDown1.Tag = "ppup";
             numericUpDown1.ValueChanged += NumUpDownToPPUP;
             // 
             // ppUpCB1
@@ -1005,6 +1022,7 @@
             move1NUD2.Name = "move1NUD2";
             move1NUD2.Size = new Size(37, 23);
             move1NUD2.TabIndex = 5;
+            move1NUD2.Tag = "m1";
             move1NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move1NUD1
@@ -1015,6 +1033,7 @@
             move1NUD1.Name = "move1NUD1";
             move1NUD1.Size = new Size(37, 23);
             move1NUD1.TabIndex = 4;
+            move1NUD1.Tag = "m1";
             move1NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // move2GB
@@ -1047,6 +1066,7 @@
             move2NUD2.Name = "move2NUD2";
             move2NUD2.Size = new Size(37, 23);
             move2NUD2.TabIndex = 5;
+            move2NUD2.Tag = "m2";
             move2NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move2NUD1
@@ -1057,6 +1077,7 @@
             move2NUD1.Name = "move2NUD1";
             move2NUD1.Size = new Size(37, 23);
             move2NUD1.TabIndex = 4;
+            move2NUD1.Tag = "m2";
             move2NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // move4GB
@@ -1089,6 +1110,7 @@
             move4NUD2.Name = "move4NUD2";
             move4NUD2.Size = new Size(37, 23);
             move4NUD2.TabIndex = 5;
+            move4NUD2.Tag = "m4";
             move4NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move4NUD1
@@ -1099,6 +1121,7 @@
             move4NUD1.Name = "move4NUD1";
             move4NUD1.Size = new Size(37, 23);
             move4NUD1.TabIndex = 4;
+            move4NUD1.Tag = "m4";
             move4NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // move3GB
@@ -1131,6 +1154,7 @@
             move3NUD2.Name = "move3NUD2";
             move3NUD2.Size = new Size(37, 23);
             move3NUD2.TabIndex = 5;
+            move3NUD2.Tag = "m3";
             move3NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
             // move3NUD1
@@ -1141,6 +1165,7 @@
             move3NUD1.Name = "move3NUD1";
             move3NUD1.Size = new Size(37, 23);
             move3NUD1.TabIndex = 4;
+            move3NUD1.Tag = "m3";
             move3NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
             // tabPage3
@@ -1179,6 +1204,7 @@
             FriendshipNUP.Name = "FriendshipNUP";
             FriendshipNUP.Size = new Size(37, 23);
             FriendshipNUP.TabIndex = 5;
+            FriendshipNUP.Tag = "friend";
             // 
             // SpeedEvGB
             // 
@@ -1198,6 +1224,7 @@
             SpeedEvNUD.Name = "SpeedEvNUD";
             SpeedEvNUD.Size = new Size(37, 23);
             SpeedEvNUD.TabIndex = 5;
+            SpeedEvNUD.Tag = "ev6";
             // 
             // SpdEvGB
             // 
@@ -1217,6 +1244,7 @@
             SpdEvNUD.Name = "SpdEvNUD";
             SpdEvNUD.Size = new Size(37, 23);
             SpdEvNUD.TabIndex = 5;
+            SpdEvNUD.Tag = "ev5";
             // 
             // SpAEvGB
             // 
@@ -1236,6 +1264,7 @@
             SpAEvNUD.Name = "SpAEvNUD";
             SpAEvNUD.Size = new Size(37, 23);
             SpAEvNUD.TabIndex = 5;
+            SpAEvNUD.Tag = "ev4";
             // 
             // DefEvGB
             // 
@@ -1255,6 +1284,7 @@
             DefEvNUD.Name = "DefEvNUD";
             DefEvNUD.Size = new Size(37, 23);
             DefEvNUD.TabIndex = 5;
+            DefEvNUD.Tag = "ev3";
             // 
             // AttEvGB
             // 
@@ -1274,6 +1304,7 @@
             AttEvNUD.Name = "AttEvNUD";
             AttEvNUD.Size = new Size(37, 23);
             AttEvNUD.TabIndex = 5;
+            AttEvNUD.Tag = "ev2";
             // 
             // HpEvGB
             // 
@@ -1293,6 +1324,7 @@
             HpEvNUD.Name = "HpEvNUD";
             HpEvNUD.Size = new Size(37, 23);
             HpEvNUD.TabIndex = 5;
+            HpEvNUD.Tag = "ev1";
             // 
             // ivGB
             // 
@@ -1331,6 +1363,7 @@
             ivNUD4.Name = "ivNUD4";
             ivNUD4.Size = new Size(37, 23);
             ivNUD4.TabIndex = 28;
+            ivNUD4.Tag = "iv";
             ivNUD4.ValueChanged += NumUpDownToControls;
             // 
             // ivNUD3
@@ -1341,6 +1374,7 @@
             ivNUD3.Name = "ivNUD3";
             ivNUD3.Size = new Size(37, 23);
             ivNUD3.TabIndex = 27;
+            ivNUD3.Tag = "iv";
             ivNUD3.ValueChanged += NumUpDownToControls;
             // 
             // ivNUD2
@@ -1351,6 +1385,7 @@
             ivNUD2.Name = "ivNUD2";
             ivNUD2.Size = new Size(37, 23);
             ivNUD2.TabIndex = 26;
+            ivNUD2.Tag = "iv";
             ivNUD2.ValueChanged += NumUpDownToControls;
             // 
             // ivNUD1
@@ -1361,6 +1396,7 @@
             ivNUD1.Name = "ivNUD1";
             ivNUD1.Size = new Size(37, 23);
             ivNUD1.TabIndex = 25;
+            ivNUD1.Tag = "iv";
             ivNUD1.ValueChanged += NumUpDownToControls;
             // 
             // speTXT
@@ -1425,6 +1461,7 @@
             abilityCB.Name = "abilityCB";
             abilityCB.Size = new Size(78, 23);
             abilityCB.TabIndex = 18;
+            abilityCB.SelectionChangeCommitted += ComboBoxAndTextToNumUpDown;
             // 
             // eggCB
             // 
@@ -1434,6 +1471,7 @@
             eggCB.Name = "eggCB";
             eggCB.Size = new Size(76, 23);
             eggCB.TabIndex = 17;
+            eggCB.SelectionChangeCommitted += ComboBoxAndTextToNumUpDown;
             // 
             // abilityLBL
             // 
@@ -1538,6 +1576,7 @@
             ExpGB4.Name = "ExpGB4";
             ExpGB4.Size = new Size(37, 23);
             ExpGB4.TabIndex = 6;
+            ExpGB4.Tag = "exp";
             ExpGB4.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // ExpGB3
@@ -1548,6 +1587,7 @@
             ExpGB3.Name = "ExpGB3";
             ExpGB3.Size = new Size(37, 23);
             ExpGB3.TabIndex = 5;
+            ExpGB3.Tag = "exp";
             ExpGB3.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // ExpGB2
@@ -1558,6 +1598,7 @@
             ExpGB2.Name = "ExpGB2";
             ExpGB2.Size = new Size(37, 23);
             ExpGB2.TabIndex = 4;
+            ExpGB2.Tag = "exp";
             ExpGB2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // ExpGB1
@@ -1568,6 +1609,7 @@
             ExpGB1.Name = "ExpGB1";
             ExpGB1.Size = new Size(37, 23);
             ExpGB1.TabIndex = 3;
+            ExpGB1.Tag = "exp";
             ExpGB1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // tabPage4
@@ -1620,6 +1662,7 @@
             nnNUB10.Name = "nnNUB10";
             nnNUB10.Size = new Size(37, 23);
             nnNUB10.TabIndex = 13;
+            nnNUB10.Tag = "nickname";
             nnNUB10.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB9
@@ -1630,6 +1673,7 @@
             nnNUB9.Name = "nnNUB9";
             nnNUB9.Size = new Size(37, 23);
             nnNUB9.TabIndex = 12;
+            nnNUB9.Tag = "nickname";
             nnNUB9.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB8
@@ -1640,6 +1684,7 @@
             nnNUB8.Name = "nnNUB8";
             nnNUB8.Size = new Size(37, 23);
             nnNUB8.TabIndex = 11;
+            nnNUB8.Tag = "nickname";
             nnNUB8.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB7
@@ -1650,6 +1695,7 @@
             nnNUB7.Name = "nnNUB7";
             nnNUB7.Size = new Size(37, 23);
             nnNUB7.TabIndex = 10;
+            nnNUB7.Tag = "nickname";
             nnNUB7.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB6
@@ -1660,6 +1706,7 @@
             nnNUB6.Name = "nnNUB6";
             nnNUB6.Size = new Size(37, 23);
             nnNUB6.TabIndex = 9;
+            nnNUB6.Tag = "nickname";
             nnNUB6.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB5
@@ -1670,6 +1717,7 @@
             nnNUB5.Name = "nnNUB5";
             nnNUB5.Size = new Size(37, 23);
             nnNUB5.TabIndex = 8;
+            nnNUB5.Tag = "nickname";
             nnNUB5.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB4
@@ -1680,6 +1728,7 @@
             nnNUB4.Name = "nnNUB4";
             nnNUB4.Size = new Size(37, 23);
             nnNUB4.TabIndex = 7;
+            nnNUB4.Tag = "nickname";
             nnNUB4.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB3
@@ -1690,6 +1739,7 @@
             nnNUB3.Name = "nnNUB3";
             nnNUB3.Size = new Size(37, 23);
             nnNUB3.TabIndex = 6;
+            nnNUB3.Tag = "nickname";
             nnNUB3.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB2
@@ -1700,6 +1750,7 @@
             nnNUB2.Name = "nnNUB2";
             nnNUB2.Size = new Size(37, 23);
             nnNUB2.TabIndex = 5;
+            nnNUB2.Tag = "nickname";
             nnNUB2.ValueChanged += NumUpDownToStringTextbox;
             // 
             // nnNUB1
@@ -1710,6 +1761,7 @@
             nnNUB1.Name = "nnNUB1";
             nnNUB1.Size = new Size(37, 23);
             nnNUB1.TabIndex = 4;
+            nnNUB1.Tag = "nickname";
             nnNUB1.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otGB
@@ -1746,6 +1798,7 @@
             otNUD7.Name = "otNUD7";
             otNUD7.Size = new Size(37, 23);
             otNUD7.TabIndex = 11;
+            otNUD7.Tag = "ot";
             otNUD7.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD6
@@ -1756,6 +1809,7 @@
             otNUD6.Name = "otNUD6";
             otNUD6.Size = new Size(37, 23);
             otNUD6.TabIndex = 10;
+            otNUD6.Tag = "ot";
             otNUD6.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD5
@@ -1766,6 +1820,7 @@
             otNUD5.Name = "otNUD5";
             otNUD5.Size = new Size(37, 23);
             otNUD5.TabIndex = 9;
+            otNUD5.Tag = "ot";
             otNUD5.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD4
@@ -1776,6 +1831,7 @@
             otNUD4.Name = "otNUD4";
             otNUD4.Size = new Size(37, 23);
             otNUD4.TabIndex = 7;
+            otNUD4.Tag = "ot";
             otNUD4.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD3
@@ -1786,6 +1842,7 @@
             otNUD3.Name = "otNUD3";
             otNUD3.Size = new Size(37, 23);
             otNUD3.TabIndex = 6;
+            otNUD3.Tag = "ot";
             otNUD3.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD2
@@ -1796,6 +1853,7 @@
             otNUD2.Name = "otNUD2";
             otNUD2.Size = new Size(37, 23);
             otNUD2.TabIndex = 5;
+            otNUD2.Tag = "ot";
             otNUD2.ValueChanged += NumUpDownToStringTextbox;
             // 
             // otNUD1
@@ -1806,6 +1864,7 @@
             otNUD1.Name = "otNUD1";
             otNUD1.Size = new Size(37, 23);
             otNUD1.TabIndex = 4;
+            otNUD1.Tag = "ot";
             otNUD1.ValueChanged += NumUpDownToStringTextbox;
             // 
             // sidGB
@@ -1837,6 +1896,7 @@
             sidNUD2.Name = "sidNUD2";
             sidNUD2.Size = new Size(37, 23);
             sidNUD2.TabIndex = 5;
+            sidNUD2.Tag = "sid";
             sidNUD2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // sidNUD1
@@ -1847,6 +1907,7 @@
             sidNUD1.Name = "sidNUD1";
             sidNUD1.Size = new Size(37, 23);
             sidNUD1.TabIndex = 4;
+            sidNUD1.Tag = "sid";
             sidNUD1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // idGB
@@ -1878,6 +1939,7 @@
             idNUD2.Name = "idNUD2";
             idNUD2.Size = new Size(37, 23);
             idNUD2.TabIndex = 5;
+            idNUD2.Tag = "id";
             idNUD2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // idNUD1
@@ -1888,6 +1950,7 @@
             idNUD1.Name = "idNUD1";
             idNUD1.Size = new Size(37, 23);
             idNUD1.TabIndex = 4;
+            idNUD1.Tag = "id";
             idNUD1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
             // tabPage5
@@ -1929,6 +1992,7 @@
             UnusedNUD2.Name = "UnusedNUD2";
             UnusedNUD2.Size = new Size(37, 23);
             UnusedNUD2.TabIndex = 6;
+            UnusedNUD2.Tag = "unused";
             // 
             // UnusedNUD1
             // 
@@ -1938,6 +2002,7 @@
             UnusedNUD1.Name = "UnusedNUD1";
             UnusedNUD1.Size = new Size(37, 23);
             UnusedNUD1.TabIndex = 5;
+            UnusedNUD1.Tag = "unused";
             // 
             // UnknownGB
             // 
@@ -1958,6 +2023,7 @@
             UnknownNUD2.Name = "UnknownNUD2";
             UnknownNUD2.Size = new Size(37, 23);
             UnknownNUD2.TabIndex = 6;
+            UnknownNUD2.Tag = "unknown";
             // 
             // UnknownNUD1
             // 
@@ -1967,6 +2033,7 @@
             UnknownNUD1.Name = "UnknownNUD1";
             UnknownNUD1.Size = new Size(37, 23);
             UnknownNUD1.TabIndex = 5;
+            UnknownNUD1.Tag = "unknown";
             // 
             // MiscGB
             // 
@@ -1986,6 +2053,7 @@
             MiscNUD.Name = "MiscNUD";
             MiscNUD.Size = new Size(37, 23);
             MiscNUD.TabIndex = 5;
+            MiscNUD.Tag = "misc";
             // 
             // MarkingsGB
             // 
@@ -2005,6 +2073,7 @@
             MarkingNUD.Name = "MarkingNUD";
             MarkingNUD.Size = new Size(37, 23);
             MarkingNUD.TabIndex = 5;
+            MarkingNUD.Tag = "mark";
             // 
             // RibbonGB
             // 
@@ -2036,6 +2105,7 @@
             RibbonNUD4.Name = "RibbonNUD4";
             RibbonNUD4.Size = new Size(37, 23);
             RibbonNUD4.TabIndex = 6;
+            RibbonNUD4.Tag = "ribbon";
             RibbonNUD4.ValueChanged += NumUpDownToTextboxHex;
             // 
             // RibbonNUD3
@@ -2046,6 +2116,7 @@
             RibbonNUD3.Name = "RibbonNUD3";
             RibbonNUD3.Size = new Size(37, 23);
             RibbonNUD3.TabIndex = 5;
+            RibbonNUD3.Tag = "ribbon";
             RibbonNUD3.ValueChanged += NumUpDownToTextboxHex;
             // 
             // RibbonNUD2
@@ -2056,6 +2127,7 @@
             RibbonNUD2.Name = "RibbonNUD2";
             RibbonNUD2.Size = new Size(37, 23);
             RibbonNUD2.TabIndex = 4;
+            RibbonNUD2.Tag = "ribbon";
             RibbonNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
             // RibbonNUD1
@@ -2066,6 +2138,7 @@
             RibbonNUD1.Name = "RibbonNUD1";
             RibbonNUD1.Size = new Size(37, 23);
             RibbonNUD1.TabIndex = 3;
+            RibbonNUD1.Tag = "ribbon";
             RibbonNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
             // SheenGB
@@ -2086,6 +2159,7 @@
             SheenNUD.Name = "SheenNUD";
             SheenNUD.Size = new Size(37, 23);
             SheenNUD.TabIndex = 5;
+            SheenNUD.Tag = "contest6";
             // 
             // SmartGB
             // 
@@ -2105,6 +2179,7 @@
             SmartNUD.Name = "SmartNUD";
             SmartNUD.Size = new Size(37, 23);
             SmartNUD.TabIndex = 5;
+            SmartNUD.Tag = "contest5";
             // 
             // ToughGB
             // 
@@ -2124,6 +2199,7 @@
             ToughNUD.Name = "ToughNUD";
             ToughNUD.Size = new Size(37, 23);
             ToughNUD.TabIndex = 5;
+            ToughNUD.Tag = "contest4";
             // 
             // BeautyGB
             // 
@@ -2143,6 +2219,7 @@
             BeautyNUD.Name = "BeautyNUD";
             BeautyNUD.Size = new Size(37, 23);
             BeautyNUD.TabIndex = 5;
+            BeautyNUD.Tag = "contest3";
             // 
             // CuteGB
             // 
@@ -2162,6 +2239,7 @@
             CuteNUD.Name = "CuteNUD";
             CuteNUD.Size = new Size(37, 23);
             CuteNUD.TabIndex = 5;
+            CuteNUD.Tag = "contest2";
             // 
             // CoolGB
             // 
@@ -2181,6 +2259,7 @@
             CoolNUD.Name = "CoolNUD";
             CoolNUD.Size = new Size(37, 23);
             CoolNUD.TabIndex = 5;
+            CoolNUD.Tag = "contest1";
             // 
             // PK3_RAM_Injection
             // 

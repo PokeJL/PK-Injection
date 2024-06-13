@@ -266,7 +266,7 @@
             if (index < characters.Length)
                 return characters[index];
             else
-                return "???";
+                return "";
         }
 
         public int GetIndex(string c)

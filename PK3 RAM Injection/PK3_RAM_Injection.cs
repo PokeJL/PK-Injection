@@ -11,6 +11,7 @@ namespace PK3_RAM_Injection
         public Form_Hex_Manager hexManager;
         public Form_Display_Manager displayManager;
         public Form_Validation_Manager validationManager;
+        public List<List<NumericUpDown>> numericUpDowns = new List<List<NumericUpDown>>();
 
         public PK3_RAM_Injection()
         {
@@ -21,20 +22,20 @@ namespace PK3_RAM_Injection
             runTimeManager = new();
             validationManager = new();
             hexManager = new();
-
-            hpTXT.Text = "0";
-            attTXT.Text = "0";
-            defTXT.Text = "0";
-            spaTXT.Text = "0";
-            spdTXT.Text = "0";
-            speTXT.Text = "0";
-            eggCB.SelectedIndex = 0;
-            abilityCB.SelectedIndex = 0;
+            displayManager = new();
         }
 
         private void LoadForm(object sender, EventArgs e)
-        {
-            //hexManager.NumUpDownToPPUP(sender);
+        { 
+            functionManager.LoadNumericUpDown(tabPage1, numericUpDowns);
+            //Set values for main line game
+            runTimeManager.ApplicatonValues().Gen = 3;
+            runTimeManager.ApplicatonValues().SubGen = 0;
+            runTimeManager.SetValues().GameSetValues(runTimeManager.GameValues(), 3, 0);
+            runTimeManager.SetValues().OffsetSetValues(runTimeManager.OffestData(), 3, 0);
+            displayManager.InitializeHex(runTimeManager, numericUpDowns);
+            PkrusCB1.SelectedIndex = 0;
+            PkrusCB2.SelectedIndex = 0;
         }
 
         private void OpenFileBTN_Click(object sender, EventArgs e)
@@ -156,6 +157,11 @@ namespace PK3_RAM_Injection
         private void TextBoxAndComboToNumUpDown(object sender, EventArgs e)
         {
             hexManager.TextBoxAndComboToNumUpDown(sender);
+        }
+
+        private void ComboBoxAndTextToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.ComboBoxAndTextToNumUpDown(sender);
         }
     }
 }

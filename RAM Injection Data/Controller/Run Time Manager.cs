@@ -14,6 +14,7 @@ namespace RAM_Injection_Data.Controller
         readonly Offest_data offset;
         readonly Game_Values gv;
         readonly Array_Manager am;
+        readonly Load_File lf;
         Set_Values sv;
         List<Pokemon_Gen3> pokemon;
         Pokemon_Gen3 injecting;
@@ -31,6 +32,7 @@ namespace RAM_Injection_Data.Controller
             gv = new();
             sv = new();
             am = new();
+            lf = new();
             pokemon = new List<Pokemon_Gen3>();
             injecting = new();
             list = new List<string>();
@@ -79,6 +81,11 @@ namespace RAM_Injection_Data.Controller
         public Array_Manager ArrayManager()
         {
             return am;
+        }
+
+        public Load_File LoadFile()
+        {
+            return lf;
         }
 
         public Set_Values SetValues()

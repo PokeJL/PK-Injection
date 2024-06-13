@@ -91,11 +91,11 @@ namespace RAM_Injection_Data.Controller
                     arr[od.IV + i] = pokemon.IV[i];
                     arr[od.Ribbons + i] = pokemon.Ribbion[i];
                 }
-                if (i < 16)
+                if (i < 7)
                 {
                     arr[od.OTName + i] = pokemon.OTName[i];
                 }
-                if (i < 22)
+                if (i < 10)
                 {
                     arr[od.Nickname + i] = pokemon.Nickname[i];
                 }   
@@ -105,7 +105,7 @@ namespace RAM_Injection_Data.Controller
         public Pokemon_Gen3 ArrayToPokemon(byte[] arr, Offest_data od)
         {
             Pokemon_Gen3 pokemon = new();
-            for (int i = 0; i < 22; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (i < 1)
                 {
@@ -157,11 +157,11 @@ namespace RAM_Injection_Data.Controller
                     pokemon.IV.Add(arr[od.IV + i]);
                     pokemon.Ribbion.Add(arr[od.Ribbons + i]);
                 }
-                if (i < 16)
+                if (i < 7)
                 {
                     pokemon.OTName.Add(arr[od.OTName + i]);
                 }
-                if (i < 22)
+                if (i < 10)
                 {
                     pokemon.Nickname.Add(arr[od.Nickname + i]);
                 }
@@ -171,7 +171,7 @@ namespace RAM_Injection_Data.Controller
 
         public void CopyPokemonObject(Pokemon_Gen3 survive, Pokemon_Gen3 noneSurvive, Offest_data od)
         {
-            for (int i = 0; i < 22; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (i < 1)
                 {
@@ -223,11 +223,11 @@ namespace RAM_Injection_Data.Controller
                     survive.IV.Add(noneSurvive.IV[i]);
                     survive.Ribbion.Add(noneSurvive.Ribbion[i]);
                 }
-                if (i < 16)
+                if (i < 7)
                 {
                     survive.OTName.Add(noneSurvive.OTName[i]);
                 }
-                if (i < 22)
+                if (i < 10)
                 {
                     survive.Nickname.Add(noneSurvive.Nickname[i]);
                 }
@@ -236,7 +236,7 @@ namespace RAM_Injection_Data.Controller
 
         public void CommitEditToObject(Pokemon_Gen3 survive, Pokemon_Gen3 noneSurvive)
         {
-            for (int i = 0; i < 22; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (i < 1)
                 {
@@ -288,11 +288,11 @@ namespace RAM_Injection_Data.Controller
                     noneSurvive.IV[i] = survive.IV[i];
                     noneSurvive.Ribbion[i] = survive.Ribbion[i];
                 }
-                if (i < 16)
+                if (i < 7)
                 {
                     noneSurvive.OTName[i] = survive.OTName[i];
                 }
-                if (i < 22)
+                if (i < 10)
                 {
                     noneSurvive.Nickname[i] = survive.Nickname[i];
                 }
@@ -304,7 +304,7 @@ namespace RAM_Injection_Data.Controller
         {
             for (int i = 0; i < pokemon.AdressInRAM.Count; i++)
             {
-                for (int m = 0; m < 22; m++)
+                for (int m = 0; m < 10; m++)
                 {
                     if (m < 1)
                     {
@@ -356,11 +356,11 @@ namespace RAM_Injection_Data.Controller
                         arr.FileData[pokemon.AdressInRAM[i] + od.IV + m] = pokemon.IV[m];
                         arr.FileData[pokemon.AdressInRAM[i] + od.Ribbons + m] = pokemon.Ribbion[m];
                     }
-                    if (m < 16)
+                    if (m < 7)
                     {
                         arr.FileData[pokemon.AdressInRAM[i] + od.OTName + m] = pokemon.OTName[m];
                     }
-                    if (m < 22)
+                    if (m < 10)
                     {
                         arr.FileData[pokemon.AdressInRAM[i] + od.Nickname + m] = pokemon.Nickname[m];
                     }

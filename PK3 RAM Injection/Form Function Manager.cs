@@ -3,6 +3,8 @@ using ComboBox = System.Windows.Forms.ComboBox;
 using TextBox = System.Windows.Forms.TextBox;
 using ProgressBar = System.Windows.Forms.ProgressBar;
 using RAM_Injection_Data.Model;
+using PKHeX.Core;
+using System.Windows.Forms;
 
 namespace PK3_RAM_Injection
 {
@@ -19,11 +21,11 @@ namespace PK3_RAM_Injection
 
             if (rt.ApplicatonValues().FileAdded == true) //Searches for a Pokemon
             {
-                //Set values for main line game
-                rt.ApplicatonValues().Gen = 3;
-                rt.ApplicatonValues().SubGen = 0;
-                rt.SetValues().GameSetValues(rt.GameValues(), 3, 0);
-                rt.SetValues().OffsetSetValues(rt.OffestData(), 3, 0);
+                ////Set values for main line game
+                //rt.ApplicatonValues().Gen = 3;
+                //rt.ApplicatonValues().SubGen = 0;
+                //rt.SetValues().GameSetValues(rt.GameValues(), 3, 0);
+                //rt.SetValues().OffsetSetValues(rt.OffestData(), 3, 0);
 
                 int intID = Convert.ToInt32(textBox.Text);
                 byte temp = 0x00;
@@ -84,6 +86,33 @@ namespace PK3_RAM_Injection
             if(checkBox.Checked)
                 rt.GameValues().IsEncrypted = true;
             else rt.GameValues().IsEncrypted = false;
+        }
+
+        public void LoadNumericUpDown(TabPage sender, List<List<NumericUpDown>> num)
+        {
+            foreach (var t in sender.Parent.Controls.OfType<TabPage>())
+            {
+                foreach (var g in t.Controls.OfType<GroupBox>())
+                {
+                    foreach (var n in g.Controls.OfType<NumericUpDown>())
+                    {
+                        if(num.Count == 0)
+                        {
+                            num.Add(new List<NumericUpDown>());
+                            num[0].Add(n);
+                        }
+                        else if (num[num.Count - 1][0].Tag == n.Tag)
+                        {
+                            num[num.Count - 1].Add(n);
+                        }
+                        else
+                        {
+                            num.Add(new List<NumericUpDown>());
+                            num[num.Count - 1].Add(n);
+                        }
+                    }
+                }
+            }
         }
 
         private void ProgressUpdate(int amount, int time, byte[] data, IProgress<int> progress)
