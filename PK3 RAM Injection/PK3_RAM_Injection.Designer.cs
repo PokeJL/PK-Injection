@@ -33,7 +33,6 @@
             FindPkmnBTN = new Button();
             RipProgressBar = new ProgressBar();
             ExtractBTN = new Button();
-            PkmnSelectCB = new ComboBox();
             ImportBTN = new Button();
             EditBTN = new Button();
             InjectBTN = new Button();
@@ -379,15 +378,6 @@
             ExtractBTN.UseVisualStyleBackColor = true;
             ExtractBTN.Click += ExtractBTN_Click;
             // 
-            // PkmnSelectCB
-            // 
-            PkmnSelectCB.FormattingEnabled = true;
-            PkmnSelectCB.Location = new Point(475, 338);
-            PkmnSelectCB.Name = "PkmnSelectCB";
-            PkmnSelectCB.Size = new Size(156, 23);
-            PkmnSelectCB.TabIndex = 5;
-            PkmnSelectCB.SelectedIndexChanged += PkmnSelectCB_SelectedIndexChanged;
-            // 
             // ImportBTN
             // 
             ImportBTN.Location = new Point(12, 338);
@@ -468,6 +458,7 @@
             DisplayDGV.Name = "DisplayDGV";
             DisplayDGV.Size = new Size(579, 262);
             DisplayDGV.TabIndex = 15;
+            DisplayDGV.CellClick += DataGridViewRowSelect;
             // 
             // tabControl1
             // 
@@ -2275,7 +2266,6 @@
             Controls.Add(InjectBTN);
             Controls.Add(EditBTN);
             Controls.Add(ImportBTN);
-            Controls.Add(PkmnSelectCB);
             Controls.Add(ExtractBTN);
             Controls.Add(RipProgressBar);
             Controls.Add(FindPkmnBTN);
@@ -2430,7 +2420,6 @@
         private Button FindPkmnBTN;
         private ProgressBar RipProgressBar;
         private Button ExtractBTN;
-        private ComboBox PkmnSelectCB;
         private Button ImportBTN;
         private Button EditBTN;
         private Button InjectBTN;

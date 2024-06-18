@@ -66,13 +66,15 @@ namespace RAM_Injection_Data.Controller
                     arr[od.Sheen + i] = pokemon.Feel[i];
                     arr[od.Pkrus + i] = pokemon.PKRus[i];
                     arr[od.MetLocation + i] = pokemon.MetLocation[i];
+                    arr[od.Orgins + i] = pokemon.Orgins[i];
 
                 }
                 if (i < 2)
                 {
                     arr[od.ID + i] = pokemon.TrainerID[i];
                     arr[od.SID + i] = pokemon.SecretID[i];
-                    arr[od.Checksum + i] = pokemon.Checksum[i];
+                    if (pokemon.Checksum.Count() == 2)
+                        arr[od.Checksum + i] = pokemon.Checksum[i];
                     arr[od.Unknown + i] = pokemon.Unknown[i];
                     arr[od.Species + i] = pokemon.PokemonID[i];
                     arr[od.Item + i] = pokemon.Item[i];
@@ -81,7 +83,6 @@ namespace RAM_Injection_Data.Controller
                     arr[od.Move2 + i] = pokemon.Move2[i];
                     arr[od.Move3 + i] = pokemon.Move3[i];
                     arr[od.Move4 + i] = pokemon.Move4[i];
-                    arr[od.Orgins + i] = pokemon.Orgins[i];
 
                 }
                 if (i < 4)
@@ -132,7 +133,7 @@ namespace RAM_Injection_Data.Controller
                     pokemon.Feel.Add(arr[od.Sheen + i]);
                     pokemon.PKRus.Add(arr[od.Pkrus + i]);
                     pokemon.MetLocation.Add(arr[od.MetLocation + i]);
-
+                    pokemon.Orgins.Add(arr[od.Orgins + i]);
                 }
                 if (i < 2)
                 {
@@ -147,8 +148,6 @@ namespace RAM_Injection_Data.Controller
                     pokemon.Move2.Add(arr[od.Move2 + i]);
                     pokemon.Move3.Add(arr[od.Move3 + i]);
                     pokemon.Move4.Add(arr[od.Move4 + i]);
-                    pokemon.Orgins.Add(arr[od.Orgins + i]);
-
                 }
                 if (i < 4)
                 {
@@ -198,7 +197,7 @@ namespace RAM_Injection_Data.Controller
                     survive.Feel.Add(noneSurvive.Feel[i]);
                     survive.PKRus.Add(noneSurvive.PKRus[i]);
                     survive.MetLocation.Add(noneSurvive.MetLocation[i]);
-
+                    survive.Orgins.Add(noneSurvive.Orgins[i]);
                 }
                 if (i < 2)
                 {
@@ -213,8 +212,6 @@ namespace RAM_Injection_Data.Controller
                     survive.Move2.Add(noneSurvive.Move2[i]);
                     survive.Move3.Add(noneSurvive.Move3[i]);
                     survive.Move4.Add(noneSurvive.Move4[i]);
-                    survive.Orgins.Add(noneSurvive.Orgins[i]);
-
                 }
                 if (i < 4)
                 {
@@ -236,6 +233,7 @@ namespace RAM_Injection_Data.Controller
 
         public void CommitEditToObject(Pokemon_Gen3 survive, Pokemon_Gen3 noneSurvive)
         {
+            //noneSurvive = new();
             for (int i = 0; i < 10; i++)
             {
                 if (i < 1)
@@ -263,7 +261,7 @@ namespace RAM_Injection_Data.Controller
                     noneSurvive.Feel[i] = survive.Feel[i];
                     noneSurvive.PKRus[i] = survive.PKRus[i];
                     noneSurvive.MetLocation[i] = survive.MetLocation[i];
-
+                    noneSurvive.Orgins[i] = survive.Orgins[i];
                 }
                 if (i < 2)
                 {
@@ -278,8 +276,6 @@ namespace RAM_Injection_Data.Controller
                     noneSurvive.Move2[i] = survive.Move2[i];
                     noneSurvive.Move3[i] = survive.Move3[i];
                     noneSurvive.Move4[i] = survive.Move4[i];
-                    noneSurvive.Orgins[i] = survive.Orgins[i];
-
                 }
                 if (i < 4)
                 {
@@ -331,7 +327,7 @@ namespace RAM_Injection_Data.Controller
                         arr.FileData[pokemon.AdressInRAM[i] + od.Sheen + m] = pokemon.Feel[m];
                         arr.FileData[pokemon.AdressInRAM[i] + od.Pkrus + m] = pokemon.PKRus[m];
                         arr.FileData[pokemon.AdressInRAM[i] + od.MetLocation + m] = pokemon.MetLocation[m];
-
+                        arr.FileData[pokemon.AdressInRAM[i] + od.Orgins + m] = pokemon.Orgins[m];
                     }
                     if (m < 2)
                     {
@@ -346,8 +342,6 @@ namespace RAM_Injection_Data.Controller
                         arr.FileData[pokemon.AdressInRAM[i] + od.Move2 + m] = pokemon.Move2[m];
                         arr.FileData[pokemon.AdressInRAM[i] + od.Move3 + m] = pokemon.Move3[m];
                         arr.FileData[pokemon.AdressInRAM[i] + od.Move4 + m] = pokemon.Move4[m];
-                        arr.FileData[pokemon.AdressInRAM[i] + od.Orgins + m] = pokemon.Orgins[m];
-
                     }
                     if (m < 4)
                     {

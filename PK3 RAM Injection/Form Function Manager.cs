@@ -12,12 +12,11 @@ namespace PK3_RAM_Injection
     {
         public Form_Function_Manager() {}
 
-        public async void FindData(Run_Time_Manager rt, ComboBox comboBox, TextBox textBox, OpenFileDialog openFileDialog, ProgressBar progressBar, DataGridView dataGridView)
+        public async void FindData(Run_Time_Manager rt, TextBox textBox, OpenFileDialog openFileDialog, ProgressBar progressBar, DataGridView dataGridView)
         {
             int updateTime = 0;
             //rt.ApplicatonValues().Found = 0;
             rt.PokemonGen3s().Clear();
-            comboBox.Items.Clear();
 
             if (rt.ApplicatonValues().FileAdded == true) //Searches for a Pokemon
             {
@@ -60,7 +59,6 @@ namespace PK3_RAM_Injection
 
             System.Windows.Forms.MessageBox.Show(rt.PokemonGen3s().Count.ToString() + " Pokemon found.");
 
-            BindComboBoxData(rt, comboBox); //Adds found Pokemon to combo box
             DisplayPokemon(dataGridView, rt.FindData(), rt.PokemonGen3s());
         }
 
@@ -115,6 +113,13 @@ namespace PK3_RAM_Injection
             }
         }
 
+        public void LoadEdit(Run_Time_Manager rt, DataGridView dg , List<List<NumericUpDown>>list)
+        {
+            Form_Display_Manager display = new();
+
+            display.SetHexToEdit(rt.PokemonGen3s()[Convert.ToInt32(dg.Rows[dg.CurrentCell.RowIndex].Index)], list);
+        }
+
         private void ProgressUpdate(int amount, int time, byte[] data, IProgress<int> progress)
         {
             if (amount % time == 0) //Update bar if module is 0
@@ -134,7 +139,7 @@ namespace PK3_RAM_Injection
             return timing;
         }
 
-        private void DisplayPokemon(DataGridView dataGridView, Data_Ripper search, List<Pokemon_Gen3> list)
+        public void DisplayPokemon(DataGridView dataGridView, Data_Ripper search, List<Pokemon_Gen3> list)
         {
             List<Display_Data> display = new List<Display_Data>();
             dataGridView.Columns.Clear();
@@ -147,21 +152,300 @@ namespace PK3_RAM_Injection
             dataGridView.DataSource = display;
         }
 
-        private void BindComboBoxData(Run_Time_Manager rt, ComboBox comboBox)
+        public Pokemon_Gen3 HexToInject(Run_Time_Manager rt, List<List<NumericUpDown>> sendersList)
         {
-            object[] ItemObject = new object[rt.PokemonGen3s().Count];
-            if (rt.PokemonGen3s().Count != 0)
-            {
-                comboBox.Items.Clear();
-                for (int i = 0; i < rt.PokemonGen3s().Count; i++)
-                {
-                    rt.ApplicatonValues().DexNum = rt.DexConversion().Gen3GetDexNum(rt.DataConversion().LittleEndianObject(rt.PokemonGen3s()[i].PokemonID, rt.GameValues().Invert));
+            Pokemon_Gen3 p = new();
+            byte[] data = new byte[100];
 
-                    ItemObject[i] = rt.PokemonData().GetPokemonName(rt.ApplicatonValues().DexNum);
+            for (int i = 0; i < sendersList.Count; i++)
+            {
+                if (sendersList[i][0].Tag == "pid")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PID.Add((byte)sendersList[i][j].Value);
+                    }
                 }
-                comboBox.Items.AddRange(ItemObject);
-                comboBox.SelectedIndex = 0;
+                else if (sendersList[i][0].Tag == "species")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PokemonID.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "language")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Language.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "pkrus")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PKRus.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "item")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Item.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "version")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Orgins.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "met")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.MetLocation.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "m1")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Move1.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "m2")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Move2.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "m3")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Move3.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "m4")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Move4.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "mpp1")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PP1.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "mpp2")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PP2.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "mpp3")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PP3.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "mpp4")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PP4.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ppup")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.PPUps.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "exp")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.EXP.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "iv")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.IV.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ev1")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.HPEV.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ev2")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.AttackEV.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ev3")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.DefenceEV.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ev4")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.SpAttackEV.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ev5")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.SpDefenceEV.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ev6")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.SpeedEV.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "friend")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Friendship.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "id")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.TrainerID.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "sid")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.SecretID.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ot")
+                {
+                    for (int j = 0, n = sendersList[i].Count - 1; j < sendersList[i].Count; j++, n--)
+                    {
+                        p.OTName.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "nickname")
+                {
+                    for (int j = 0, n = sendersList[i].Count - 1; j < sendersList[i].Count; j++, n--)
+                    {
+                        p.Nickname.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "contest1")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Cool.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "contest2")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Cute.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "contest3")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Beauty.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "contest4")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Tough.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "contest5")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Smart.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "contest6")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Feel.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "ribbon")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Ribbion.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "unknown")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Unknown.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "unused")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Unused.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "misc")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Misc.Add((byte)sendersList[i][j].Value);
+                    }
+                }
+                else if (sendersList[i][0].Tag == "mark")
+                {
+                    for (int j = 0; j < sendersList[i].Count; j++)
+                    {
+                        p.Marks.Add((byte)sendersList[i][j].Value) ;
+                    }
+                }
             }
+
+            rt.ArrayManager().PokemonToArray(data, p, rt.OffestData());
+            rt.DataConversion().ChecksumCalculation(data, rt.OffestData());
+            p = rt.ArrayManager().ArrayToPokemon(data, rt.OffestData());
+
+            return p;
         }
     }
 }

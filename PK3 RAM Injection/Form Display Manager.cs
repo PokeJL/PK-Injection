@@ -301,14 +301,14 @@ namespace PK3_RAM_Injection
                 {
                     for (int j = 0; j < sendersList[i].Count; j++)
                     {
-                        sendersList[i][j].Value = p.Unused[j];
+                        sendersList[i][j].Value = p.Misc[j];
                     }
                 }
                 else if (sendersList[i][0].Tag == "mark")
                 {
                     for (int j = 0; j < sendersList[i].Count; j++)
                     {
-                        sendersList[i][j].Value = p.Unused[j];
+                        sendersList[i][j].Value = p.Marks[j];
                     }
                 }
             }

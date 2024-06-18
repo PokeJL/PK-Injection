@@ -26,7 +26,7 @@ namespace PK3_RAM_Injection
         }
 
         private void LoadForm(object sender, EventArgs e)
-        { 
+        {
             functionManager.LoadNumericUpDown(tabPage1, numericUpDowns);
             //Set values for main line game
             runTimeManager.ApplicatonValues().Gen = 3;
@@ -50,28 +50,24 @@ namespace PK3_RAM_Injection
 
         private void FindPkmnBTN_Click(object sender, EventArgs e)
         {
-            functionManager.FindData(runTimeManager, PkmnSelectCB, TidTXT, openFileDialog1, RipProgressBar, DisplayDGV);
-        }
-
-        private void PkmnSelectCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            functionManager.SelectedData(runTimeManager, PkmnSelectCB);
+            functionManager.FindData(runTimeManager, TidTXT, openFileDialog1, RipProgressBar, DisplayDGV);
         }
 
         private void EditBTN_Click(object sender, EventArgs e)
         {
-            var editor = new PK3_RAM_Hex_Editor();
-            editor.Show();
+            functionManager.LoadEdit(runTimeManager, DisplayDGV, numericUpDowns);
         }
 
         private void ImportBTN_Click(object sender, EventArgs e)
         {
             fileManager.ImportData(runTimeManager, openFileDialog1);
+            displayManager.SetHexToEdit(runTimeManager.ArrayManager().ArrayToPokemon(runTimeManager.ApplicatonValues().ImportData, runTimeManager.OffestData()), numericUpDowns);
         }
 
         private void InjectBTN_Click(object sender, EventArgs e)
         {
-            functionManager.InjectData(runTimeManager);
+            runTimeManager.ArrayManager().CommitEditToObject(functionManager.HexToInject(runTimeManager, numericUpDowns), runTimeManager.PokemonGen3s()[runTimeManager.ApplicatonValues().SelectIndex]);
+            functionManager.DisplayPokemon(DisplayDGV, runTimeManager.FindData(), runTimeManager.PokemonGen3s());
         }
 
         private void SaveBTN_Click(object sender, EventArgs e)
@@ -162,6 +158,11 @@ namespace PK3_RAM_Injection
         private void ComboBoxAndTextToNumUpDown(object sender, EventArgs e)
         {
             hexManager.ComboBoxAndTextToNumUpDown(sender);
+        }
+
+        private void DataGridViewRowSelect(object sender, DataGridViewCellEventArgs e)
+        {
+            runTimeManager.ApplicatonValues().SelectIndex = Convert.ToInt32(DisplayDGV.Rows[DisplayDGV.CurrentCell.RowIndex].Index);
         }
     }
 }

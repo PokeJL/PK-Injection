@@ -12,7 +12,7 @@
         public byte[] FileData { get; set; } = new byte[1]; //The byte data from the file
         public byte[] ImportData { get; set; } = new byte[1];
         //public int Found { get; set; } = 0; //how many Pokemon found
-        public int SelectIndex { get; set; } = 0; //The index of the selected item in the Pokemon found combo box
+        public int SelectIndex { get; set; } = 0; //The index of the selected item in the Pokemon found data grid view
         public int DexNum { get; set; } = 0; //Stores one Pokemon dex number
         public int Gen { get; set; } = 0; //Stores current saved gen
         public bool EndTask { get; set; } = false; //Stops the working thread
