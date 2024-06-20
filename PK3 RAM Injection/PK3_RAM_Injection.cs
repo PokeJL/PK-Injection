@@ -45,7 +45,7 @@ namespace PK3_RAM_Injection
 
         private void ExtractBTN_Click(object sender, EventArgs e)
         {
-            fileManager.ExtractData(runTimeManager);
+            fileManager.ExtractData(runTimeManager, numericUpDowns);
         }
 
         private void FindPkmnBTN_Click(object sender, EventArgs e)
@@ -163,6 +163,21 @@ namespace PK3_RAM_Injection
         private void DataGridViewRowSelect(object sender, DataGridViewCellEventArgs e)
         {
             runTimeManager.ApplicatonValues().SelectIndex = Convert.ToInt32(DisplayDGV.Rows[DisplayDGV.CurrentCell.RowIndex].Index);
+        }
+
+        private void OrginNumUpDownToControls(object sender, EventArgs e)
+        {
+            hexManager.OrginNumUpDownToControls(sender);
+        }
+
+        private void OrginTextBoxAndComboToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.OrginTextBoxAndComboToNumUpDown(sender);
+        }
+
+        private void OrginComboBoxAndTextToNumUpDown(object sender, EventArgs e)
+        {
+            hexManager.OrginComboBoxAndTextToNumUpDown(sender);
         }
     }
 }

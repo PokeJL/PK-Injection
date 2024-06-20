@@ -1,6 +1,7 @@
 ﻿using static System.Buffers.Binary.BinaryPrimitives;
 using RAM_Injection_Data.Data;
 using System.Text;
+using System;
 
 namespace PK3_RAM_Injection
 {
@@ -425,6 +426,139 @@ namespace PK3_RAM_Injection
             {
                 child.Value = resultByte[index];
                 index--;
+            }
+        }
+
+        public void OrginNumUpDownToControls(object sender)
+        {
+            string binary = string.Empty;
+            string[] temp = new string[2];
+            int[] binInt = new int[3];
+            int level = 0;
+            int index = 0;
+
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<NumericUpDown>())
+            {
+                temp[index] = Convert.ToString(Decimal.ToByte(child.Value), 2).PadLeft(8, '0');
+                index++;
+            }
+            index = 0;
+
+            binary = temp[1] + temp[0];
+
+            binInt[2] = Convert.ToInt32(binary.Substring(0, 1), 2);
+            binInt[1] = Convert.ToInt32(binary.Substring(1, 4), 2);
+            binInt[0] = Convert.ToInt32(binary.Substring(5, 4), 2);
+            level = Convert.ToInt32(binary.Substring(9, 7), 2);
+
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<ComboBox>())
+            {
+                child.SelectedIndex = binInt[index];
+                index++;
+            }
+
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<TextBox>())
+            {
+                child.Text = level.ToString();
+            }
+        }
+
+        public void OrginTextBoxAndComboToNumUpDown(object sender)
+        {
+            val.NumberFormatting(sender);
+            val.NumberInRangeTextbox(sender);
+
+            int[] txtBinary = new int[1];
+            int[] cbBinary = new int[3];
+            char[] charArray;
+            string binary = string.Empty;
+            string[] sbin = new string[3];
+            int result;
+            int index = 0;
+
+            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<TextBox>())
+            {
+                txtBinary[index] = Convert.ToInt32(child.Text);
+                index++;
+            }
+
+            index = 0;
+
+            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<ComboBox>())
+            {
+                cbBinary[index] = child.SelectedIndex;
+                index++;
+            }
+
+            index = 0;
+
+            sbin[2] = Convert.ToString(cbBinary[2], 2);
+
+            for (int i = cbBinary.Length - 2; i >= 0; i--)
+                sbin[i] = Convert.ToString(cbBinary[i], 2).PadLeft(4, '0');
+
+            for (int i = sbin.Length - 1; i >= 0; i--)
+                binary += sbin[i];
+
+            for (int i = 0; i < txtBinary.Length; i++)
+                binary += Convert.ToString(txtBinary[i], 2).PadLeft(7, '0');
+
+            result = Convert.ToInt32(binary, 2);
+
+            byte[] resultByte = BitConverter.GetBytes(result);
+
+            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<NumericUpDown>())
+            {
+                child.Value = resultByte[index];
+                index++;
+            }
+        }
+
+        public void OrginComboBoxAndTextToNumUpDown(object sender)
+        {
+            int[] txtBinary = new int[1];
+            int[] cbBinary = new int[3];
+            char[] charArray;
+            string binary = string.Empty;
+            string[] sbin = new string[3];
+            int result;
+            int index = 0;
+
+            foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<TextBox>())
+            {
+                txtBinary[index] = Convert.ToInt32(child.Text);
+                index++;
+            }
+
+            index = 0;
+
+            foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<ComboBox>())
+            {
+                cbBinary[index] = child.SelectedIndex;
+                index++;
+            }
+
+            index = 0;
+
+            sbin[2] = Convert.ToString(cbBinary[2], 2);
+
+            for (int i = cbBinary.Length - 2; i >= 0; i--)
+                sbin[i] = Convert.ToString(cbBinary[i], 2).PadLeft(4, '0');
+
+            for (int i = sbin.Length - 1; i >= 0; i--)
+                binary += sbin[i];
+
+            for (int i = 0; i < txtBinary.Length; i++)
+                binary += Convert.ToString(txtBinary[i], 2).PadLeft(7, '0');
+
+            result = Convert.ToInt32(binary, 2);
+
+            byte[] resultByte = BitConverter.GetBytes(result);
+
+            foreach (var child in ((ComboBox)sender).Parent.Controls.OfType<NumericUpDown>())
+            {
+                child.Value = resultByte[index];
+                index++;
             }
         }
     }

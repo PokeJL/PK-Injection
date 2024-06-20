@@ -48,7 +48,13 @@
             MetGB = new GroupBox();
             MetNUD = new NumericUpDown();
             Version = new GroupBox();
-            VersionNUD = new NumericUpDown();
+            metLevelTXT = new TextBox();
+            mLevelLBL = new Label();
+            versionCB = new ComboBox();
+            ballCB = new ComboBox();
+            otGenderCB = new ComboBox();
+            VersionNUD2 = new NumericUpDown();
+            VersionNUD1 = new NumericUpDown();
             LanguageGB = new GroupBox();
             LanguageNUD = new NumericUpDown();
             LanguageCB = new ComboBox();
@@ -214,7 +220,8 @@
             MetGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MetNUD).BeginInit();
             Version.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)VersionNUD).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)VersionNUD2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)VersionNUD1).BeginInit();
             LanguageGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)LanguageNUD).BeginInit();
             PkrusGB.SuspendLayout();
@@ -493,9 +500,9 @@
             // MetGB
             // 
             MetGB.Controls.Add(MetNUD);
-            MetGB.Location = new Point(95, 240);
+            MetGB.Location = new Point(203, 80);
             MetGB.Name = "MetGB";
-            MetGB.Size = new Size(76, 48);
+            MetGB.Size = new Size(69, 48);
             MetGB.TabIndex = 17;
             MetGB.TabStop = false;
             MetGB.Text = "Met Info";
@@ -512,29 +519,95 @@
             // 
             // Version
             // 
-            Version.Controls.Add(VersionNUD);
-            Version.Location = new Point(3, 240);
+            Version.Controls.Add(metLevelTXT);
+            Version.Controls.Add(mLevelLBL);
+            Version.Controls.Add(versionCB);
+            Version.Controls.Add(ballCB);
+            Version.Controls.Add(otGenderCB);
+            Version.Controls.Add(VersionNUD2);
+            Version.Controls.Add(VersionNUD1);
+            Version.Location = new Point(3, 212);
             Version.Name = "Version";
-            Version.Size = new Size(76, 48);
+            Version.Size = new Size(243, 79);
             Version.TabIndex = 16;
             Version.TabStop = false;
-            Version.Text = "Version";
+            Version.Text = "Orgin";
             // 
-            // VersionNUD
+            // metLevelTXT
             // 
-            VersionNUD.Hexadecimal = true;
-            VersionNUD.Location = new Point(6, 22);
-            VersionNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            VersionNUD.Name = "VersionNUD";
-            VersionNUD.Size = new Size(37, 23);
-            VersionNUD.TabIndex = 5;
-            VersionNUD.Tag = "version";
+            metLevelTXT.Location = new Point(193, 21);
+            metLevelTXT.MaxLength = 3;
+            metLevelTXT.Name = "metLevelTXT";
+            metLevelTXT.Size = new Size(44, 23);
+            metLevelTXT.TabIndex = 11;
+            metLevelTXT.Leave += OrginTextBoxAndComboToNumUpDown;
+            // 
+            // mLevelLBL
+            // 
+            mLevelLBL.AutoSize = true;
+            mLevelLBL.Location = new Point(129, 24);
+            mLevelLBL.Name = "mLevelLBL";
+            mLevelLBL.Size = new Size(58, 15);
+            mLevelLBL.TabIndex = 10;
+            mLevelLBL.Text = "Met Level";
+            // 
+            // versionCB
+            // 
+            versionCB.FormattingEnabled = true;
+            versionCB.Items.AddRange(new object[] { "(None)", "Sapphire", "Ruby", "Emerald", "FireRed", "LeafGreen", "???", "???", "???", "???", "???", "???", "???", "???", "???", "Orre" });
+            versionCB.Location = new Point(166, 50);
+            versionCB.Name = "versionCB";
+            versionCB.Size = new Size(71, 23);
+            versionCB.TabIndex = 9;
+            versionCB.SelectionChangeCommitted += OrginComboBoxAndTextToNumUpDown;
+            // 
+            // ballCB
+            // 
+            ballCB.FormattingEnabled = true;
+            ballCB.Items.AddRange(new object[] { "(None)", "Mater Ball", "Ultra Ball", "Great Ball", "Poké Ball", "Safari Ball", "Net Ball", "Dive Ball", "Nest Ball", "Repeat Ball", "Timer Ball", "Luxury Ball", "Premier Ball", "??? Ball" });
+            ballCB.Location = new Point(74, 50);
+            ballCB.Name = "ballCB";
+            ballCB.Size = new Size(86, 23);
+            ballCB.TabIndex = 8;
+            ballCB.SelectionChangeCommitted += OrginComboBoxAndTextToNumUpDown;
+            // 
+            // otGenderCB
+            // 
+            otGenderCB.FormattingEnabled = true;
+            otGenderCB.Items.AddRange(new object[] { "Male", "Female" });
+            otGenderCB.Location = new Point(6, 51);
+            otGenderCB.Name = "otGenderCB";
+            otGenderCB.Size = new Size(62, 23);
+            otGenderCB.TabIndex = 7;
+            otGenderCB.SelectionChangeCommitted += OrginComboBoxAndTextToNumUpDown;
+            // 
+            // VersionNUD2
+            // 
+            VersionNUD2.Hexadecimal = true;
+            VersionNUD2.Location = new Point(49, 22);
+            VersionNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            VersionNUD2.Name = "VersionNUD2";
+            VersionNUD2.Size = new Size(37, 23);
+            VersionNUD2.TabIndex = 6;
+            VersionNUD2.Tag = "version";
+            VersionNUD2.ValueChanged += OrginNumUpDownToControls;
+            // 
+            // VersionNUD1
+            // 
+            VersionNUD1.Hexadecimal = true;
+            VersionNUD1.Location = new Point(6, 22);
+            VersionNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            VersionNUD1.Name = "VersionNUD1";
+            VersionNUD1.Size = new Size(37, 23);
+            VersionNUD1.TabIndex = 5;
+            VersionNUD1.Tag = "version";
+            VersionNUD1.ValueChanged += OrginNumUpDownToControls;
             // 
             // LanguageGB
             // 
             LanguageGB.Controls.Add(LanguageNUD);
             LanguageGB.Controls.Add(LanguageCB);
-            LanguageGB.Location = new Point(104, 73);
+            LanguageGB.Location = new Point(189, 0);
             LanguageGB.Name = "LanguageGB";
             LanguageGB.Size = new Size(79, 74);
             LanguageGB.TabIndex = 15;
@@ -555,7 +628,7 @@
             // LanguageCB
             // 
             LanguageCB.FormattingEnabled = true;
-            LanguageCB.Items.AddRange(new object[] { "JPN", "ENG", "FRE", "ITA", "GRE", "ESP", "???" });
+            LanguageCB.Items.AddRange(new object[] { "(None)", "JPN", "ENG", "FRE", "ITA", "GRE", "ESP", "???" });
             LanguageCB.Location = new Point(9, 48);
             LanguageCB.Name = "LanguageCB";
             LanguageCB.Size = new Size(62, 23);
@@ -571,7 +644,7 @@
             PkrusGB.Controls.Add(PkrusCB1);
             PkrusGB.Location = new Point(3, 146);
             PkrusGB.Name = "PkrusGB";
-            PkrusGB.Size = new Size(98, 95);
+            PkrusGB.Size = new Size(144, 64);
             PkrusGB.TabIndex = 14;
             PkrusGB.TabStop = false;
             PkrusGB.Text = "PKRuS";
@@ -579,7 +652,7 @@
             // PkrusLBL2
             // 
             PkrusLBL2.AutoSize = true;
-            PkrusLBL2.Location = new Point(49, 77);
+            PkrusLBL2.Location = new Point(92, 48);
             PkrusLBL2.Name = "PkrusLBL2";
             PkrusLBL2.Size = new Size(32, 15);
             PkrusLBL2.TabIndex = 8;
@@ -588,7 +661,7 @@
             // PkrusLBL1
             // 
             PkrusLBL1.AutoSize = true;
-            PkrusLBL1.Location = new Point(6, 77);
+            PkrusLBL1.Location = new Point(49, 48);
             PkrusLBL1.Name = "PkrusLBL1";
             PkrusLBL1.Size = new Size(37, 15);
             PkrusLBL1.TabIndex = 7;
@@ -598,7 +671,7 @@
             // 
             PkrusCB2.FormattingEnabled = true;
             PkrusCB2.Items.AddRange(new object[] { "0" });
-            PkrusCB2.Location = new Point(49, 51);
+            PkrusCB2.Location = new Point(92, 22);
             PkrusCB2.Name = "PkrusCB2";
             PkrusCB2.Size = new Size(37, 23);
             PkrusCB2.TabIndex = 6;
@@ -619,7 +692,7 @@
             // 
             PkrusCB1.FormattingEnabled = true;
             PkrusCB1.Items.AddRange(new object[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" });
-            PkrusCB1.Location = new Point(6, 51);
+            PkrusCB1.Location = new Point(49, 22);
             PkrusCB1.Name = "PkrusCB1";
             PkrusCB1.Size = new Size(37, 23);
             PkrusCB1.TabIndex = 0;
@@ -630,7 +703,7 @@
             ItemGB.Controls.Add(ItemTB);
             ItemGB.Controls.Add(ItemNUD2);
             ItemGB.Controls.Add(ItemNUD1);
-            ItemGB.Location = new Point(104, 160);
+            ItemGB.Location = new Point(104, 73);
             ItemGB.Name = "ItemGB";
             ItemGB.Size = new Size(95, 74);
             ItemGB.TabIndex = 12;
@@ -2280,7 +2353,9 @@
             MetGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)MetNUD).EndInit();
             Version.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)VersionNUD).EndInit();
+            Version.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)VersionNUD2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)VersionNUD1).EndInit();
             LanguageGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)LanguageNUD).EndInit();
             PkrusGB.ResumeLayout(false);
@@ -2582,7 +2657,7 @@
         private GroupBox MetGB;
         private NumericUpDown MetNUD;
         private GroupBox Version;
-        private NumericUpDown VersionNUD;
+        private NumericUpDown VersionNUD1;
         private GroupBox FriendshipGB;
         private NumericUpDown FriendshipNUP;
         private GroupBox UnusedGB;
@@ -2595,5 +2670,11 @@
         private NumericUpDown MiscNUD;
         private GroupBox MarkingsGB;
         private NumericUpDown MarkingNUD;
+        private NumericUpDown VersionNUD2;
+        private ComboBox otGenderCB;
+        private ComboBox ballCB;
+        private ComboBox versionCB;
+        private TextBox metLevelTXT;
+        private Label mLevelLBL;
     }
 }
