@@ -1,7 +1,5 @@
 ﻿using static System.Buffers.Binary.BinaryPrimitives;
 using RAM_Injection_Data.Data;
-using System.Text;
-using System;
 
 namespace PK3_RAM_Injection
 {
@@ -364,14 +362,8 @@ namespace PK3_RAM_Injection
 
             index = 3;
 
-            //for (int i = cbBinary.Length - 1; i >= 0; i--)
-            //    binary += Convert.ToString(cbBinary[i], 2);
-
             for (int i = cbBinary.Length - 1; i >= 0; i--)
                 binary += Convert.ToString(cbBinary[i], 2);
-
-            //for (int i = ivBinary.Length - 1; i >= 0; i--)
-            //    binary += Convert.ToString(ivBinary[i], 2).PadLeft(5, '0');
 
             for (int i = 0; i < ivBinary.Length; i++)
                 binary += Convert.ToString(ivBinary[i], 2).PadLeft(5, '0');
@@ -453,7 +445,10 @@ namespace PK3_RAM_Injection
 
             foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<ComboBox>())
             {
-                child.SelectedIndex = binInt[index];
+                if (binInt[1] < child.Items.Count - 1)
+                    child.SelectedIndex = binInt[1];
+                else
+                    child.SelectedIndex = child.Items.Count - 1;
                 index++;
             }
 

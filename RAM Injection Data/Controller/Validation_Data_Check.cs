@@ -18,51 +18,6 @@ namespace RAM_Injection_Data.Controller
         }
 
         /// <summary>
-        /// Runs actual checksum if there is one else return true
-        /// because that game was a big pain (cough cough Colo and XD)
-        /// and the developers didn't feel the need for checksums
-        /// therefore leaving them up so I had to make stuff up!!!!!
-        /// </summary>
-        /// <param name="inputFile">The data being checked</param>
-        /// <param name="option">Only matters if it is 0</param>
-        /// <param name="size">The size of the data</param>
-        /// <param name="inversion">little edian?</param>
-        /// <returns></returns>
-        //public bool ChecksumEnd(byte[] inputFile, int option, int size, bool inversion)
-        //{
-        //    if (option == 0) //Calcs checksum to see if it matches the value stored in data
-        //    {
-        //        if (Checksum(inputFile, offset_Data.Checksum, offset_Data.ChecksumCalcDataStart, size, inversion))
-        //            return true;
-        //    }
-        //    else
-        //        return true; //Return true if option is not 0 because there is no checksum
-
-        //    return false;
-        //}
-
-        /// <summary>
-        /// A frankenstine function of stuff from PKHeX
-        /// and my own insanity
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="chkOffest"></param>
-        /// <param name="start"></param>
-        /// <param name="size"></param>
-        /// <param name="inversion"></param>
-        /// <returns></returns>
-        //public bool Checksum(byte[] data, int chkOffest, int start, int size, bool inversion)
-        //{
-        //    Data_Conversion con = new Data_Conversion();
-        //    ushort check = PokeCrypto.GetCHK(data, start, size); //Makes the checksum
-        //    //currently edited for no check sum
-        //    if (con.LittleEndian(data, chkOffest, 2, inversion) == check)
-        //        return true;
-
-        //    return false;
-        //}
-
-        /// <summary>
         /// Ensures the IVs are valid
         /// </summary>
         /// <param name="inputFile"></param>

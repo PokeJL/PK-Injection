@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PK3_RAM_Injection
+﻿namespace PK3_RAM_Injection
 {
     public class Form_Validation_Manager
     {
         public Form_Validation_Manager() { }
 
-        public bool IsNumber(object sender)
+        public bool IsNumber(object sender, int max)
         {
             if (int.TryParse(((TextBox)sender).Text, out int value))
-                return true;
+            { 
+                if (Convert.ToInt32(((TextBox)sender).Text) <= max && (Convert.ToInt32(((TextBox)sender).Text)) > -1)
+                    return true;
+            }
+
+            ((TextBox)sender).Text = string.Empty;
+
             return false;
         }
 
@@ -84,12 +81,7 @@ namespace PK3_RAM_Injection
         public void NumberInRangeTextbox(object sender)
         {
             int max = 0;
-            //int count = NumUpDownCount(sender);
 
-            //foreach (var child in ((TextBox)sender).Parent.Controls.OfType<NumericUpDown>())
-            //{
-            //    count++;
-            //}
             if (((TextBox)sender).MaxLength == 5)
                 max = 65535;
             else if (((TextBox)sender).MaxLength == 3)

@@ -1,6 +1,4 @@
 ﻿using RAM_Injection_Data.Model;
-using System.Reflection;
-using System.Resources;
 
 namespace RAM_Injection_Data.Controller
 {

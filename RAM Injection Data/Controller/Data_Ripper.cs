@@ -79,7 +79,7 @@ namespace RAM_Injection_Data.Controller
                 else break;
             }
             data.Name = temp;
-            data.ID = hex.LittleEndianObject(list.TrainerID, true);
+            //data.ID = hex.LittleEndianObject(list.TrainerID, true);
             data.Move1 = pData.GetMove(hex.LittleEndianObject(list.Move1, true));
             data.Move2 = pData.GetMove(hex.LittleEndianObject(list.Move2, true));
             data.Move3 = pData.GetMove(hex.LittleEndianObject(list.Move3, true));

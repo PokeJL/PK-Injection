@@ -80,12 +80,16 @@ namespace PK3_RAM_Injection
             saveFileDialog1.Title = title;
             saveFileDialog1.ShowDialog();
 
-            for (int i = 0; i < rt.PokemonGen3s().Count; i++)
+            if (saveFileDialog1.FileName != string.Empty)
             {
-                if (rt.PokemonGen3s()[i].Edited)
-                    rt.ArrayManager().PokemonToArrayInject(rt.ApplicatonValues(), rt.PokemonGen3s()[i], rt.OffestData());
+
+                for (int i = 0; i < rt.PokemonGen3s().Count; i++)
+                {
+                    if (rt.PokemonGen3s()[i].Edited)
+                        rt.ArrayManager().PokemonToArrayInject(rt.ApplicatonValues(), rt.PokemonGen3s()[i], rt.OffestData());
+                }
+                rt.FileManager().WriteFile(string.Format("{0}", saveFileDialog1.FileName), rt.ApplicatonValues().FileData);
             }
-            rt.FileManager().WriteFile(string.Format("{0}", saveFileDialog1.FileName), rt.ApplicatonValues().FileData);
         }
 
         public void SaveDialogData(Run_Time_Manager rt, int slot, string extention, string title, List<List<NumericUpDown>>nudList)
@@ -97,23 +101,13 @@ namespace PK3_RAM_Injection
             saveFileDialog1.Title = title;
             saveFileDialog1.ShowDialog();
 
-            if (saveFileDialog1.FileName != string.Empty && title == "Save Pokemon")
+            if (saveFileDialog1.FileName != string.Empty)
             {
                 Form_Function_Manager fm = new();
                 byte[] saveData = new byte[rt.GameValues().StorageDataSize];
-                rt.ArrayManager().PokemonToArray(saveData, FixNames(fm.HexToInject(rt, nudList)) /*rt.PokemonGen3s()[slot]*/, rt.OffestData());
+                rt.ArrayManager().PokemonToArray(saveData, FixNames(fm.HexToInject(rt, nudList)), rt.OffestData());
                 rt.DataConversion().ChecksumCalculation(saveData, rt.OffestData());
                 rt.FileManager().WriteFile(string.Format("{0}", saveFileDialog1.FileName), saveData);
-            }
-            else if (saveFileDialog1.FileName != string.Empty && title == "Save RAM")
-            {
-
-                for (int i = 0; i < rt.PokemonGen3s().Count; i++)
-                {
-                    if (rt.PokemonGen3s()[i].Edited)
-                        rt.ArrayManager().PokemonToArrayInject(rt.ApplicatonValues(), rt.PokemonGen3s()[i], rt.OffestData());
-                }
-                rt.FileManager().WriteFile(string.Format("{0}", saveFileDialog1.FileName), rt.ApplicatonValues().FileData);
             }
         }
 

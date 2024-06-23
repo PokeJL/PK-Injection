@@ -69,7 +69,7 @@ namespace RAM_Injection_Data.Controller
             int version = (origins >> 7) & 15;
             int ball = (origins >> 11) & 15;
 
-            if (metLV < 101 && gender < 2 /*&& version < 6 && version != 0 && ball < 13 && ball != 0*/)
+            if (metLV < 101 && gender < 2)
                 return true;
 
             return false;

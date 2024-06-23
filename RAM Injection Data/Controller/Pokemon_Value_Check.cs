@@ -37,8 +37,6 @@ namespace RAM_Injection_Data.Controller
                 return false;
             if (!vdc.EV(buffer, gv.EffortTotal, gv.Invert, val.Gen, val.SubGen, gv.Option))
                 return false;
-            //if (!vdc.ChecksumEnd(buffer, gv.Option, gv.StorageDataSize, gv.Invert))
-            //    return false;
             if (!vdc.NameCheck(buffer, offset_Data.OTName, offset_Data.OTNameSize))
                 return false;
             if (!vdc.NameCheck(buffer, offset_Data.Nickname, offset_Data.NicknameSize))
@@ -184,8 +182,6 @@ namespace RAM_Injection_Data.Controller
             if (!(hex.LittleEndianObject(pokemon[f].EXP, inversion) == 
                 hex.LittleEndian(convert, offset_Data.EXP, offset_Data.SizeEXP, inversion)))
                 return false;
-            //if (!(hex.LittleEndian2D(pokemon, f, 70, 2, true) == hex.LittleEndian(convert, 70, 2, true)))
-            //    return false;
             if (!(hex.LittleEndianObject(pokemon[f].PKRus, false) == hex.LittleEndian(convert, offset_Data.Pkrus, 1, false))) //error might be here
                 return false;
             if (!(hex.LittleEndianObject(pokemon[f].IV, inversion) == hex.LittleEndian(convert, offset_Data.IV, offset_Data.SizeIV, inversion)))

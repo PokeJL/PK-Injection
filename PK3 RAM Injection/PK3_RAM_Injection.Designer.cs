@@ -214,6 +214,7 @@
             CuteNUD = new NumericUpDown();
             CoolGB = new GroupBox();
             CoolNUD = new NumericUpDown();
+            searchGB = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)DisplayDGV).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -339,11 +340,12 @@
             ((System.ComponentModel.ISupportInitialize)CuteNUD).BeginInit();
             CoolGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CoolNUD).BeginInit();
+            searchGB.SuspendLayout();
             SuspendLayout();
             // 
             // OpenFileBTN
             // 
-            OpenFileBTN.Location = new Point(333, 12);
+            OpenFileBTN.Location = new Point(410, 338);
             OpenFileBTN.Name = "OpenFileBTN";
             OpenFileBTN.Size = new Size(75, 23);
             OpenFileBTN.TabIndex = 0;
@@ -353,35 +355,35 @@
             // 
             // OpenFileTXB
             // 
-            OpenFileTXB.Location = new Point(414, 13);
+            OpenFileTXB.Location = new Point(491, 339);
             OpenFileTXB.Name = "OpenFileTXB";
             OpenFileTXB.Size = new Size(156, 23);
             OpenFileTXB.TabIndex = 1;
             // 
             // FindPkmnBTN
             // 
-            FindPkmnBTN.Location = new Point(652, 44);
+            FindPkmnBTN.Location = new Point(815, 339);
             FindPkmnBTN.Name = "FindPkmnBTN";
             FindPkmnBTN.Size = new Size(75, 23);
             FindPkmnBTN.TabIndex = 2;
-            FindPkmnBTN.Text = "Find PK";
+            FindPkmnBTN.Text = "Search";
             FindPkmnBTN.UseVisualStyleBackColor = true;
             FindPkmnBTN.Click += FindPkmnBTN_Click;
             // 
             // RipProgressBar
             // 
-            RipProgressBar.Location = new Point(576, 12);
+            RipProgressBar.Location = new Point(653, 338);
             RipProgressBar.Name = "RipProgressBar";
             RipProgressBar.Size = new Size(156, 23);
             RipProgressBar.TabIndex = 3;
             // 
             // ExtractBTN
             // 
-            ExtractBTN.Location = new Point(330, 338);
+            ExtractBTN.Location = new Point(216, 338);
             ExtractBTN.Name = "ExtractBTN";
             ExtractBTN.Size = new Size(75, 23);
             ExtractBTN.TabIndex = 4;
-            ExtractBTN.Text = "Extract PK";
+            ExtractBTN.Text = "v Extract v";
             ExtractBTN.UseVisualStyleBackColor = true;
             ExtractBTN.Click += ExtractBTN_Click;
             // 
@@ -391,33 +393,33 @@
             ImportBTN.Name = "ImportBTN";
             ImportBTN.Size = new Size(75, 23);
             ImportBTN.TabIndex = 6;
-            ImportBTN.Text = "Import PK";
+            ImportBTN.Text = "^ Import ^";
             ImportBTN.UseVisualStyleBackColor = true;
             ImportBTN.Click += ImportBTN_Click;
             // 
             // EditBTN
             // 
-            EditBTN.Location = new Point(657, 338);
+            EditBTN.Location = new Point(313, 100);
             EditBTN.Name = "EditBTN";
             EditBTN.Size = new Size(75, 23);
             EditBTN.TabIndex = 7;
-            EditBTN.Text = "Edit PK";
+            EditBTN.Text = "<< Edit";
             EditBTN.UseVisualStyleBackColor = true;
             EditBTN.Click += EditBTN_Click;
             // 
             // InjectBTN
             // 
-            InjectBTN.Location = new Point(93, 338);
+            InjectBTN.Location = new Point(313, 157);
             InjectBTN.Name = "InjectBTN";
             InjectBTN.Size = new Size(75, 23);
             InjectBTN.TabIndex = 8;
-            InjectBTN.Text = "Inject PK";
+            InjectBTN.Text = "Inject >>";
             InjectBTN.UseVisualStyleBackColor = true;
             InjectBTN.Click += InjectBTN_Click;
             // 
             // SaveBTN
             // 
-            SaveBTN.Location = new Point(174, 338);
+            SaveBTN.Location = new Point(815, 292);
             SaveBTN.Name = "SaveBTN";
             SaveBTN.Size = new Size(75, 23);
             SaveBTN.TabIndex = 9;
@@ -431,39 +433,41 @@
             // 
             // TidTXT
             // 
-            TidTXT.Location = new Point(333, 41);
+            TidTXT.Location = new Point(6, 18);
+            TidTXT.MaxLength = 5;
             TidTXT.Name = "TidTXT";
-            TidTXT.Size = new Size(75, 23);
+            TidTXT.Size = new Size(54, 23);
             TidTXT.TabIndex = 12;
+            TidTXT.Leave += ValidID;
             // 
             // EncryptedCB
             // 
             EncryptedCB.AutoSize = true;
             EncryptedCB.Checked = true;
             EncryptedCB.CheckState = CheckState.Checked;
-            EncryptedCB.Location = new Point(486, 41);
+            EncryptedCB.Location = new Point(164, 20);
             EncryptedCB.Name = "EncryptedCB";
-            EncryptedCB.Size = new Size(84, 19);
+            EncryptedCB.Size = new Size(106, 19);
             EncryptedCB.TabIndex = 13;
-            EncryptedCB.Text = "Encrypted?";
+            EncryptedCB.Text = "Data encrypted";
             EncryptedCB.UseVisualStyleBackColor = true;
             EncryptedCB.CheckedChanged += EncryptedCB_CheckedChanged;
             // 
             // SearchIDLBL
             // 
             SearchIDLBL.AutoSize = true;
-            SearchIDLBL.Location = new Point(414, 44);
+            SearchIDLBL.Location = new Point(66, 21);
             SearchIDLBL.Name = "SearchIDLBL";
-            SearchIDLBL.Size = new Size(56, 15);
+            SearchIDLBL.Size = new Size(35, 15);
             SearchIDLBL.TabIndex = 14;
-            SearchIDLBL.Text = "Trainer ID";
+            SearchIDLBL.Text = "OT ID";
             // 
             // DisplayDGV
             // 
             DisplayDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DisplayDGV.Location = new Point(330, 70);
+            DisplayDGV.Location = new Point(414, 13);
             DisplayDGV.Name = "DisplayDGV";
-            DisplayDGV.Size = new Size(579, 262);
+            DisplayDGV.Size = new Size(600, 262);
             DisplayDGV.TabIndex = 15;
             DisplayDGV.CellClick += DataGridViewRowSelect;
             // 
@@ -2325,16 +2329,26 @@
             CoolNUD.TabIndex = 5;
             CoolNUD.Tag = "contest1";
             // 
+            // searchGB
+            // 
+            searchGB.Controls.Add(TidTXT);
+            searchGB.Controls.Add(SearchIDLBL);
+            searchGB.Controls.Add(EncryptedCB);
+            searchGB.Location = new Point(414, 279);
+            searchGB.Name = "searchGB";
+            searchGB.Size = new Size(294, 53);
+            searchGB.TabIndex = 17;
+            searchGB.TabStop = false;
+            searchGB.Text = "Search Conditions";
+            // 
             // PK3_RAM_Injection
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(921, 373);
+            ClientSize = new Size(1062, 373);
+            Controls.Add(searchGB);
             Controls.Add(tabControl1);
             Controls.Add(DisplayDGV);
-            Controls.Add(SearchIDLBL);
-            Controls.Add(EncryptedCB);
-            Controls.Add(TidTXT);
             Controls.Add(SaveBTN);
             Controls.Add(InjectBTN);
             Controls.Add(EditBTN);
@@ -2345,7 +2359,7 @@
             Controls.Add(OpenFileTXB);
             Controls.Add(OpenFileBTN);
             Name = "PK3_RAM_Injection";
-            Text = "PK3 RAM Injection";
+            Text = "PK Injection";
             Load += LoadForm;
             ((System.ComponentModel.ISupportInitialize)DisplayDGV).EndInit();
             tabControl1.ResumeLayout(false);
@@ -2484,6 +2498,8 @@
             ((System.ComponentModel.ISupportInitialize)CuteNUD).EndInit();
             CoolGB.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)CoolNUD).EndInit();
+            searchGB.ResumeLayout(false);
+            searchGB.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -2676,5 +2692,6 @@
         private ComboBox versionCB;
         private TextBox metLevelTXT;
         private Label mLevelLBL;
+        private GroupBox searchGB;
     }
 }

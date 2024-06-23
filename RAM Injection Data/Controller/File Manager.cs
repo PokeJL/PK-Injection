@@ -4,13 +4,7 @@ namespace RAM_Injection_Data.Controller
 {
     public class File_Manager
     {
-        public delegate void MaxProgressMethodInvoker(int amount);
-        public event MaxProgressMethodInvoker MP;
-
-        public File_Manager() 
-        {
-
-        }
+        public File_Manager() { }
 
         public byte[] OpenFile(string path)
         {
@@ -28,8 +22,6 @@ namespace RAM_Injection_Data.Controller
 
             inputFile = OpenFile(path);
             obj.FileData = inputFile;
-
-            //MP(inputFile.Length);
         }
 
         public void LoadDataImport(string path, Applicaton_Values obj)

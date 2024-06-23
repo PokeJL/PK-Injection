@@ -1,12 +1,5 @@
 ﻿using RAM_Injection_Data.Controller;
 using RAM_Injection_Data.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace PK3_RAM_Injection
 {

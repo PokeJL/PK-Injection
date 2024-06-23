@@ -3,8 +3,6 @@ using ComboBox = System.Windows.Forms.ComboBox;
 using TextBox = System.Windows.Forms.TextBox;
 using ProgressBar = System.Windows.Forms.ProgressBar;
 using RAM_Injection_Data.Model;
-using PKHeX.Core;
-using System.Windows.Forms;
 
 namespace PK3_RAM_Injection
 {
@@ -15,17 +13,10 @@ namespace PK3_RAM_Injection
         public async void FindData(Run_Time_Manager rt, TextBox textBox, OpenFileDialog openFileDialog, ProgressBar progressBar, DataGridView dataGridView)
         {
             int updateTime = 0;
-            //rt.ApplicatonValues().Found = 0;
             rt.PokemonGen3s().Clear();
 
             if (rt.ApplicatonValues().FileAdded == true) //Searches for a Pokemon
             {
-                ////Set values for main line game
-                //rt.ApplicatonValues().Gen = 3;
-                //rt.ApplicatonValues().SubGen = 0;
-                //rt.SetValues().GameSetValues(rt.GameValues(), 3, 0);
-                //rt.SetValues().OffsetSetValues(rt.OffestData(), 3, 0);
-
                 int intID = Convert.ToInt32(textBox.Text);
                 byte temp = 0x00;
                 var tid = new byte[2];
@@ -73,17 +64,20 @@ namespace PK3_RAM_Injection
 
             if (rt.List().Count == 0)
                 rt.List().Add("1");
-
-            /*
-             Add textbox message code here.
-             */
         }
 
         public void Encrypted(Run_Time_Manager rt, CheckBox checkBox)
         {
-            if(checkBox.Checked)
+            if (checkBox.Checked)
+            {
                 rt.GameValues().IsEncrypted = true;
-            else rt.GameValues().IsEncrypted = false;
+                checkBox.Text = "Data encrypted";
+            }
+            else
+            {
+                rt.GameValues().IsEncrypted = false;
+                checkBox.Text = "Data not encrypted";
+            }
         }
 
         public void LoadNumericUpDown(TabPage sender, List<List<NumericUpDown>> num)
@@ -150,6 +144,56 @@ namespace PK3_RAM_Injection
             }
 
             dataGridView.DataSource = display;
+
+            //----Everything below this point is to make the display of the data grid view nice.----
+            //Format column headers
+            dataGridView.EnableHeadersVisualStyles = false;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe", 12, FontStyle.Bold);
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
+            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //Colour of everyother row
+            dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
+
+            DataGridViewImageColumn img = new DataGridViewImageColumn();
+            string sprite = string.Empty;
+            dataGridView.Columns.Insert(0, img);
+            if (dataGridView.RowCount > 0)
+            {
+                for (int i = 0; i < dataGridView.RowCount; i ++)
+                { 
+                    sprite = "a_" + dataGridView.Rows[i].Cells[1].Value.ToString();
+                    dataGridView.Rows[i].Cells[0].Value = Properties.Resources.ResourceManager.GetObject(sprite);
+                    dataGridView.Rows[i].Height = 56;
+                }
+            }
+
+            dataGridView.Columns["SpeciesId"].Visible = false;
+
+            //Species column
+            dataGridView.Columns[0].HeaderText = "Pokémon";
+
+            //Name column
+            dataGridView.Columns[0].HeaderText = "Nickname";
+
+            //Move 1 column
+            dataGridView.Columns[0].HeaderText = "Move 1";
+
+            //Move 2 column
+            dataGridView.Columns[0].HeaderText = "Move 2";
+
+            //Move 3 column
+            dataGridView.Columns[0].HeaderText = "Move 3";
+
+            //Move 4 column
+            dataGridView.Columns[0].HeaderText = "Move 4";
+
+            //Format columns loop to reduce redundant code.
+            for (int i = 0; i < dataGridView.ColumnCount; i++)
+            {
+                dataGridView.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView.Columns[i].Width = 90;
+            }
         }
 
         public Pokemon_Gen3 HexToInject(Run_Time_Manager rt, List<List<NumericUpDown>> sendersList)

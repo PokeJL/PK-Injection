@@ -28,7 +28,6 @@ namespace PK3_RAM_Injection
         private void LoadForm(object sender, EventArgs e)
         {
             functionManager.LoadNumericUpDown(tabPage1, numericUpDowns);
-            //Set values for main line game
             runTimeManager.ApplicatonValues().Gen = 3;
             runTimeManager.ApplicatonValues().SubGen = 0;
             runTimeManager.SetValues().GameSetValues(runTimeManager.GameValues(), 3, 0);
@@ -178,6 +177,11 @@ namespace PK3_RAM_Injection
         private void OrginComboBoxAndTextToNumUpDown(object sender, EventArgs e)
         {
             hexManager.OrginComboBoxAndTextToNumUpDown(sender);
+        }
+
+        private void ValidID(object sender, EventArgs e)
+        {
+            validationManager.IsNumber(sender, 65535);
         }
     }
 }
