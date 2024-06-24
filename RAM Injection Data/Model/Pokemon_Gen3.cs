@@ -1,5 +1,9 @@
 ﻿namespace RAM_Injection_Data.Model
 {
+    /// <summary>
+    /// Inherits the the Pokemon Base class model.
+    /// Contain refined data specific for gen 3
+    /// </summary>
     public class Pokemon_Gen3 : Pokemon_Base
     {
         public List<byte>? SecretID { get; set; } = [];

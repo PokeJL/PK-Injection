@@ -3,6 +3,11 @@ using RAM_Injection_Data.Model;
 
 namespace RAM_Injection_Data.Controller
 {
+    /// <summary>
+    /// Master controller for the application
+    /// Manages commonly used controllers and the models so little to no data
+    /// from the backend of the application is called directly be the UI and forms
+    /// </summary>
     public class Run_Time_Manager
     {
         readonly Data_Conversion hex;

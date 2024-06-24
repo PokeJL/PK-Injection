@@ -7,7 +7,7 @@ namespace RAM_Injection_Data.Controller
         public Array_Manager() { }
 
         /// <summary>
-        /// Checks if the Pokemon as alresdy been found
+        /// Checks if the Pokemon as already been found
         /// </summary>
         /// <param name="pokemon">list of list of Pokemon</param>
         /// <param name="found">How many Pokemon are found</param>
@@ -37,9 +37,15 @@ namespace RAM_Injection_Data.Controller
             return true;
         }
 
+        /// <summary>
+        /// Stores a Pokemon from an object into an array not encrypted
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="pokemon"></param>
+        /// <param name="od"></param>
         public void PokemonToArray(byte[] arr, Pokemon_Gen3 pokemon, Offest_data od) 
         {
-            for(int i = 0; i < 22; i++) 
+            for(int i = 0; i < 10; i++) 
             {
                 if (i < 1)
                 {
@@ -102,6 +108,12 @@ namespace RAM_Injection_Data.Controller
             }
         }
 
+        /// <summary>
+        /// Stores data from an unencrypted array to an object
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="od"></param>
+        /// <returns></returns>
         public Pokemon_Gen3 ArrayToPokemon(byte[] arr, Offest_data od)
         {
             Pokemon_Gen3 pokemon = new();
@@ -167,6 +179,12 @@ namespace RAM_Injection_Data.Controller
             return pokemon;
         }
 
+        /// <summary>
+        /// Copies data from one like object to another like object
+        /// </summary>
+        /// <param name="survive"></param>
+        /// <param name="noneSurvive"></param>
+        /// <param name="od"></param>
         public void CopyPokemonObject(Pokemon_Gen3 survive, Pokemon_Gen3 noneSurvive, Offest_data od)
         {
             for (int i = 0; i < 10; i++)
@@ -230,9 +248,13 @@ namespace RAM_Injection_Data.Controller
             }
         }
 
+        /// <summary>
+        /// Stores edited data back to the list of objects
+        /// </summary>
+        /// <param name="survive"></param>
+        /// <param name="noneSurvive"></param>
         public void CommitEditToObject(Pokemon_Gen3 survive, Pokemon_Gen3 noneSurvive)
         {
-            //noneSurvive = new();
             for (int i = 0; i < 10; i++)
             {
                 if (i < 1)
@@ -295,6 +317,12 @@ namespace RAM_Injection_Data.Controller
             noneSurvive.Edited = true;
         }
 
+        /// <summary>
+        /// Takes an object and stores the data into a byte array
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="pokemon"></param>
+        /// <param name="od"></param>
         public void PokemonToArrayInject(Applicaton_Values arr, Pokemon_Gen3 pokemon, Offest_data od)
         {
             for (int i = 0; i < pokemon.AdressInRAM.Count; i++)
@@ -357,6 +385,24 @@ namespace RAM_Injection_Data.Controller
                     {
                         arr.FileData[pokemon.AdressInRAM[i] + od.Nickname + m] = pokemon.Nickname[m];
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Takes am object and encrypts data and stored into an array
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="pokemon"></param>
+        /// <param name="od"></param>
+        /// <param name="enPokemon"></param>
+        public void PokemonToArrayInjectEncrypted(Applicaton_Values arr, Pokemon_Gen3 pokemon, Offest_data od, byte[] enPokemon)
+        {
+            for (int i = 0; i < pokemon.AdressInRAM.Count; i++)
+            {
+                for (int m = 0; m < enPokemon.Length; m++)
+                {
+                    arr.FileData[pokemon.AdressInRAM[i] + m] = enPokemon[m];
                 }
             }
         }

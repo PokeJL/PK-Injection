@@ -28,6 +28,7 @@ namespace PK3_RAM_Injection
         private void LoadForm(object sender, EventArgs e)
         {
             functionManager.LoadNumericUpDown(tabPage1, numericUpDowns);
+            functionManager.DisplayPokemon(DisplayDGV, runTimeManager, runTimeManager.PokemonGen3s());
             runTimeManager.ApplicatonValues().Gen = 3;
             runTimeManager.ApplicatonValues().SubGen = 0;
             runTimeManager.SetValues().GameSetValues(runTimeManager.GameValues(), 3, 0);
@@ -35,6 +36,10 @@ namespace PK3_RAM_Injection
             displayManager.InitializeHex(runTimeManager, numericUpDowns);
             PkrusCB1.SelectedIndex = 0;
             PkrusCB2.SelectedIndex = 0;
+            TidTXT.Text = "00000";
+            EditBTN.Enabled = false;
+            InjectBTN.Enabled = false;
+            SaveBTN.Enabled = false;
         }
 
         private void OpenFileBTN_Click(object sender, EventArgs e)
@@ -49,6 +54,14 @@ namespace PK3_RAM_Injection
 
         private void FindPkmnBTN_Click(object sender, EventArgs e)
         {
+            EditBTN.Enabled = false;
+            InjectBTN.Enabled = false;
+            SaveBTN.Enabled = false;
+            OpenFileBTN.Enabled = false;
+            FindPkmnBTN.Enabled = false;
+            TidTXT.Enabled = false;
+            EncryptedCB.Enabled = false;
+
             functionManager.FindData(runTimeManager, TidTXT, openFileDialog1, RipProgressBar, DisplayDGV);
         }
 
@@ -66,7 +79,7 @@ namespace PK3_RAM_Injection
         private void InjectBTN_Click(object sender, EventArgs e)
         {
             runTimeManager.ArrayManager().CommitEditToObject(functionManager.HexToInject(runTimeManager, numericUpDowns), runTimeManager.PokemonGen3s()[runTimeManager.ApplicatonValues().SelectIndex]);
-            functionManager.DisplayPokemon(DisplayDGV, runTimeManager.FindData(), runTimeManager.PokemonGen3s());
+            functionManager.DisplayPokemon(DisplayDGV, runTimeManager, runTimeManager.PokemonGen3s());
         }
 
         private void SaveBTN_Click(object sender, EventArgs e)

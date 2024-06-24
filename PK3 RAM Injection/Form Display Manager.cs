@@ -7,13 +7,24 @@ namespace PK3_RAM_Injection
     {
         public Form_Display_Manager() { }
 
+        /// <summary>
+        /// Initializes the hex editor for Pokemon
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="sendersList"></param>
         public void InitializeHex(Run_Time_Manager rt, List<List<NumericUpDown>> sendersList) 
         {
             SetHexToEdit(rt.LoadFile().LoadDefultPK3(rt), sendersList);
         }
 
+        /// <summary>
+        /// Loads a Pokemon found in RAM to the hex editor
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="sendersList"></param>
         public void SetHexToEdit(Pokemon_Gen3 p, List<List<NumericUpDown>>sendersList)
         {
+            //Sets all numeric up down objects to 1 inorder for edits to properly reflect
             for (int i = 0; i < sendersList.Count; i++) 
             {
                 for (int j = 0; j < sendersList[i].Count; j++)
@@ -22,6 +33,7 @@ namespace PK3_RAM_Injection
                 }
             }
 
+            //Loads the Pokemon into the editor
             for (int i = 0; i < sendersList.Count; i++)
             {
                 if (sendersList[i][0].Tag == "pid")

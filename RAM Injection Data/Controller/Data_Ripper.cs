@@ -63,6 +63,11 @@ namespace RAM_Injection_Data.Controller
 
         }
 
+        /// <summary>
+        /// Extracts data from the Pokemon list to create a new list so data can be presented better om the data grid view
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public Display_Data AddData(Pokemon_Gen3 list)
         {
             string temp = string.Empty;
@@ -70,7 +75,7 @@ namespace RAM_Injection_Data.Controller
             Name_Characters name = new();
             Pokemon_Data pData = new();
 
-            data.SpeciesId = hex.LittleEndianObject(list.PokemonID, true);
+            //data.SpeciesId = hex.LittleEndianObject(list.PokemonID, true);
 
             for (int i = 0; i < list.Nickname.Count; i++)
             {
@@ -84,7 +89,6 @@ namespace RAM_Injection_Data.Controller
             data.Move2 = pData.GetMove(hex.LittleEndianObject(list.Move2, true));
             data.Move3 = pData.GetMove(hex.LittleEndianObject(list.Move3, true));
             data.Move4 = pData.GetMove(hex.LittleEndianObject(list.Move4, true));
-
 
             return data;
         }

@@ -9,6 +9,13 @@ namespace RAM_Injection_Data.Controller
         public Set_Values() { }
         Offset offset = new();
 
+        /// <summary>
+        /// Old function from PK Extraction project
+        /// Loads data into the model for offsets
+        /// </summary>
+        /// <param name="od"></param>
+        /// <param name="gen"></param>
+        /// <param name="subGen"></param>
         public void OffsetSetValues(Offest_data od, int gen, int subGen)
         {
             int pid = 0, dex = 0, item = 0, ppups = 0, id = 0, sid = 0, exp = 0, friendship = 0,

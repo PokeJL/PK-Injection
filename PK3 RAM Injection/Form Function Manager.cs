@@ -10,6 +10,15 @@ namespace PK3_RAM_Injection
     {
         public Form_Function_Manager() {}
 
+        /// <summary>
+        /// Initiates the search function be creating a sepreate thread to run in.
+        /// Begining part of an old function from PK Extraction core
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="textBox"></param>
+        /// <param name="openFileDialog"></param>
+        /// <param name="progressBar"></param>
+        /// <param name="dataGridView"></param>
         public async void FindData(Run_Time_Manager rt, TextBox textBox, OpenFileDialog openFileDialog, ProgressBar progressBar, DataGridView dataGridView)
         {
             int updateTime = 0;
@@ -20,6 +29,19 @@ namespace PK3_RAM_Injection
                 int intID = Convert.ToInt32(textBox.Text);
                 byte temp = 0x00;
                 var tid = new byte[2];
+
+                foreach (var child in textBox.Parent.Controls.OfType<CheckBox>())
+                {
+                    if (child.Checked)
+                    {
+                        rt.GameValues().IsEncrypted = true;
+                    }
+                    else
+                    {
+                        rt.GameValues().IsEncrypted = false;
+                    }
+                }
+
                 tid[0] = (byte)(intID >> 8);
                 tid[1] = (byte)intID;
 
@@ -50,36 +72,43 @@ namespace PK3_RAM_Injection
 
             System.Windows.Forms.MessageBox.Show(rt.PokemonGen3s().Count.ToString() + " Pokemon found.");
 
-            DisplayPokemon(dataGridView, rt.FindData(), rt.PokemonGen3s());
+            DisplayPokemon(dataGridView, rt, rt.PokemonGen3s());
+
+            foreach (var child in dataGridView.Parent.Controls.OfType<Button>())
+            {
+                child.Enabled = true;
+            }
+
+            foreach (var child in textBox.Parent.Controls.OfType<CheckBox>())
+            {
+                child.Enabled = true;
+            }
+
+            textBox.Enabled = true;
         }
 
-        public void InjectData(Run_Time_Manager rt)
-        {
-            rt.ArrayManager().CommitEditToObject(rt.InjectPokemon() , rt.PokemonGen3s()[rt.ApplicatonValues().SelectIndex]);
-        }
-
-        public void SelectedData(Run_Time_Manager rt, ComboBox comboBox)
-        {
-            rt.ApplicatonValues().SelectIndex = comboBox.SelectedIndex;
-
-            if (rt.List().Count == 0)
-                rt.List().Add("1");
-        }
-
+        /// <summary>
+        /// Changes the check box text to indicate if the data is encrypted or not
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="checkBox"></param>
         public void Encrypted(Run_Time_Manager rt, CheckBox checkBox)
         {
             if (checkBox.Checked)
             {
-                rt.GameValues().IsEncrypted = true;
                 checkBox.Text = "Data encrypted";
             }
             else
             {
-                rt.GameValues().IsEncrypted = false;
                 checkBox.Text = "Data not encrypted";
             }
         }
 
+        /// <summary>
+        /// Loads all numeric up downs from the hex editor intoa list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="num"></param>
         public void LoadNumericUpDown(TabPage sender, List<List<NumericUpDown>> num)
         {
             foreach (var t in sender.Parent.Controls.OfType<TabPage>())
@@ -107,6 +136,12 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Selects a Pokemon from the data grid view for editing
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="dg"></param>
+        /// <param name="list"></param>
         public void LoadEdit(Run_Time_Manager rt, DataGridView dg , List<List<NumericUpDown>>list)
         {
             Form_Display_Manager display = new();
@@ -114,6 +149,14 @@ namespace PK3_RAM_Injection
             display.SetHexToEdit(rt.PokemonGen3s()[Convert.ToInt32(dg.Rows[dg.CurrentCell.RowIndex].Index)], list);
         }
 
+        /// <summary>
+        /// Updates the progress bar
+        /// An old function from PK Extraction core
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="time"></param>
+        /// <param name="data"></param>
+        /// <param name="progress"></param>
         private void ProgressUpdate(int amount, int time, byte[] data, IProgress<int> progress)
         {
             if (amount % time == 0) //Update bar if module is 0
@@ -122,7 +165,12 @@ namespace PK3_RAM_Injection
                 progress.Report(amount);
         }
 
-        //163 allows for update intervals that don't slow down the process by delaying the update by a bit
+        /// <summary>
+        /// 163 allows for update intervals that don't slow down the process by delaying the update by a bit
+        /// An old function from PK Extraction core
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         static private int UpdateProgressBar(int size)
         {
             int timing;
@@ -133,14 +181,20 @@ namespace PK3_RAM_Injection
             return timing;
         }
 
-        public void DisplayPokemon(DataGridView dataGridView, Data_Ripper search, List<Pokemon_Gen3> list)
+        /// <summary>
+        /// Formats the data to be displayed in the data grid view
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="rt"></param>
+        /// <param name="list"></param>
+        public void DisplayPokemon(DataGridView dataGridView, Run_Time_Manager rt, List<Pokemon_Gen3> list)
         {
             List<Display_Data> display = new List<Display_Data>();
             dataGridView.Columns.Clear();
 
             for(int i = 0; i < list.Count; i++) 
             { 
-                display.Add(search.AddData(list[i]));
+                display.Add(rt.FindData().AddData(list[i]));
             }
 
             dataGridView.DataSource = display;
@@ -162,13 +216,17 @@ namespace PK3_RAM_Injection
             {
                 for (int i = 0; i < dataGridView.RowCount; i ++)
                 { 
-                    sprite = "a_" + dataGridView.Rows[i].Cells[1].Value.ToString();
+                    sprite = "a_" + rt.DataConversion().LittleEndianObject(list[i].PokemonID, true).ToString();
                     dataGridView.Rows[i].Cells[0].Value = Properties.Resources.ResourceManager.GetObject(sprite);
+                    if (dataGridView.Rows[i].Cells[0].Value == null)
+                        dataGridView.Rows[i].Cells[0].Value = Properties.Resources.a_egg;
                     dataGridView.Rows[i].Height = 56;
+
+                    if (list[i].Edited == true)
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+
                 }
             }
-
-            dataGridView.Columns["SpeciesId"].Visible = false;
 
             //Species column
             dataGridView.Columns[0].HeaderText = "Pokémon";
@@ -196,6 +254,12 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Loads the data in the hex editor back into the list of found Pokemon
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="sendersList"></param>
+        /// <returns></returns>
         public Pokemon_Gen3 HexToInject(Run_Time_Manager rt, List<List<NumericUpDown>> sendersList)
         {
             Pokemon_Gen3 p = new();

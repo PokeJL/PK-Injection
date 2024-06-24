@@ -1,5 +1,8 @@
 ﻿namespace RAM_Injection_Data.Model
 {
+    /// <summary>
+    /// A base Pokemon object of values that would be relevent accross all Pokemon games
+    /// </summary>
     public class Pokemon_Base
     {
         public List<byte>? PokemonID { get; set; } = [];

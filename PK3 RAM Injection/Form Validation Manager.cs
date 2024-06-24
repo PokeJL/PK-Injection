@@ -4,6 +4,12 @@
     {
         public Form_Validation_Manager() { }
 
+        /// <summary>
+        /// Ensures that a string of characters is a valid positive number within a range
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public bool IsNumber(object sender, int max)
         {
             if (int.TryParse(((TextBox)sender).Text, out int value))
@@ -12,11 +18,16 @@
                     return true;
             }
 
-            ((TextBox)sender).Text = string.Empty;
+            ((TextBox)sender).Text = "00000";
 
             return false;
         }
 
+        /// <summary>
+        /// Ensures that a string of characters is a valid hex number
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
         public bool IsNumberHex(object sender)
         {
             string character;
@@ -33,6 +44,10 @@
             return true;
         }
 
+        /// <summary>
+        /// Ensures that a sting of characters is a properly formatted hex number
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumberFormattingHex(object sender)
         {
             char[] arr;
@@ -57,6 +72,10 @@
                 ((TextBox)sender).Text = "0";
         }
 
+        /// <summary>
+        /// Makes sure a string of character is a properly formatted integer number
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumberFormatting(object sender)
         {
             char[] arr;
@@ -78,6 +97,10 @@
                 ((TextBox)sender).Text = "0";
         }
 
+        /// <summary>
+        /// Makes sure an integer numer is in a range of values
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumberInRangeTextbox(object sender)
         {
             int max = 0;
@@ -93,18 +116,6 @@
                 ((TextBox)sender).Text = max.ToString();
             else if (Convert.ToInt32(((TextBox)sender).Text) < 0)
                 ((TextBox)sender).Text = "0";
-        }
-
-        private int NumUpDownCount(object sender)
-        {
-            int count = 0;
-
-            foreach (var child in ((TextBox)sender).Parent.Controls.OfType<NumericUpDown>())
-            {
-                count++;
-            }
-
-            return count;
         }
     }
 }

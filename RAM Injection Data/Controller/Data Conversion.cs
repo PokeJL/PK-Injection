@@ -1,5 +1,6 @@
 ﻿using PKHeX.Core;
 using RAM_Injection_Data.Model;
+using System;
 
 namespace RAM_Injection_Data.Controller
 {
@@ -110,6 +111,11 @@ namespace RAM_Injection_Data.Controller
             return buffer[0] << 32 | buffer[1] << 16 | buffer[2] << 8 | buffer[3];
         }
 
+        /// <summary>
+        /// Calculates the checksum of the data
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="od"></param>
         public void ChecksumCalculation(byte[] arr, Offest_data od)
         {
             ushort chk = 0;
@@ -119,6 +125,16 @@ namespace RAM_Injection_Data.Controller
             
             arr[od.Checksum + 1] = bytes[1];
             arr[od.Checksum] = bytes[0];
+        }
+
+        /// <summary>
+        /// Encrypts the data
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        public byte[] EncryptData(byte[] buffer)
+        {
+            return PokeCrypto.EncryptArray3(buffer);
         }
     }
 }

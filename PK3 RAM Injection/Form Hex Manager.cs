@@ -8,6 +8,10 @@ namespace PK3_RAM_Injection
         Form_Validation_Manager val = new();
         public Form_Hex_Manager() { }
 
+        /// <summary>
+        /// Loads data from numeric up downs as a decimal number into a textbox
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumUpDownToTextboxDecimal(object sender)
         {
             decimal[] resultDec = NumUpDownToArray(sender);
@@ -24,6 +28,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Loads data from numeric updowns as hex into a textbox
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumUpDownToTextboxHex(object sender)
         {
             decimal[] resultDec = NumUpDownToArray(sender);
@@ -38,6 +46,11 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Loads all numeric up downs into an array that belong to the same parent control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
         private decimal[] NumUpDownToArray(object sender)
         {
             int index = 0;
@@ -51,6 +64,10 @@ namespace PK3_RAM_Injection
             return resultDec;
         }
 
+        /// <summary>
+        /// Converts a decimal number from a textbox to numeric up downs
+        /// </summary>
+        /// <param name="sender"></param>
         public void TextBoxDecimalToNumUpDown(object sender)
         {
             val.NumberFormatting(sender);
@@ -72,6 +89,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Converts a hex number from textbox to numeric up downs
+        /// </summary>
+        /// <param name="sender"></param>
         public void TextBoxHexToNumUpDown(object sender)
         {
             val.NumberFormattingHex(sender);
@@ -89,6 +110,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Updates the selected index of a combo box from what numeric up down read
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumUpDownToDropMenu(object sender)
         {
             decimal[] resultDec = NumUpDownToArray(sender);
@@ -108,6 +133,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Updates numeric up down value to the selected index of a combo box
+        /// </summary>
+        /// <param name="sender"></param>
         public void DropMenuToNumUpDown(object sender)
         {
             int index = 0;
@@ -125,10 +154,13 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Updates a numeric up down from one of 2 combo boxes
+        /// </summary>
+        /// <param name="sender"></param>
         public void PKRuSStrainDropDownMenu(object sender)
         {
             int maxDays = 0;
-            //string infection;
 
             if (((ComboBox)sender).SelectedIndex == 4 ||
                 ((ComboBox)sender).SelectedIndex == 8 ||
@@ -165,6 +197,10 @@ namespace PK3_RAM_Injection
             Infection(0, ((ComboBox)sender).SelectedIndex, sender);
         }
 
+        /// <summary>
+        /// Updates a numeric up down from one of 2 combo boxes
+        /// </summary>
+        /// <param name="sender"></param>
         public void PKRuSDayDropDownMenu(object sender)
         {
             int strain = 0;
@@ -177,6 +213,12 @@ namespace PK3_RAM_Injection
             Infection(((ComboBox)sender).SelectedIndex, strain, sender);
         }
 
+        /// <summary>
+        /// Sets the value of a numeric up down from 2 combo boxes
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="strain"></param>
+        /// <param name="sender"></param>
         private void Infection(int day, int strain, object sender)
         {
             string infection = day.ToString("X") + strain.ToString("X");
@@ -193,6 +235,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Takes the values of 4 combo boxes and displays the numeric result in 1 numeric up down
+        /// </summary>
+        /// <param name="sender"></param>
         public void PPUPToNumUpDown(object sender)
         {
             string binary = string.Empty;
@@ -214,6 +260,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Takes value from one numeric up down and adjusts 4 combo boxes index to match
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumUpDownToPPUP(object sender)
         {
             decimal[] resultDec = NumUpDownToArray(sender);
@@ -238,6 +288,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Builds a string of characters from values pulled from numeric up downs and stores the string into a textbox
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumUpDownToStringTextbox(object sender)
         {
             Name_Characters nc = new();
@@ -270,6 +324,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Takes a string of characters and updates numeric up downs to the character corriponding values
+        /// </summary>
+        /// <param name="sender"></param>
         public void StringTextboxToNumUpDown(object sender) 
         {
             Name_Characters nc = new();
@@ -296,6 +354,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Takes numeric updowns and get the overall binarry number to update textboxes and combo boxes
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumUpDownToControls(object sender) 
         {
             byte[] dataByte = new byte[4];
@@ -334,6 +396,11 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Gets the binary number from textboxes and comboboxes to store in numeric updowns.
+        /// The sender object in a textbox
+        /// </summary>
+        /// <param name="sender"></param>
         public void TextBoxAndComboToNumUpDown(object sender)
         {
             val.NumberFormatting(sender);
@@ -379,6 +446,11 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Gets the binary number from textboxes and comboboxes to store in numeric updowns.
+        /// The sender object in a combo box
+        /// </summary>
+        /// <param name="sender"></param>
         public void ComboBoxAndTextToNumUpDown(object sender)
         {
             int[] ivBinary = new int[6];
@@ -421,6 +493,10 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Gets the binary from numeric up downs that update textbox and combo boxes accordingly
+        /// </summary>
+        /// <param name="sender"></param>
         public void OrginNumUpDownToControls(object sender)
         {
             string binary = string.Empty;
@@ -458,6 +534,11 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Gets the binary number from textboxes and comboboxes to store in numeric updowns.
+        /// The sender object in a textbox
+        /// </summary>
+        /// <param name="sender"></param>
         public void OrginTextBoxAndComboToNumUpDown(object sender)
         {
             val.NumberFormatting(sender);
@@ -509,6 +590,11 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Gets the binary number from textboxes and comboboxes to store in numeric updowns.
+        /// The sender object in a combo box
+        /// </summary>
+        /// <param name="sender"></param>
         public void OrginComboBoxAndTextToNumUpDown(object sender)
         {
             int[] txtBinary = new int[1];

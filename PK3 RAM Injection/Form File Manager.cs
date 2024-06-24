@@ -12,6 +12,12 @@ namespace PK3_RAM_Injection
     {
         public Form_File_Manager() {}
 
+        /// <summary>
+        /// Loads a selected file
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="openFileDialog"></param>
+        /// <param name="textBox"></param>
         public void OpenFile(Run_Time_Manager rt, OpenFileDialog openFileDialog, TextBox textBox)
         {
             openFileDialog.FileName = null;
@@ -22,16 +28,30 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Saves a Pokemon in the hex editor as a PK3
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="nudList"></param>
         public void ExtractData(Run_Time_Manager rt, List<List<NumericUpDown>>nudList)
         {
             SaveDialogData(rt, rt.ApplicatonValues().SelectIndex, "PK3|*.pk3", "Save Pokemon", nudList);
         }
 
+        /// <summary>
+        /// Save the RAM file for injection
+        /// </summary>
+        /// <param name="rt"></param>
         public void SaveData(Run_Time_Manager rt)
         {
             SaveDialogRAM(rt, rt.ApplicatonValues().SelectIndex, "DMP|*.dmp", "Save RAM");
         }
 
+        /// <summary>
+        /// Loads a PK3 into the hex editor
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="openFileDialog"></param>
         public void ImportData(Run_Time_Manager rt, OpenFileDialog openFileDialog)
         {
             openFileDialog.FileName = null;
@@ -51,7 +71,6 @@ namespace PK3_RAM_Injection
                 var sr = new StreamReader(openFileDialog.FileName);
                 if(openType == 1)
                 {
-                    //textBox.Text = string.Format("{0}", openFileDialog.FileName); //Show file path in textbox
                     rt.ApplicatonValues().FileAdded = true; //fileAdded = true;
                     rt.ApplicatonValues().Path = string.Format("{0}", openFileDialog.FileName);
                     FileInfo fi = new(rt.ApplicatonValues().Path);
@@ -71,6 +90,13 @@ namespace PK3_RAM_Injection
             }
         }
 
+        /// <summary>
+        /// Opens a save dialog so the RAM can be saved
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="slot"></param>
+        /// <param name="extention"></param>
+        /// <param name="title"></param>
         public void SaveDialogRAM(Run_Time_Manager rt, int slot, string extention, string title)
         {
             SaveFileDialog saveFileDialog1 = new();
@@ -86,12 +112,29 @@ namespace PK3_RAM_Injection
                 for (int i = 0; i < rt.PokemonGen3s().Count; i++)
                 {
                     if (rt.PokemonGen3s()[i].Edited)
-                        rt.ArrayManager().PokemonToArrayInject(rt.ApplicatonValues(), rt.PokemonGen3s()[i], rt.OffestData());
+                    {
+                        if (rt.GameValues().IsEncrypted == false)
+                            rt.ArrayManager().PokemonToArrayInject(rt.ApplicatonValues(), rt.PokemonGen3s()[i], rt.OffestData());
+                        else
+                        {
+                            byte[] saveData = new byte[rt.GameValues().StorageDataSize];
+                            rt.ArrayManager().PokemonToArray(saveData, rt.PokemonGen3s()[i], rt.OffestData());
+                            rt.ArrayManager().PokemonToArrayInjectEncrypted(rt.ApplicatonValues(), rt.PokemonGen3s()[i], rt.OffestData(), rt.DataConversion().EncryptData(saveData));
+                        }
+                    }
                 }
                 rt.FileManager().WriteFile(string.Format("{0}", saveFileDialog1.FileName), rt.ApplicatonValues().FileData);
             }
         }
 
+        /// <summary>
+        /// Opens a save dialog so a PK3 can be saved
+        /// </summary>
+        /// <param name="rt"></param>
+        /// <param name="slot"></param>
+        /// <param name="extention"></param>
+        /// <param name="title"></param>
+        /// <param name="nudList"></param>
         public void SaveDialogData(Run_Time_Manager rt, int slot, string extention, string title, List<List<NumericUpDown>>nudList)
         {
             SaveFileDialog saveFileDialog1 = new();
@@ -111,7 +154,11 @@ namespace PK3_RAM_Injection
             }
         }
 
-        //This function is to fix Nickname and OT name. This is a hacky fix but so be it.
+        /// <summary>
+        /// This function is to fix Nickname and OT name. This is a hacky fix but so be it.
+        /// </summary>
+        /// <param name="pokemon"></param>
+        /// <returns></returns>
         private Pokemon_Gen3 FixNames(Pokemon_Gen3 pokemon) 
         {
             byte temp = 0;

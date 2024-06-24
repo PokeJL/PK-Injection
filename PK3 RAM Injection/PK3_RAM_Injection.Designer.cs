@@ -2345,7 +2345,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1062, 373);
+            ClientSize = new Size(1026, 373);
             Controls.Add(searchGB);
             Controls.Add(tabControl1);
             Controls.Add(DisplayDGV);

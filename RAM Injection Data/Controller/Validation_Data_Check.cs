@@ -110,6 +110,13 @@ namespace RAM_Injection_Data.Controller
             return false;
         }
 
+        /// <summary>
+        /// Checks if nickname and OT name is valid
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="start"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public bool NameCheck(byte[]buffer, int start, int length)
         {
             int count = 0;
