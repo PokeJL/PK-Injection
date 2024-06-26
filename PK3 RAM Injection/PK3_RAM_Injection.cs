@@ -61,6 +61,7 @@ namespace PK3_RAM_Injection
             FindPkmnBTN.Enabled = false;
             TidTXT.Enabled = false;
             EncryptedCB.Enabled = false;
+            DexOrderCB.Enabled = false;
 
             functionManager.FindData(runTimeManager, TidTXT, openFileDialog1, RipProgressBar, DisplayDGV);
         }
@@ -73,12 +74,12 @@ namespace PK3_RAM_Injection
         private void ImportBTN_Click(object sender, EventArgs e)
         {
             fileManager.ImportData(runTimeManager, openFileDialog1);
-            displayManager.SetHexToEdit(runTimeManager.ArrayManager().ArrayToPokemon(runTimeManager.ApplicatonValues().ImportData, runTimeManager.OffestData()), numericUpDowns);
+            displayManager.SetHexToEdit(runTimeManager.ArrayManager().ArrayToPokemon(runTimeManager.ApplicatonValues().ImportData, runTimeManager.OffestData()), numericUpDowns, runTimeManager);
         }
 
         private void InjectBTN_Click(object sender, EventArgs e)
         {
-            runTimeManager.ArrayManager().CommitEditToObject(functionManager.HexToInject(runTimeManager, numericUpDowns), runTimeManager.PokemonGen3s()[runTimeManager.ApplicatonValues().SelectIndex]);
+            runTimeManager.ArrayManager().CommitEditToObject(functionManager.HexToInject(runTimeManager, numericUpDowns), runTimeManager.PokemonGen3s()[runTimeManager.ApplicatonValues().SelectIndex], runTimeManager);
             functionManager.DisplayPokemon(DisplayDGV, runTimeManager, runTimeManager.PokemonGen3s());
         }
 
@@ -195,6 +196,16 @@ namespace PK3_RAM_Injection
         private void ValidID(object sender, EventArgs e)
         {
             validationManager.IsNumber(sender, 65535);
+        }
+
+        private void PKRuSUpDownChange(object sender, EventArgs e)
+        {
+            hexManager.PKRuSUpDownChange(sender);
+        }
+
+        private void dexOrderCB_CheckedChanged(object sender, EventArgs e)
+        {
+            functionManager.PokemonListOrder(runTimeManager, DexOrderCB);
         }
     }
 }

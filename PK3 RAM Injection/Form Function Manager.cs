@@ -1,8 +1,8 @@
 ﻿using RAM_Injection_Data.Controller;
-using ComboBox = System.Windows.Forms.ComboBox;
 using TextBox = System.Windows.Forms.TextBox;
 using ProgressBar = System.Windows.Forms.ProgressBar;
 using RAM_Injection_Data.Model;
+using static System.Buffers.Binary.BinaryPrimitives;
 
 namespace PK3_RAM_Injection
 {
@@ -32,13 +32,27 @@ namespace PK3_RAM_Injection
 
                 foreach (var child in textBox.Parent.Controls.OfType<CheckBox>())
                 {
-                    if (child.Checked)
+                    if (child.Name == "EncryptedCB")
                     {
-                        rt.GameValues().IsEncrypted = true;
+                        if (child.Checked)
+                        {
+                            rt.GameValues().IsEncrypted = true;
+                        }
+                        else
+                        {
+                            rt.GameValues().IsEncrypted = false;
+                        }
                     }
-                    else
+                    else if (child.Name == "DexOrderCB")
                     {
-                        rt.GameValues().IsEncrypted = false;
+                        if (child.Checked)
+                        {
+                            rt.GameValues().PokemonListShuffle = true;
+                        }
+                        else
+                        {
+                            rt.GameValues().PokemonListShuffle = false;
+                        }
                     }
                 }
 
@@ -96,11 +110,23 @@ namespace PK3_RAM_Injection
         {
             if (checkBox.Checked)
             {
-                checkBox.Text = "Data encrypted";
+                checkBox.Text = "Data Encrypted";
             }
             else
             {
-                checkBox.Text = "Data not encrypted";
+                checkBox.Text = "Data Not Encrypted";
+            }
+        }
+
+        public void PokemonListOrder(Run_Time_Manager rt, CheckBox checkBox)
+        {
+            if (checkBox.Checked)
+            {
+                checkBox.Text = "Defult Pokémon Order";
+            }
+            else
+            {
+                checkBox.Text = "Numeric Pokémon Order";
             }
         }
 
@@ -146,7 +172,7 @@ namespace PK3_RAM_Injection
         {
             Form_Display_Manager display = new();
 
-            display.SetHexToEdit(rt.PokemonGen3s()[Convert.ToInt32(dg.Rows[dg.CurrentCell.RowIndex].Index)], list);
+            display.SetHexToEdit(rt.PokemonGen3s()[Convert.ToInt32(dg.Rows[dg.CurrentCell.RowIndex].Index)], list, rt);
         }
 
         /// <summary>
@@ -211,12 +237,28 @@ namespace PK3_RAM_Injection
 
             DataGridViewImageColumn img = new DataGridViewImageColumn();
             string sprite = string.Empty;
+            int properDex = 0;
+            byte[] dataByte = new byte[4];
+
             dataGridView.Columns.Insert(0, img);
             if (dataGridView.RowCount > 0)
             {
                 for (int i = 0; i < dataGridView.RowCount; i ++)
-                { 
-                    sprite = "a_" + rt.DataConversion().LittleEndianObject(list[i].PokemonID, true).ToString();
+                {
+                    for (int m = 0; m < list[i].PokemonID.Count(); m++)
+                        dataByte[m] = Decimal.ToByte(list[i].PokemonID[m]);
+                    properDex = ReadInt32LittleEndian(dataByte.AsSpan(0));
+
+                    if (rt.GameValues().PokemonListShuffle == true)
+                    {
+                        properDex = rt.DexConversion().Gen3GetDexNum(properDex);
+                        if (properDex == 387)
+                        {
+                            properDex = rt.DataConversion().LittleEndianObject(list[i].PokemonID, true);
+                        }
+                    }
+
+                    sprite = "a_" + properDex.ToString();
                     dataGridView.Rows[i].Cells[0].Value = Properties.Resources.ResourceManager.GetObject(sprite);
                     if (dataGridView.Rows[i].Cells[0].Value == null)
                         dataGridView.Rows[i].Cells[0].Value = Properties.Resources.a_egg;
@@ -263,7 +305,6 @@ namespace PK3_RAM_Injection
         public Pokemon_Gen3 HexToInject(Run_Time_Manager rt, List<List<NumericUpDown>> sendersList)
         {
             Pokemon_Gen3 p = new();
-            byte[] data = new byte[100];
 
             for (int i = 0; i < sendersList.Count; i++)
             {
@@ -548,10 +589,6 @@ namespace PK3_RAM_Injection
                     }
                 }
             }
-
-            rt.ArrayManager().PokemonToArray(data, p, rt.OffestData());
-            rt.DataConversion().ChecksumCalculation(data, rt.OffestData());
-            p = rt.ArrayManager().ArrayToPokemon(data, rt.OffestData());
 
             return p;
         }

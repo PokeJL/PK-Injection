@@ -1,4 +1,7 @@
-﻿using RAM_Injection_Data.Model;
+﻿using RAM_Injection_Data.Data;
+using RAM_Injection_Data.Model;
+using System;
+using static System.Buffers.Binary.BinaryPrimitives;
 
 namespace RAM_Injection_Data.Controller
 {
@@ -253,8 +256,36 @@ namespace RAM_Injection_Data.Controller
         /// </summary>
         /// <param name="survive"></param>
         /// <param name="noneSurvive"></param>
-        public void CommitEditToObject(Pokemon_Gen3 survive, Pokemon_Gen3 noneSurvive)
+        public void CommitEditToObject(Pokemon_Gen3 survive, Pokemon_Gen3 noneSurvive, Run_Time_Manager rt)
         {
+            int properDex = 0;
+            byte[] resultByte;
+            byte[] dataByte = new byte[4];
+            byte[] data = new byte[100];
+
+            for (int m = 0; m < survive.PokemonID.Count(); m++)
+                dataByte[m] = Decimal.ToByte(survive.PokemonID[m]);
+            properDex = ReadInt32LittleEndian(dataByte.AsSpan(0));
+
+            if (rt.GameValues().PokemonListShuffle == true)
+            {
+                if (properDex == 387)
+                {
+                    properDex = rt.DataConversion().LittleEndianObject(survive.PokemonID, true);
+                }
+
+                resultByte = BitConverter.GetBytes(rt.DexConversion().IndexToNumber(properDex));
+            }
+            else
+                resultByte = BitConverter.GetBytes(properDex);
+
+            for (int m = 0; m < survive.PokemonID.Count(); m++)
+                survive.PokemonID[m] = resultByte[m];
+
+            rt.ArrayManager().PokemonToArray(data, survive, rt.OffestData());
+            rt.DataConversion().ChecksumCalculation(data, rt.OffestData());
+            survive = rt.ArrayManager().ArrayToPokemon(data, rt.OffestData());
+
             for (int i = 0; i < 10; i++)
             {
                 if (i < 1)

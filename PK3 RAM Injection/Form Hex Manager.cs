@@ -521,8 +521,8 @@ namespace PK3_RAM_Injection
 
             foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<ComboBox>())
             {
-                if (binInt[1] < child.Items.Count - 1)
-                    child.SelectedIndex = binInt[1];
+                if (binInt[index] < child.Items.Count)
+                    child.SelectedIndex = binInt[index];
                 else
                     child.SelectedIndex = child.Items.Count - 1;
                 index++;
@@ -640,6 +640,40 @@ namespace PK3_RAM_Injection
             {
                 child.Value = resultByte[index];
                 index++;
+            }
+        }
+
+        /// <summary>
+        /// Sets the PKRuS comboboxes from the numeric up down.
+        /// </summary>
+        /// <param name="sender"></param>
+        public void PKRuSUpDownChange (object sender)
+        {
+            int[] selections = new int[2];
+            int index = 0;
+
+            int strain = ((byte)((NumericUpDown)sender).Value >> 4);
+            int days = (byte)((NumericUpDown)sender).Value & 15;
+
+            selections[1] = days;
+            selections[0] = strain;
+
+            foreach (var child in ((NumericUpDown)sender).Parent.Controls.OfType<ComboBox>())
+            {
+                try
+                {
+                    child.SelectedIndex = selections[index];
+                    index++;
+                }
+                catch
+                {
+                    ((NumericUpDown)sender).Value = 0;
+                    foreach (var fix in ((NumericUpDown)sender).Parent.Controls.OfType<ComboBox>())
+                    {
+                        fix.SelectedIndex = 0;
+                    }
+                    break;
+                }
             }
         }
     }

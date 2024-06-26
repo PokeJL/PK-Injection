@@ -215,6 +215,7 @@
             CoolGB = new GroupBox();
             CoolNUD = new NumericUpDown();
             searchGB = new GroupBox();
+            DexOrderCB = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)DisplayDGV).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -445,11 +446,11 @@
             EncryptedCB.AutoSize = true;
             EncryptedCB.Checked = true;
             EncryptedCB.CheckState = CheckState.Checked;
-            EncryptedCB.Location = new Point(164, 20);
+            EncryptedCB.Location = new Point(140, 13);
             EncryptedCB.Name = "EncryptedCB";
             EncryptedCB.Size = new Size(106, 19);
             EncryptedCB.TabIndex = 13;
-            EncryptedCB.Text = "Data encrypted";
+            EncryptedCB.Text = "Data Encrypted";
             EncryptedCB.UseVisualStyleBackColor = true;
             EncryptedCB.CheckedChanged += EncryptedCB_CheckedChanged;
             // 
@@ -691,6 +692,7 @@
             ppUpNUD.Size = new Size(37, 23);
             ppUpNUD.TabIndex = 5;
             ppUpNUD.Tag = "pkrus";
+            ppUpNUD.ValueChanged += PKRuSUpDownChange;
             // 
             // PkrusCB1
             // 
@@ -2331,15 +2333,29 @@
             // 
             // searchGB
             // 
+            searchGB.Controls.Add(DexOrderCB);
             searchGB.Controls.Add(TidTXT);
             searchGB.Controls.Add(SearchIDLBL);
             searchGB.Controls.Add(EncryptedCB);
             searchGB.Location = new Point(414, 279);
             searchGB.Name = "searchGB";
-            searchGB.Size = new Size(294, 53);
+            searchGB.Size = new Size(300, 53);
             searchGB.TabIndex = 17;
             searchGB.TabStop = false;
             searchGB.Text = "Search Conditions";
+            // 
+            // DexOrderCB
+            // 
+            DexOrderCB.AutoSize = true;
+            DexOrderCB.Checked = true;
+            DexOrderCB.CheckState = CheckState.Checked;
+            DexOrderCB.Location = new Point(140, 30);
+            DexOrderCB.Name = "DexOrderCB";
+            DexOrderCB.Size = new Size(145, 19);
+            DexOrderCB.TabIndex = 15;
+            DexOrderCB.Text = "Defult Pokémon Order";
+            DexOrderCB.UseVisualStyleBackColor = true;
+            DexOrderCB.CheckedChanged += dexOrderCB_CheckedChanged;
             // 
             // PK3_RAM_Injection
             // 
@@ -2693,5 +2709,6 @@
         private TextBox metLevelTXT;
         private Label mLevelLBL;
         private GroupBox searchGB;
+        private CheckBox DexOrderCB;
     }
 }

@@ -54,5 +54,10 @@
             }
             return value;
         }
+
+        public int IndexToNumber(int dex)
+        {
+            return gen3NatNums[dex];
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using RAM_Injection_Data.Controller;
+using RAM_Injection_Data.Data;
 using RAM_Injection_Data.Model;
+using static System.Buffers.Binary.BinaryPrimitives;
 
 namespace PK3_RAM_Injection
 {
@@ -14,7 +16,7 @@ namespace PK3_RAM_Injection
         /// <param name="sendersList"></param>
         public void InitializeHex(Run_Time_Manager rt, List<List<NumericUpDown>> sendersList) 
         {
-            SetHexToEdit(rt.LoadFile().LoadDefultPK3(rt), sendersList);
+            SetHexToEdit(rt.LoadFile().LoadDefultPK3(rt), sendersList, rt);
         }
 
         /// <summary>
@@ -22,7 +24,7 @@ namespace PK3_RAM_Injection
         /// </summary>
         /// <param name="p"></param>
         /// <param name="sendersList"></param>
-        public void SetHexToEdit(Pokemon_Gen3 p, List<List<NumericUpDown>>sendersList)
+        public void SetHexToEdit(Pokemon_Gen3 p, List<List<NumericUpDown>>sendersList, Run_Time_Manager rt)
         {
             //Sets all numeric up down objects to 1 inorder for edits to properly reflect
             for (int i = 0; i < sendersList.Count; i++) 
@@ -32,6 +34,23 @@ namespace PK3_RAM_Injection
                     sendersList[i][j].Value = 1;
                 }
             }
+
+            int properDex = 0;
+            byte[] dataByte = new byte[4];
+            for (int m = 0; m < p.PokemonID.Count(); m++)
+                dataByte[m] = Decimal.ToByte(p.PokemonID[m]);
+            properDex = ReadInt32LittleEndian(dataByte.AsSpan(0));
+
+            if (rt.GameValues().PokemonListShuffle == true)
+            {
+                properDex = rt.DexConversion().Gen3GetDexNum(properDex);
+                if (properDex == 387)
+                {
+                    properDex = rt.DataConversion().LittleEndianObject(p.PokemonID, true);
+                }
+            }
+
+            byte[] resultByte = BitConverter.GetBytes(properDex);
 
             //Loads the Pokemon into the editor
             for (int i = 0; i < sendersList.Count; i++)
@@ -47,7 +66,7 @@ namespace PK3_RAM_Injection
                 {
                     for (int j = 0; j < sendersList[i].Count; j++)
                     {
-                        sendersList[i][j].Value = p.PokemonID[j];
+                        sendersList[i][j].Value = resultByte[j];
                     }
                 }
                 else if (sendersList[i][0].Tag == "language")
