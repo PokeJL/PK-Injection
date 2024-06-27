@@ -207,5 +207,11 @@ namespace PK3_RAM_Injection
         {
             functionManager.PokemonListOrder(runTimeManager, DexOrderCB);
         }
+
+        private void InfoLBL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Information information = new();
+            information.ShowDialog();
+        }
     }
 }

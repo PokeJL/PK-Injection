@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PK3_RAM_Injection));
             OpenFileBTN = new Button();
             OpenFileTXB = new TextBox();
             FindPkmnBTN = new Button();
@@ -216,6 +217,7 @@
             CoolNUD = new NumericUpDown();
             searchGB = new GroupBox();
             DexOrderCB = new CheckBox();
+            InfoLBL = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)DisplayDGV).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -349,7 +351,7 @@
             OpenFileBTN.Location = new Point(410, 338);
             OpenFileBTN.Name = "OpenFileBTN";
             OpenFileBTN.Size = new Size(75, 23);
-            OpenFileBTN.TabIndex = 0;
+            OpenFileBTN.TabIndex = 4;
             OpenFileBTN.Text = "Open File";
             OpenFileBTN.UseVisualStyleBackColor = true;
             OpenFileBTN.Click += OpenFileBTN_Click;
@@ -360,13 +362,14 @@
             OpenFileTXB.Name = "OpenFileTXB";
             OpenFileTXB.Size = new Size(156, 23);
             OpenFileTXB.TabIndex = 1;
+            OpenFileTXB.TabStop = false;
             // 
             // FindPkmnBTN
             // 
             FindPkmnBTN.Location = new Point(815, 339);
             FindPkmnBTN.Name = "FindPkmnBTN";
             FindPkmnBTN.Size = new Size(75, 23);
-            FindPkmnBTN.TabIndex = 2;
+            FindPkmnBTN.TabIndex = 5;
             FindPkmnBTN.Text = "Search";
             FindPkmnBTN.UseVisualStyleBackColor = true;
             FindPkmnBTN.Click += FindPkmnBTN_Click;
@@ -383,7 +386,7 @@
             ExtractBTN.Location = new Point(216, 338);
             ExtractBTN.Name = "ExtractBTN";
             ExtractBTN.Size = new Size(75, 23);
-            ExtractBTN.TabIndex = 4;
+            ExtractBTN.TabIndex = 11;
             ExtractBTN.Text = "v Extract v";
             ExtractBTN.UseVisualStyleBackColor = true;
             ExtractBTN.Click += ExtractBTN_Click;
@@ -393,7 +396,7 @@
             ImportBTN.Location = new Point(12, 338);
             ImportBTN.Name = "ImportBTN";
             ImportBTN.Size = new Size(75, 23);
-            ImportBTN.TabIndex = 6;
+            ImportBTN.TabIndex = 10;
             ImportBTN.Text = "^ Import ^";
             ImportBTN.UseVisualStyleBackColor = true;
             ImportBTN.Click += ImportBTN_Click;
@@ -403,7 +406,7 @@
             EditBTN.Location = new Point(313, 100);
             EditBTN.Name = "EditBTN";
             EditBTN.Size = new Size(75, 23);
-            EditBTN.TabIndex = 7;
+            EditBTN.TabIndex = 8;
             EditBTN.Text = "<< Edit";
             EditBTN.UseVisualStyleBackColor = true;
             EditBTN.Click += EditBTN_Click;
@@ -413,7 +416,7 @@
             InjectBTN.Location = new Point(313, 157);
             InjectBTN.Name = "InjectBTN";
             InjectBTN.Size = new Size(75, 23);
-            InjectBTN.TabIndex = 8;
+            InjectBTN.TabIndex = 9;
             InjectBTN.Text = "Inject >>";
             InjectBTN.UseVisualStyleBackColor = true;
             InjectBTN.Click += InjectBTN_Click;
@@ -423,7 +426,7 @@
             SaveBTN.Location = new Point(815, 292);
             SaveBTN.Name = "SaveBTN";
             SaveBTN.Size = new Size(75, 23);
-            SaveBTN.TabIndex = 9;
+            SaveBTN.TabIndex = 7;
             SaveBTN.Text = "Save RAM";
             SaveBTN.UseVisualStyleBackColor = true;
             SaveBTN.Click += SaveBTN_Click;
@@ -438,7 +441,7 @@
             TidTXT.MaxLength = 5;
             TidTXT.Name = "TidTXT";
             TidTXT.Size = new Size(54, 23);
-            TidTXT.TabIndex = 12;
+            TidTXT.TabIndex = 1;
             TidTXT.Leave += ValidID;
             // 
             // EncryptedCB
@@ -449,7 +452,7 @@
             EncryptedCB.Location = new Point(140, 13);
             EncryptedCB.Name = "EncryptedCB";
             EncryptedCB.Size = new Size(106, 19);
-            EncryptedCB.TabIndex = 13;
+            EncryptedCB.TabIndex = 2;
             EncryptedCB.Text = "Data Encrypted";
             EncryptedCB.UseVisualStyleBackColor = true;
             EncryptedCB.CheckedChanged += EncryptedCB_CheckedChanged;
@@ -469,7 +472,7 @@
             DisplayDGV.Location = new Point(414, 13);
             DisplayDGV.Name = "DisplayDGV";
             DisplayDGV.Size = new Size(600, 262);
-            DisplayDGV.TabIndex = 15;
+            DisplayDGV.TabIndex = 6;
             DisplayDGV.CellClick += DataGridViewRowSelect;
             // 
             // tabControl1
@@ -483,7 +486,7 @@
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(283, 319);
-            tabControl1.TabIndex = 16;
+            tabControl1.TabIndex = 12;
             // 
             // tabPage1
             // 
@@ -519,7 +522,7 @@
             MetNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             MetNUD.Name = "MetNUD";
             MetNUD.Size = new Size(37, 23);
-            MetNUD.TabIndex = 5;
+            MetNUD.TabIndex = 26;
             MetNUD.Tag = "met";
             // 
             // Version
@@ -544,7 +547,7 @@
             metLevelTXT.MaxLength = 3;
             metLevelTXT.Name = "metLevelTXT";
             metLevelTXT.Size = new Size(44, 23);
-            metLevelTXT.TabIndex = 11;
+            metLevelTXT.TabIndex = 31;
             metLevelTXT.Leave += OrginTextBoxAndComboToNumUpDown;
             // 
             // mLevelLBL
@@ -563,7 +566,7 @@
             versionCB.Location = new Point(166, 50);
             versionCB.Name = "versionCB";
             versionCB.Size = new Size(71, 23);
-            versionCB.TabIndex = 9;
+            versionCB.TabIndex = 34;
             versionCB.SelectionChangeCommitted += OrginComboBoxAndTextToNumUpDown;
             // 
             // ballCB
@@ -573,7 +576,7 @@
             ballCB.Location = new Point(74, 50);
             ballCB.Name = "ballCB";
             ballCB.Size = new Size(86, 23);
-            ballCB.TabIndex = 8;
+            ballCB.TabIndex = 33;
             ballCB.SelectionChangeCommitted += OrginComboBoxAndTextToNumUpDown;
             // 
             // otGenderCB
@@ -583,7 +586,7 @@
             otGenderCB.Location = new Point(6, 51);
             otGenderCB.Name = "otGenderCB";
             otGenderCB.Size = new Size(62, 23);
-            otGenderCB.TabIndex = 7;
+            otGenderCB.TabIndex = 32;
             otGenderCB.SelectionChangeCommitted += OrginComboBoxAndTextToNumUpDown;
             // 
             // VersionNUD2
@@ -593,7 +596,7 @@
             VersionNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             VersionNUD2.Name = "VersionNUD2";
             VersionNUD2.Size = new Size(37, 23);
-            VersionNUD2.TabIndex = 6;
+            VersionNUD2.TabIndex = 30;
             VersionNUD2.Tag = "version";
             VersionNUD2.ValueChanged += OrginNumUpDownToControls;
             // 
@@ -604,7 +607,7 @@
             VersionNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             VersionNUD1.Name = "VersionNUD1";
             VersionNUD1.Size = new Size(37, 23);
-            VersionNUD1.TabIndex = 5;
+            VersionNUD1.TabIndex = 29;
             VersionNUD1.Tag = "version";
             VersionNUD1.ValueChanged += OrginNumUpDownToControls;
             // 
@@ -626,7 +629,7 @@
             LanguageNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             LanguageNUD.Name = "LanguageNUD";
             LanguageNUD.Size = new Size(37, 23);
-            LanguageNUD.TabIndex = 6;
+            LanguageNUD.TabIndex = 18;
             LanguageNUD.Tag = "language";
             LanguageNUD.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -637,7 +640,7 @@
             LanguageCB.Location = new Point(9, 48);
             LanguageCB.Name = "LanguageCB";
             LanguageCB.Size = new Size(62, 23);
-            LanguageCB.TabIndex = 0;
+            LanguageCB.TabIndex = 19;
             LanguageCB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // PkrusGB
@@ -679,7 +682,7 @@
             PkrusCB2.Location = new Point(92, 22);
             PkrusCB2.Name = "PkrusCB2";
             PkrusCB2.Size = new Size(37, 23);
-            PkrusCB2.TabIndex = 6;
+            PkrusCB2.TabIndex = 28;
             PkrusCB2.SelectionChangeCommitted += PKRuSDayDropDownMenu;
             // 
             // ppUpNUD
@@ -691,6 +694,7 @@
             ppUpNUD.Name = "ppUpNUD";
             ppUpNUD.Size = new Size(37, 23);
             ppUpNUD.TabIndex = 5;
+            ppUpNUD.TabStop = false;
             ppUpNUD.Tag = "pkrus";
             ppUpNUD.ValueChanged += PKRuSUpDownChange;
             // 
@@ -701,7 +705,7 @@
             PkrusCB1.Location = new Point(49, 22);
             PkrusCB1.Name = "PkrusCB1";
             PkrusCB1.Size = new Size(37, 23);
-            PkrusCB1.TabIndex = 0;
+            PkrusCB1.TabIndex = 27;
             PkrusCB1.SelectionChangeCommitted += PKRuSStrainDropDownMenu;
             // 
             // ItemGB
@@ -722,7 +726,7 @@
             ItemTB.MaxLength = 4;
             ItemTB.Name = "ItemTB";
             ItemTB.Size = new Size(80, 23);
-            ItemTB.TabIndex = 6;
+            ItemTB.TabIndex = 25;
             ItemTB.Leave += TextBoxHexToNumUpDown;
             // 
             // ItemNUD2
@@ -732,7 +736,7 @@
             ItemNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ItemNUD2.Name = "ItemNUD2";
             ItemNUD2.Size = new Size(37, 23);
-            ItemNUD2.TabIndex = 5;
+            ItemNUD2.TabIndex = 24;
             ItemNUD2.Tag = "item";
             ItemNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -743,7 +747,7 @@
             ItemNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ItemNUD1.Name = "ItemNUD1";
             ItemNUD1.Size = new Size(37, 23);
-            ItemNUD1.TabIndex = 4;
+            ItemNUD1.TabIndex = 23;
             ItemNUD1.Tag = "item";
             ItemNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -766,7 +770,7 @@
             speciesCB.Location = new Point(6, 48);
             speciesCB.Name = "speciesCB";
             speciesCB.Size = new Size(80, 23);
-            speciesCB.TabIndex = 6;
+            speciesCB.TabIndex = 22;
             speciesCB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // speciesNUD2
@@ -776,7 +780,7 @@
             speciesNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             speciesNUD2.Name = "speciesNUD2";
             speciesNUD2.Size = new Size(37, 23);
-            speciesNUD2.TabIndex = 5;
+            speciesNUD2.TabIndex = 21;
             speciesNUD2.Tag = "species";
             speciesNUD2.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -787,7 +791,7 @@
             speciesNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             speciesNUD1.Name = "speciesNUD1";
             speciesNUD1.Size = new Size(37, 23);
-            speciesNUD1.TabIndex = 4;
+            speciesNUD1.TabIndex = 20;
             speciesNUD1.Tag = "species";
             speciesNUD1.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -811,7 +815,7 @@
             pidTB.MaxLength = 8;
             pidTB.Name = "pidTB";
             pidTB.Size = new Size(100, 23);
-            pidTB.TabIndex = 7;
+            pidTB.TabIndex = 17;
             pidTB.Leave += TextBoxHexToNumUpDown;
             // 
             // pidNUD4
@@ -821,7 +825,7 @@
             pidNUD4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             pidNUD4.Name = "pidNUD4";
             pidNUD4.Size = new Size(37, 23);
-            pidNUD4.TabIndex = 6;
+            pidNUD4.TabIndex = 16;
             pidNUD4.Tag = "pid";
             pidNUD4.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -832,7 +836,7 @@
             pidNUD3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             pidNUD3.Name = "pidNUD3";
             pidNUD3.Size = new Size(37, 23);
-            pidNUD3.TabIndex = 5;
+            pidNUD3.TabIndex = 15;
             pidNUD3.Tag = "pid";
             pidNUD3.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -843,7 +847,7 @@
             pidNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             pidNUD2.Name = "pidNUD2";
             pidNUD2.Size = new Size(37, 23);
-            pidNUD2.TabIndex = 4;
+            pidNUD2.TabIndex = 14;
             pidNUD2.Tag = "pid";
             pidNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -854,7 +858,7 @@
             pidNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             pidNUD1.Name = "pidNUD1";
             pidNUD1.Size = new Size(37, 23);
-            pidNUD1.TabIndex = 3;
+            pidNUD1.TabIndex = 13;
             pidNUD1.Tag = "pid";
             pidNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -894,7 +898,7 @@
             numericUpDown5.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             numericUpDown5.Name = "numericUpDown5";
             numericUpDown5.Size = new Size(37, 23);
-            numericUpDown5.TabIndex = 5;
+            numericUpDown5.TabIndex = 55;
             numericUpDown5.Tag = "mpp4";
             // 
             // Move3ppGB
@@ -914,7 +918,7 @@
             numericUpDown4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(37, 23);
-            numericUpDown4.TabIndex = 5;
+            numericUpDown4.TabIndex = 54;
             numericUpDown4.Tag = "mpp3";
             // 
             // Move2ppGB
@@ -934,7 +938,7 @@
             numericUpDown3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(37, 23);
-            numericUpDown3.TabIndex = 5;
+            numericUpDown3.TabIndex = 53;
             numericUpDown3.Tag = "mpp2";
             // 
             // Move1ppGB
@@ -954,7 +958,7 @@
             numericUpDown2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(37, 23);
-            numericUpDown2.TabIndex = 5;
+            numericUpDown2.TabIndex = 52;
             numericUpDown2.Tag = "mpp1";
             // 
             // groupBox1
@@ -1000,7 +1004,7 @@
             ppUpCB4.Location = new Point(6, 183);
             ppUpCB4.Name = "ppUpCB4";
             ppUpCB4.Size = new Size(37, 23);
-            ppUpCB4.TabIndex = 10;
+            ppUpCB4.TabIndex = 51;
             ppUpCB4.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // ppUpCB3
@@ -1010,7 +1014,7 @@
             ppUpCB3.Location = new Point(6, 139);
             ppUpCB3.Name = "ppUpCB3";
             ppUpCB3.Size = new Size(37, 23);
-            ppUpCB3.TabIndex = 9;
+            ppUpCB3.TabIndex = 50;
             ppUpCB3.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // ppUpLBL2
@@ -1038,7 +1042,7 @@
             ppUpCB2.Location = new Point(6, 95);
             ppUpCB2.Name = "ppUpCB2";
             ppUpCB2.Size = new Size(37, 23);
-            ppUpCB2.TabIndex = 6;
+            ppUpCB2.TabIndex = 49;
             ppUpCB2.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // numericUpDown1
@@ -1048,7 +1052,7 @@
             numericUpDown1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(37, 23);
-            numericUpDown1.TabIndex = 5;
+            numericUpDown1.TabIndex = 47;
             numericUpDown1.Tag = "ppup";
             numericUpDown1.ValueChanged += NumUpDownToPPUP;
             // 
@@ -1059,7 +1063,7 @@
             ppUpCB1.Location = new Point(6, 51);
             ppUpCB1.Name = "ppUpCB1";
             ppUpCB1.Size = new Size(37, 23);
-            ppUpCB1.TabIndex = 0;
+            ppUpCB1.TabIndex = 48;
             ppUpCB1.SelectionChangeCommitted += PPUPToNumUpDown;
             // 
             // move1GB
@@ -1081,7 +1085,7 @@
             move1CB.Location = new Point(6, 48);
             move1CB.Name = "move1CB";
             move1CB.Size = new Size(80, 23);
-            move1CB.TabIndex = 6;
+            move1CB.TabIndex = 37;
             move1CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move1NUD2
@@ -1091,7 +1095,7 @@
             move1NUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move1NUD2.Name = "move1NUD2";
             move1NUD2.Size = new Size(37, 23);
-            move1NUD2.TabIndex = 5;
+            move1NUD2.TabIndex = 36;
             move1NUD2.Tag = "m1";
             move1NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1102,7 +1106,7 @@
             move1NUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move1NUD1.Name = "move1NUD1";
             move1NUD1.Size = new Size(37, 23);
-            move1NUD1.TabIndex = 4;
+            move1NUD1.TabIndex = 35;
             move1NUD1.Tag = "m1";
             move1NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1125,7 +1129,7 @@
             move2CB.Location = new Point(6, 48);
             move2CB.Name = "move2CB";
             move2CB.Size = new Size(80, 23);
-            move2CB.TabIndex = 6;
+            move2CB.TabIndex = 40;
             move2CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move2NUD2
@@ -1135,7 +1139,7 @@
             move2NUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move2NUD2.Name = "move2NUD2";
             move2NUD2.Size = new Size(37, 23);
-            move2NUD2.TabIndex = 5;
+            move2NUD2.TabIndex = 39;
             move2NUD2.Tag = "m2";
             move2NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1146,7 +1150,7 @@
             move2NUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move2NUD1.Name = "move2NUD1";
             move2NUD1.Size = new Size(37, 23);
-            move2NUD1.TabIndex = 4;
+            move2NUD1.TabIndex = 38;
             move2NUD1.Tag = "m2";
             move2NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1169,7 +1173,7 @@
             move4CB.Location = new Point(6, 48);
             move4CB.Name = "move4CB";
             move4CB.Size = new Size(80, 23);
-            move4CB.TabIndex = 6;
+            move4CB.TabIndex = 46;
             move4CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move4NUD2
@@ -1179,7 +1183,7 @@
             move4NUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move4NUD2.Name = "move4NUD2";
             move4NUD2.Size = new Size(37, 23);
-            move4NUD2.TabIndex = 5;
+            move4NUD2.TabIndex = 45;
             move4NUD2.Tag = "m4";
             move4NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1190,7 +1194,7 @@
             move4NUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move4NUD1.Name = "move4NUD1";
             move4NUD1.Size = new Size(37, 23);
-            move4NUD1.TabIndex = 4;
+            move4NUD1.TabIndex = 44;
             move4NUD1.Tag = "m4";
             move4NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1213,7 +1217,7 @@
             move3CB.Location = new Point(6, 48);
             move3CB.Name = "move3CB";
             move3CB.Size = new Size(80, 23);
-            move3CB.TabIndex = 6;
+            move3CB.TabIndex = 43;
             move3CB.SelectionChangeCommitted += DropMenuToComboBox;
             // 
             // move3NUD2
@@ -1223,7 +1227,7 @@
             move3NUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move3NUD2.Name = "move3NUD2";
             move3NUD2.Size = new Size(37, 23);
-            move3NUD2.TabIndex = 5;
+            move3NUD2.TabIndex = 42;
             move3NUD2.Tag = "m3";
             move3NUD2.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1234,7 +1238,7 @@
             move3NUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             move3NUD1.Name = "move3NUD1";
             move3NUD1.Size = new Size(37, 23);
-            move3NUD1.TabIndex = 4;
+            move3NUD1.TabIndex = 41;
             move3NUD1.Tag = "m3";
             move3NUD1.ValueChanged += NumUpDownToDropMenu;
             // 
@@ -1273,7 +1277,7 @@
             FriendshipNUP.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             FriendshipNUP.Name = "FriendshipNUP";
             FriendshipNUP.Size = new Size(37, 23);
-            FriendshipNUP.TabIndex = 5;
+            FriendshipNUP.TabIndex = 79;
             FriendshipNUP.Tag = "friend";
             // 
             // SpeedEvGB
@@ -1293,7 +1297,7 @@
             SpeedEvNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             SpeedEvNUD.Name = "SpeedEvNUD";
             SpeedEvNUD.Size = new Size(37, 23);
-            SpeedEvNUD.TabIndex = 5;
+            SpeedEvNUD.TabIndex = 78;
             SpeedEvNUD.Tag = "ev6";
             // 
             // SpdEvGB
@@ -1313,7 +1317,7 @@
             SpdEvNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             SpdEvNUD.Name = "SpdEvNUD";
             SpdEvNUD.Size = new Size(37, 23);
-            SpdEvNUD.TabIndex = 5;
+            SpdEvNUD.TabIndex = 77;
             SpdEvNUD.Tag = "ev5";
             // 
             // SpAEvGB
@@ -1333,7 +1337,7 @@
             SpAEvNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             SpAEvNUD.Name = "SpAEvNUD";
             SpAEvNUD.Size = new Size(37, 23);
-            SpAEvNUD.TabIndex = 5;
+            SpAEvNUD.TabIndex = 76;
             SpAEvNUD.Tag = "ev4";
             // 
             // DefEvGB
@@ -1353,7 +1357,7 @@
             DefEvNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             DefEvNUD.Name = "DefEvNUD";
             DefEvNUD.Size = new Size(37, 23);
-            DefEvNUD.TabIndex = 5;
+            DefEvNUD.TabIndex = 75;
             DefEvNUD.Tag = "ev3";
             // 
             // AttEvGB
@@ -1373,7 +1377,7 @@
             AttEvNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             AttEvNUD.Name = "AttEvNUD";
             AttEvNUD.Size = new Size(37, 23);
-            AttEvNUD.TabIndex = 5;
+            AttEvNUD.TabIndex = 74;
             AttEvNUD.Tag = "ev2";
             // 
             // HpEvGB
@@ -1393,7 +1397,7 @@
             HpEvNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             HpEvNUD.Name = "HpEvNUD";
             HpEvNUD.Size = new Size(37, 23);
-            HpEvNUD.TabIndex = 5;
+            HpEvNUD.TabIndex = 73;
             HpEvNUD.Tag = "ev1";
             // 
             // ivGB
@@ -1432,7 +1436,7 @@
             ivNUD4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD4.Name = "ivNUD4";
             ivNUD4.Size = new Size(37, 23);
-            ivNUD4.TabIndex = 28;
+            ivNUD4.TabIndex = 72;
             ivNUD4.Tag = "iv";
             ivNUD4.ValueChanged += NumUpDownToControls;
             // 
@@ -1443,7 +1447,7 @@
             ivNUD3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD3.Name = "ivNUD3";
             ivNUD3.Size = new Size(37, 23);
-            ivNUD3.TabIndex = 27;
+            ivNUD3.TabIndex = 71;
             ivNUD3.Tag = "iv";
             ivNUD3.ValueChanged += NumUpDownToControls;
             // 
@@ -1454,7 +1458,7 @@
             ivNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD2.Name = "ivNUD2";
             ivNUD2.Size = new Size(37, 23);
-            ivNUD2.TabIndex = 26;
+            ivNUD2.TabIndex = 70;
             ivNUD2.Tag = "iv";
             ivNUD2.ValueChanged += NumUpDownToControls;
             // 
@@ -1465,7 +1469,7 @@
             ivNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ivNUD1.Name = "ivNUD1";
             ivNUD1.Size = new Size(37, 23);
-            ivNUD1.TabIndex = 25;
+            ivNUD1.TabIndex = 69;
             ivNUD1.Tag = "iv";
             ivNUD1.ValueChanged += NumUpDownToControls;
             // 
@@ -1475,7 +1479,7 @@
             speTXT.MaxLength = 2;
             speTXT.Name = "speTXT";
             speTXT.Size = new Size(37, 23);
-            speTXT.TabIndex = 24;
+            speTXT.TabIndex = 66;
             speTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // spdTXT
@@ -1484,7 +1488,7 @@
             spdTXT.MaxLength = 2;
             spdTXT.Name = "spdTXT";
             spdTXT.Size = new Size(37, 23);
-            spdTXT.TabIndex = 23;
+            spdTXT.TabIndex = 65;
             spdTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // spaTXT
@@ -1493,7 +1497,7 @@
             spaTXT.MaxLength = 2;
             spaTXT.Name = "spaTXT";
             spaTXT.Size = new Size(37, 23);
-            spaTXT.TabIndex = 22;
+            spaTXT.TabIndex = 64;
             spaTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // defTXT
@@ -1502,7 +1506,7 @@
             defTXT.MaxLength = 2;
             defTXT.Name = "defTXT";
             defTXT.Size = new Size(37, 23);
-            defTXT.TabIndex = 21;
+            defTXT.TabIndex = 63;
             defTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // attTXT
@@ -1511,7 +1515,7 @@
             attTXT.MaxLength = 2;
             attTXT.Name = "attTXT";
             attTXT.Size = new Size(37, 23);
-            attTXT.TabIndex = 20;
+            attTXT.TabIndex = 62;
             attTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // hpTXT
@@ -1520,7 +1524,7 @@
             hpTXT.MaxLength = 2;
             hpTXT.Name = "hpTXT";
             hpTXT.Size = new Size(37, 23);
-            hpTXT.TabIndex = 19;
+            hpTXT.TabIndex = 61;
             hpTXT.Leave += TextBoxAndComboToNumUpDown;
             // 
             // abilityCB
@@ -1530,7 +1534,7 @@
             abilityCB.Location = new Point(88, 65);
             abilityCB.Name = "abilityCB";
             abilityCB.Size = new Size(78, 23);
-            abilityCB.TabIndex = 18;
+            abilityCB.TabIndex = 68;
             abilityCB.SelectionChangeCommitted += ComboBoxAndTextToNumUpDown;
             // 
             // eggCB
@@ -1540,7 +1544,7 @@
             eggCB.Location = new Point(6, 65);
             eggCB.Name = "eggCB";
             eggCB.Size = new Size(76, 23);
-            eggCB.TabIndex = 17;
+            eggCB.TabIndex = 67;
             eggCB.SelectionChangeCommitted += ComboBoxAndTextToNumUpDown;
             // 
             // abilityLBL
@@ -1635,7 +1639,7 @@
             textBox1.MaxLength = 7;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(80, 23);
-            textBox1.TabIndex = 7;
+            textBox1.TabIndex = 60;
             textBox1.Leave += TextBoxDecimalToNumUpDown;
             // 
             // ExpGB4
@@ -1645,7 +1649,7 @@
             ExpGB4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ExpGB4.Name = "ExpGB4";
             ExpGB4.Size = new Size(37, 23);
-            ExpGB4.TabIndex = 6;
+            ExpGB4.TabIndex = 59;
             ExpGB4.Tag = "exp";
             ExpGB4.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -1656,7 +1660,7 @@
             ExpGB3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ExpGB3.Name = "ExpGB3";
             ExpGB3.Size = new Size(37, 23);
-            ExpGB3.TabIndex = 5;
+            ExpGB3.TabIndex = 58;
             ExpGB3.Tag = "exp";
             ExpGB3.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -1667,7 +1671,7 @@
             ExpGB2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ExpGB2.Name = "ExpGB2";
             ExpGB2.Size = new Size(37, 23);
-            ExpGB2.TabIndex = 4;
+            ExpGB2.TabIndex = 57;
             ExpGB2.Tag = "exp";
             ExpGB2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -1678,7 +1682,7 @@
             ExpGB1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ExpGB1.Name = "ExpGB1";
             ExpGB1.Size = new Size(37, 23);
-            ExpGB1.TabIndex = 3;
+            ExpGB1.TabIndex = 56;
             ExpGB1.Tag = "exp";
             ExpGB1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -1721,7 +1725,7 @@
             nnTXT.MaxLength = 10;
             nnTXT.Name = "nnTXT";
             nnTXT.Size = new Size(100, 23);
-            nnTXT.TabIndex = 14;
+            nnTXT.TabIndex = 104;
             nnTXT.Leave += StringTextboxToNumUpDown;
             // 
             // nnNUB10
@@ -1731,7 +1735,7 @@
             nnNUB10.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB10.Name = "nnNUB10";
             nnNUB10.Size = new Size(37, 23);
-            nnNUB10.TabIndex = 13;
+            nnNUB10.TabIndex = 103;
             nnNUB10.Tag = "nickname";
             nnNUB10.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1742,7 +1746,7 @@
             nnNUB9.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB9.Name = "nnNUB9";
             nnNUB9.Size = new Size(37, 23);
-            nnNUB9.TabIndex = 12;
+            nnNUB9.TabIndex = 102;
             nnNUB9.Tag = "nickname";
             nnNUB9.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1753,7 +1757,7 @@
             nnNUB8.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB8.Name = "nnNUB8";
             nnNUB8.Size = new Size(37, 23);
-            nnNUB8.TabIndex = 11;
+            nnNUB8.TabIndex = 101;
             nnNUB8.Tag = "nickname";
             nnNUB8.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1764,7 +1768,7 @@
             nnNUB7.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB7.Name = "nnNUB7";
             nnNUB7.Size = new Size(37, 23);
-            nnNUB7.TabIndex = 10;
+            nnNUB7.TabIndex = 100;
             nnNUB7.Tag = "nickname";
             nnNUB7.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1775,7 +1779,7 @@
             nnNUB6.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB6.Name = "nnNUB6";
             nnNUB6.Size = new Size(37, 23);
-            nnNUB6.TabIndex = 9;
+            nnNUB6.TabIndex = 99;
             nnNUB6.Tag = "nickname";
             nnNUB6.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1786,7 +1790,7 @@
             nnNUB5.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB5.Name = "nnNUB5";
             nnNUB5.Size = new Size(37, 23);
-            nnNUB5.TabIndex = 8;
+            nnNUB5.TabIndex = 98;
             nnNUB5.Tag = "nickname";
             nnNUB5.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1797,7 +1801,7 @@
             nnNUB4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB4.Name = "nnNUB4";
             nnNUB4.Size = new Size(37, 23);
-            nnNUB4.TabIndex = 7;
+            nnNUB4.TabIndex = 97;
             nnNUB4.Tag = "nickname";
             nnNUB4.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1808,7 +1812,7 @@
             nnNUB3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB3.Name = "nnNUB3";
             nnNUB3.Size = new Size(37, 23);
-            nnNUB3.TabIndex = 6;
+            nnNUB3.TabIndex = 96;
             nnNUB3.Tag = "nickname";
             nnNUB3.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1819,7 +1823,7 @@
             nnNUB2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB2.Name = "nnNUB2";
             nnNUB2.Size = new Size(37, 23);
-            nnNUB2.TabIndex = 5;
+            nnNUB2.TabIndex = 95;
             nnNUB2.Tag = "nickname";
             nnNUB2.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1830,7 +1834,7 @@
             nnNUB1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             nnNUB1.Name = "nnNUB1";
             nnNUB1.Size = new Size(37, 23);
-            nnNUB1.TabIndex = 4;
+            nnNUB1.TabIndex = 94;
             nnNUB1.Tag = "nickname";
             nnNUB1.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1857,7 +1861,7 @@
             otTXT.MaxLength = 7;
             otTXT.Name = "otTXT";
             otTXT.Size = new Size(100, 23);
-            otTXT.TabIndex = 14;
+            otTXT.TabIndex = 93;
             otTXT.Leave += StringTextboxToNumUpDown;
             // 
             // otNUD7
@@ -1867,7 +1871,7 @@
             otNUD7.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             otNUD7.Name = "otNUD7";
             otNUD7.Size = new Size(37, 23);
-            otNUD7.TabIndex = 11;
+            otNUD7.TabIndex = 92;
             otNUD7.Tag = "ot";
             otNUD7.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1878,7 +1882,7 @@
             otNUD6.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             otNUD6.Name = "otNUD6";
             otNUD6.Size = new Size(37, 23);
-            otNUD6.TabIndex = 10;
+            otNUD6.TabIndex = 91;
             otNUD6.Tag = "ot";
             otNUD6.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1889,7 +1893,7 @@
             otNUD5.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             otNUD5.Name = "otNUD5";
             otNUD5.Size = new Size(37, 23);
-            otNUD5.TabIndex = 9;
+            otNUD5.TabIndex = 90;
             otNUD5.Tag = "ot";
             otNUD5.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1900,7 +1904,7 @@
             otNUD4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             otNUD4.Name = "otNUD4";
             otNUD4.Size = new Size(37, 23);
-            otNUD4.TabIndex = 7;
+            otNUD4.TabIndex = 89;
             otNUD4.Tag = "ot";
             otNUD4.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1911,7 +1915,7 @@
             otNUD3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             otNUD3.Name = "otNUD3";
             otNUD3.Size = new Size(37, 23);
-            otNUD3.TabIndex = 6;
+            otNUD3.TabIndex = 88;
             otNUD3.Tag = "ot";
             otNUD3.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1922,7 +1926,7 @@
             otNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             otNUD2.Name = "otNUD2";
             otNUD2.Size = new Size(37, 23);
-            otNUD2.TabIndex = 5;
+            otNUD2.TabIndex = 87;
             otNUD2.Tag = "ot";
             otNUD2.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1933,7 +1937,7 @@
             otNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             otNUD1.Name = "otNUD1";
             otNUD1.Size = new Size(37, 23);
-            otNUD1.TabIndex = 4;
+            otNUD1.TabIndex = 86;
             otNUD1.Tag = "ot";
             otNUD1.ValueChanged += NumUpDownToStringTextbox;
             // 
@@ -1955,7 +1959,7 @@
             sidTB.MaxLength = 5;
             sidTB.Name = "sidTB";
             sidTB.Size = new Size(80, 23);
-            sidTB.TabIndex = 6;
+            sidTB.TabIndex = 85;
             sidTB.Leave += TextBoxDecimalToNumUpDown;
             // 
             // sidNUD2
@@ -1965,7 +1969,7 @@
             sidNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             sidNUD2.Name = "sidNUD2";
             sidNUD2.Size = new Size(37, 23);
-            sidNUD2.TabIndex = 5;
+            sidNUD2.TabIndex = 84;
             sidNUD2.Tag = "sid";
             sidNUD2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -1976,7 +1980,7 @@
             sidNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             sidNUD1.Name = "sidNUD1";
             sidNUD1.Size = new Size(37, 23);
-            sidNUD1.TabIndex = 4;
+            sidNUD1.TabIndex = 83;
             sidNUD1.Tag = "sid";
             sidNUD1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -1998,7 +2002,7 @@
             idTB.MaxLength = 5;
             idTB.Name = "idTB";
             idTB.Size = new Size(80, 23);
-            idTB.TabIndex = 6;
+            idTB.TabIndex = 82;
             idTB.Leave += TextBoxDecimalToNumUpDown;
             // 
             // idNUD2
@@ -2008,7 +2012,7 @@
             idNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             idNUD2.Name = "idNUD2";
             idNUD2.Size = new Size(37, 23);
-            idNUD2.TabIndex = 5;
+            idNUD2.TabIndex = 81;
             idNUD2.Tag = "id";
             idNUD2.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -2019,7 +2023,7 @@
             idNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             idNUD1.Name = "idNUD1";
             idNUD1.Size = new Size(37, 23);
-            idNUD1.TabIndex = 4;
+            idNUD1.TabIndex = 80;
             idNUD1.Tag = "id";
             idNUD1.ValueChanged += NumUpDownToTextboxDecimal;
             // 
@@ -2061,7 +2065,7 @@
             UnusedNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             UnusedNUD2.Name = "UnusedNUD2";
             UnusedNUD2.Size = new Size(37, 23);
-            UnusedNUD2.TabIndex = 6;
+            UnusedNUD2.TabIndex = 121;
             UnusedNUD2.Tag = "unused";
             // 
             // UnusedNUD1
@@ -2071,7 +2075,7 @@
             UnusedNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             UnusedNUD1.Name = "UnusedNUD1";
             UnusedNUD1.Size = new Size(37, 23);
-            UnusedNUD1.TabIndex = 5;
+            UnusedNUD1.TabIndex = 120;
             UnusedNUD1.Tag = "unused";
             // 
             // UnknownGB
@@ -2092,7 +2096,7 @@
             UnknownNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             UnknownNUD2.Name = "UnknownNUD2";
             UnknownNUD2.Size = new Size(37, 23);
-            UnknownNUD2.TabIndex = 6;
+            UnknownNUD2.TabIndex = 119;
             UnknownNUD2.Tag = "unknown";
             // 
             // UnknownNUD1
@@ -2102,7 +2106,7 @@
             UnknownNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             UnknownNUD1.Name = "UnknownNUD1";
             UnknownNUD1.Size = new Size(37, 23);
-            UnknownNUD1.TabIndex = 5;
+            UnknownNUD1.TabIndex = 118;
             UnknownNUD1.Tag = "unknown";
             // 
             // MiscGB
@@ -2122,7 +2126,7 @@
             MiscNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             MiscNUD.Name = "MiscNUD";
             MiscNUD.Size = new Size(37, 23);
-            MiscNUD.TabIndex = 5;
+            MiscNUD.TabIndex = 117;
             MiscNUD.Tag = "misc";
             // 
             // MarkingsGB
@@ -2142,7 +2146,7 @@
             MarkingNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             MarkingNUD.Name = "MarkingNUD";
             MarkingNUD.Size = new Size(37, 23);
-            MarkingNUD.TabIndex = 5;
+            MarkingNUD.TabIndex = 116;
             MarkingNUD.Tag = "mark";
             // 
             // RibbonGB
@@ -2164,7 +2168,7 @@
             RibbonTXT.Location = new Point(6, 48);
             RibbonTXT.Name = "RibbonTXT";
             RibbonTXT.Size = new Size(100, 23);
-            RibbonTXT.TabIndex = 7;
+            RibbonTXT.TabIndex = 115;
             RibbonTXT.Leave += TextBoxDecimalToNumUpDown;
             // 
             // RibbonNUD4
@@ -2174,7 +2178,7 @@
             RibbonNUD4.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             RibbonNUD4.Name = "RibbonNUD4";
             RibbonNUD4.Size = new Size(37, 23);
-            RibbonNUD4.TabIndex = 6;
+            RibbonNUD4.TabIndex = 114;
             RibbonNUD4.Tag = "ribbon";
             RibbonNUD4.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -2185,7 +2189,7 @@
             RibbonNUD3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             RibbonNUD3.Name = "RibbonNUD3";
             RibbonNUD3.Size = new Size(37, 23);
-            RibbonNUD3.TabIndex = 5;
+            RibbonNUD3.TabIndex = 113;
             RibbonNUD3.Tag = "ribbon";
             RibbonNUD3.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -2196,7 +2200,7 @@
             RibbonNUD2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             RibbonNUD2.Name = "RibbonNUD2";
             RibbonNUD2.Size = new Size(37, 23);
-            RibbonNUD2.TabIndex = 4;
+            RibbonNUD2.TabIndex = 112;
             RibbonNUD2.Tag = "ribbon";
             RibbonNUD2.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -2207,7 +2211,7 @@
             RibbonNUD1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             RibbonNUD1.Name = "RibbonNUD1";
             RibbonNUD1.Size = new Size(37, 23);
-            RibbonNUD1.TabIndex = 3;
+            RibbonNUD1.TabIndex = 111;
             RibbonNUD1.Tag = "ribbon";
             RibbonNUD1.ValueChanged += NumUpDownToTextboxHex;
             // 
@@ -2228,7 +2232,7 @@
             SheenNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             SheenNUD.Name = "SheenNUD";
             SheenNUD.Size = new Size(37, 23);
-            SheenNUD.TabIndex = 5;
+            SheenNUD.TabIndex = 110;
             SheenNUD.Tag = "contest6";
             // 
             // SmartGB
@@ -2248,7 +2252,7 @@
             SmartNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             SmartNUD.Name = "SmartNUD";
             SmartNUD.Size = new Size(37, 23);
-            SmartNUD.TabIndex = 5;
+            SmartNUD.TabIndex = 109;
             SmartNUD.Tag = "contest5";
             // 
             // ToughGB
@@ -2268,7 +2272,7 @@
             ToughNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             ToughNUD.Name = "ToughNUD";
             ToughNUD.Size = new Size(37, 23);
-            ToughNUD.TabIndex = 5;
+            ToughNUD.TabIndex = 108;
             ToughNUD.Tag = "contest4";
             // 
             // BeautyGB
@@ -2288,7 +2292,7 @@
             BeautyNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             BeautyNUD.Name = "BeautyNUD";
             BeautyNUD.Size = new Size(37, 23);
-            BeautyNUD.TabIndex = 5;
+            BeautyNUD.TabIndex = 107;
             BeautyNUD.Tag = "contest3";
             // 
             // CuteGB
@@ -2308,7 +2312,7 @@
             CuteNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             CuteNUD.Name = "CuteNUD";
             CuteNUD.Size = new Size(37, 23);
-            CuteNUD.TabIndex = 5;
+            CuteNUD.TabIndex = 106;
             CuteNUD.Tag = "contest2";
             // 
             // CoolGB
@@ -2328,7 +2332,7 @@
             CoolNUD.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             CoolNUD.Name = "CoolNUD";
             CoolNUD.Size = new Size(37, 23);
-            CoolNUD.TabIndex = 5;
+            CoolNUD.TabIndex = 105;
             CoolNUD.Tag = "contest1";
             // 
             // searchGB
@@ -2352,16 +2356,29 @@
             DexOrderCB.Location = new Point(140, 30);
             DexOrderCB.Name = "DexOrderCB";
             DexOrderCB.Size = new Size(145, 19);
-            DexOrderCB.TabIndex = 15;
+            DexOrderCB.TabIndex = 3;
             DexOrderCB.Text = "Defult Pokémon Order";
             DexOrderCB.UseVisualStyleBackColor = true;
             DexOrderCB.CheckedChanged += dexOrderCB_CheckedChanged;
+            // 
+            // InfoLBL
+            // 
+            InfoLBL.AutoSize = true;
+            InfoLBL.Font = new Font("Segoe UI", 7F);
+            InfoLBL.Location = new Point(944, 352);
+            InfoLBL.Name = "InfoLBL";
+            InfoLBL.Size = new Size(70, 12);
+            InfoLBL.TabIndex = 18;
+            InfoLBL.TabStop = true;
+            InfoLBL.Text = "Build 20240626";
+            InfoLBL.LinkClicked += InfoLBL_LinkClicked;
             // 
             // PK3_RAM_Injection
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1026, 373);
+            Controls.Add(InfoLBL);
             Controls.Add(searchGB);
             Controls.Add(tabControl1);
             Controls.Add(DisplayDGV);
@@ -2374,6 +2391,9 @@
             Controls.Add(FindPkmnBTN);
             Controls.Add(OpenFileTXB);
             Controls.Add(OpenFileBTN);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(1042, 412);
+            MinimumSize = new Size(1042, 412);
             Name = "PK3_RAM_Injection";
             Text = "PK Injection";
             Load += LoadForm;
@@ -2710,5 +2730,6 @@
         private Label mLevelLBL;
         private GroupBox searchGB;
         private CheckBox DexOrderCB;
+        private LinkLabel InfoLBL;
     }
 }
